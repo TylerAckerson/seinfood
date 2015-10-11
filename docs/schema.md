@@ -5,7 +5,9 @@
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
 email           | string    | not null, indexed, unique
-address         | string    | not null
+address         | text      | not null
+city            | text      | not null, default "New York City"
+state           | text      | not null, default "New York"
 password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
 
@@ -61,4 +63,4 @@ menu_item_id   | integer   | not null, foreign key (references menu items), inde
 quantity       | integer   | not null
 notes          | string    |
 
-# ratings will come from Yelp API
+### ratings will come from Yelp API
