@@ -1,14 +1,14 @@
-# Phase 1: User Authentication, Note Model and JSON API
+# Phase 1: User Authentication, Restaurant Model
 
 ## Rails
 ### Models
 * User
-* Note
+* Restaurant
 
 ### Controllers
 * UsersController (create, new)
 * SessionsController (create, new, destroy)
-* Api::NotesController (create, destroy, index, show, update)
+* Api::RestaurantsController (index, show)
 
 ### Views
 * users/new.html.erb

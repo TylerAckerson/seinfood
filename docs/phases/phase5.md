@@ -2,7 +2,8 @@
 
 ## Rails
 ### Models
-* Reminder
+* User
+* Restaurant
 
 ### Controllers
 * Api::RemindersController (create, destroy, index, show, update)

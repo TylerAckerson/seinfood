@@ -2,9 +2,8 @@
 
 ## Rails
 ### Models
-* Notebook
-* Tag
-* Tagging
+* User
+* Restaurant
 
 ### Controllers
 * Api::NotebooksController (create, destroy, index, show, update)

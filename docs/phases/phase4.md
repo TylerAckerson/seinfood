@@ -2,6 +2,8 @@
 
 ## Rails
 ### Models
+* User
+* Restaurant
 
 ### Controllers
 

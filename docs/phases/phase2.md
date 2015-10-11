@@ -1,7 +1,9 @@
 # Phase 2: Flux Architecture and Note CRUD (2 days)
-
+and JSON API
 ## Rails
 ### Models
+* User
+* Restaurant
 
 ### Controllers
 
