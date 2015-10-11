@@ -50,6 +50,7 @@ status         | string    | not null
 subtotal       | float     | not null
 tax            | float     | not null
 delivery fee   | float     | not null
+total          | float     | not null
 
 ## order items
    column name | data type | details
