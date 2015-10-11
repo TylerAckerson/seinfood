@@ -1,7 +1,7 @@
 # View Wireframes
 
 ## Sign Up
-![sign-up)]
+![sign-up]
 
 ## Sign In
 ![sign-in]
@@ -18,8 +18,8 @@
 ## Checkout
 ![checkout]
 
-## Component Heirarchy
-![component-heirarchy]
+## Component Hierarchy
+![component-hierarchy]
 
 [sign-up]: ./wireframes/2_sign_up.png
 [sign-in]: ./wireframes/3_sign_in.png
@@ -27,4 +27,4 @@
 [restaurant-list]: ./wireframes/4_restaurant_list.png
 [restaurant-menu]: ./wireframes/5_restaurant_menu.png
 [checkout]: ./wireframes/6_checkout.png
-[component-heirarchy]: ./wireframes/component_heirarchy.png
+[component-heirarchy]: ./wireframes/component_hierarchy.png
