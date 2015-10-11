@@ -1,51 +1,63 @@
-# Schema Information
-
-## notes
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-title       | string    | not null
-body        | text      | not null
-author_id   | integer   | not null, foreign key (references users), indexed
-notebook_id | integer   | not null, foreign key (references notebooks), indexed
-archived    | boolean   | not null, default: false
-
-## notebooks
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-author_id   | integer   | not null, foreign key (references users), indexed
-title       | string    | not null
-description | string    | 
-
-## reminders
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-user_id     | integer   | not null, foreign key (references users), indexed
-note_id     | string    | not null, foreign key (references notes), indexed
-date        | datetime  | not null
-type        | string    | not null
-prev_id     | integer   | foreign key (references reminders), indexed
-
-## tags
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-name        | string    | not null
-
-## taggings
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-name        | string    | not null
-note_id     | integer   | not null, foreign key (references notes), indexed, unique [tag_id]
-tag_id      | integer   | not null, foreign key (references tags), indexed
+# Database Schema
 
 ## users
-column name     | data type | details
+    column name | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
-username        | string    | not null, indexed, unique
+email           | string    | not null, indexed, unique
+address         | string    | not null
 password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
+
+## restaurants
+   column name | data type | details
+---------------|-----------|-----------------------
+id             | integer   | not null, primary key
+name           | text      | not null
+cuisine        | text      | not null
+address        | text      | not null
+city           | text      | not null, default "New York City"
+state          | text      | not null, default "New York"
+yelp_id        | integer   |
+delivery_days  | text      |
+delivery_start | integer   |
+delivery_end   | integer   |
+delivery_min   | integer   |
+takeout_days   | text      |
+takeout_start  | integer   |
+takeout_end    | integer   |
+
+## menu items
+   column name | data type | details
+---------------|-----------|-----------------------
+id             | integer   | not null, primary key
+name           | string    | not null, primary key
+description    | string    | not null, primary key
+category       | string    | not null, indexed
+restaurant_id  | string    | not null, foreign key (references restaurants), indexed
+archived       | boolean   | not null, default: false
+
+## orders
+   column name | data type | details
+---------------|-----------|-----------------------
+id             | integer   | not null, primary key
+user_id        | integer   | not null, foreign key (references users), indexed
+restaurant_id  | string    | not null, foreign key (references restaurants), indexed
+date           | datetime  | not null
+scheduled_for  | datetime  | not null
+type           | string    | not null (delivery vs takeout)
+status         | string    | not null
+subtotal       | float     | not null
+tax            | float     | not null
+delivery fee   | float     | not null
+
+## order items
+   column name | data type | details
+---------------|-----------|-----------------------
+id             | integer   | not null, primary key
+order_id       | integer   | not null, foreign key (references orders), indexed
+menu_item_id   | integer   | not null, foreign key (references menu items), indexed
+quantity       | integer   | not null
+notes          | string    |
+
+# ratings will come from Yelp API
