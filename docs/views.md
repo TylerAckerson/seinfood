@@ -27,4 +27,4 @@
 [restaurant-list]: ./wireframes/4_restaurant_list.png
 [restaurant-menu]: ./wireframes/5_restaurant_menu.png
 [checkout]: ./wireframes/6_checkout.png
-[component-heirarchy]: ./wireframes/component_hierarchy.png
+[component-hierarchy]: ./wireframes/component_hierarchy.png
