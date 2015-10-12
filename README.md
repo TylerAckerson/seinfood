@@ -34,7 +34,7 @@ Seinfood allows users to:
 
 ## Implementation Timeline
 
-# Phase 1: User Authentication, Restaurant Model and API, Home Page (2 days)
+### Phase 1: User Authentication, Restaurant Model and API, Home Page (2 days)
 
 In phase 1, I will start by creating both user 'sign in' and 'sign up'
 pages. I will create an authentication system using BCrypt and then move
