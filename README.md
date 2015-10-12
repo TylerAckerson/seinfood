@@ -19,7 +19,7 @@ Seinfood allows users to:
 - [ ] Sort and filter restaurants
 - [ ] View restaurant details and menu items
 - [ ] Create orders and check out
-- [ ] Save favorite menu items
+- [ ] Save favorite menu items and restaurants
 - [ ] Review past orders
 
 [seinfeld]: https://en.wikipedia.org/wiki/Seinfeld
