@@ -1,38 +1,37 @@
-# Phase 3: Notebooks and Tags (2 days)
+# Phase 3: Menus, Menu Items (1.5 days)
 
 ## Rails
 ### Models
-* User
-* Restaurant
+* Menu Item
 
 ### Controllers
-* Api::NotebooksController (create, destroy, index, show, update)
+* n/a
 
 ### Views
-* notebooks/index.json.jbuilder
-* notebooks/show.json.jbuilder
-* tags/show.json.jbuilder
+* n/a
 
 ## Flux
 ### Views (React Components)
-* NotebooksIndex
-  - NotebookIndexItem
-* NotebookForm
-* SearchIndex
+* App (from phase 1)
+  - Restaurant Detail
+    - Reviews (view only)
+    - Menu
+      - Menu Category
+        - Menu Item
+    - Order (placeholder - implemented in phase 4)
 
 ### Stores
-* Notebook
+* Menu Item
+* Review
+* Order
 
 ### Actions
-* ApiActions.receiveAllNotebooks
-* ApiActions.receiveSingleNotebook
-* ApiActions.deleteNotebook
+* ApiActions.recieveAllMenuItems
+* ApiActions.receiveAllReviews
 
 ### ApiUtil
-* ApiUtil.fetchAllNotebooks
-* ApiUtil.fetchSingleNotebook
-* ApiUtil.createNotebook
-* ApiUtil.editNotebook
-* ApiUtil.destroyNotebook
+* ApiUtil.fetchAllMenuItems
+* ApiUtil.fetchAllReviews
 
 ## Gems/Libraries
+* n/a

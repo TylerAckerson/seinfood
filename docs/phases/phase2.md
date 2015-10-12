@@ -1,35 +1,39 @@
-# Phase 2: Flux Architecture and Note CRUD (2 days)
-and JSON API
+# Phase 2: Flux Architecture, Google Maps API, and Restaurant List (2 days)
+
 ## Rails
 ### Models
 * User
 * Restaurant
 
 ### Controllers
+* n/a
 
 ### Views
+* n/a
 
 ## Flux
 ### Views (React Components)
-* NotesIndex
-  - NotesIndexItem
-* NoteForm
+* App (from phase 1)
+  - Search results
+    - Featured restaurant list
+      - Featured restaurant item
+    - Restaurant list
+      - Restaurant item
+    - Filter
 
 ### Stores
-* Note
+* Restaurant
 
 ### Actions
-* ApiActions.receiveAllNotes
-* ApiActions.receiveSingleNote
-* ApiActions.deleteNote
+* ApiActions.receiveAllRestaurants
+* ApiActions.receiveSingleRestaurant
 
 ### ApiUtil
-* ApiUtil.fetchAllNotes
-* ApiUtil.fetchSingleNote
-* ApiUtil.createNote
-* ApiUtil.editNote
-* ApiUtil.destroyNote
+* n/a
 
 ## Gems/Libraries
+* React-rails
 * Flux Dispatcher
+* Node EventEmitter
+* Google Maps Distance Matrix API
 * Twitter Bootstrap

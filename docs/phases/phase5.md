@@ -1,36 +1,31 @@
-# Phase 5: Reminders and Garbage Collection
+# Phase 5: Past Orders and Favorites (1 day)
 
 ## Rails
 ### Models
-* User
-* Restaurant
+* Favorite (polymorphic association to Restaurant and Menu Item classes)
 
 ### Controllers
-* Api::RemindersController (create, destroy, index, show, update)
+* Api::Favorites (create, destroy)
 
 ### Views
-* reminders/index.json.jbuilder
+* Update users/show.html.erb from phase 1
+ - To include past orders
 
 ## Flux
 ### Views (React Components)
-* RemindersIndex
-  - ReminderIndexItem
-* ReminderShow
-* ReminderForm
+* Edit Menu Item component from phase 3
+  - To allow users to 'favorite' menu items
+* Edit Restaurant Item component from phase 2
+  - To allow users to 'favorite' restaurants
 
 ### Stores
-* Reminder
+* n/a
 
 ### Actions
-* ApiActions.receiveAllReminders
-* ApiActions.receiveSingleReminder
-* ApiActions.deleteReminder
+* n/a
 
 ### ApiUtil
-* ApiUtil.fetchAllReminders
-* ApiUtil.fetchSingleReminder
-* ApiUtil.createReminder
-* ApiUtil.updateReminder
-* ApiUtil.destroyReminder
+* n/a
 
 ## Gems/Libraries
+* n/a

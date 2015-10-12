@@ -17,7 +17,6 @@ Seinfood allows users to:
 - [ ] Sign in / sign out
 - [ ] Search for restaurants in New York City... in the 90s.. from Seinfeld
 - [ ] Sort and filter restaurants
-- [ ] View a map of all available restaurants
 - [ ] View restaurant details and menu items
 - [ ] Create orders and check out
 - [ ] Save favorite menu items
@@ -35,63 +34,85 @@ Seinfood allows users to:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Note Model and JSON API (1.5 days)
+# Phase 1: User Authentication, Restaurant Model and API, Home Page (2 days)
 
-In Phase 1, I will begin by implementing user signup and authentication (using
-BCrypt). There will be a basic landing page after signup that will contain the
-container for the application's root React component. Before building out the
-front end, I will begin by setting up a full JSON API for Notes.
+In phase 1, I will start by creating both user 'sign in' and 'sign up'
+pages. I will create an authentication system using BCrypt and then move
+on to creating the Restaurant model and its associated JSON API to view
+an index of restaurants, as well as a specific restaurant.
+
+From there, I will spend some time creating the initial home/splash
+page, where users will type in their current address to start searching
+for matching restaurants near them.
 
 [Details][phase-one]
 
-### Phase 2: Flux Architecture and Note CRUD (2.5 days)
+### Phase 2: Flux Architecture, Google Maps API, and Restaurant List (2 days)
 
-Phase 2 is focused on setting up Flux, the React Router, and the React view
-structure for the main application. After the basic Flux architecture has been
-set up, a Note store will be implemented and a set of actions corresponding to
-the needed CRUD functionality created. Once this is done, I will create React
-views for the Notes `Index`, `IndexItem` and `Form`. At the end of Phase 2,
-Notes can be created, read, edited and destroyed in the browser. Notes should
-save to the database when the form loses focus or is left idle after editing.
-Lastly, while constructing the views I will start using basic bootstrap for
-styling.
+Phase 2 will be focused on setting up Flux, the main React Router
+component, and the React components allowing users to view restaurants
+in list form.
+
+After the main Flux architecture has been set up, I will focus on
+creating the 'Search Results' component, which will contain a
+'Restaurant List' component to store specific 'Restaurant' components.
+It will also allow users to sort and filter restaurants using a
+'Filter' component. I will use the Google maps API to determine the
+distance of each restaurant from the user's location.
+
+At the end of Phase 2, users should be able to type in their address
+and receive a full list of restaurants near them. They should then be
+able to filter and sort the restaurants.
+
+I will start doing some basic styling with Bootstrap in Phase 2 and
+begin seeding the database with both Users and Restaurants.
 
 [Details][phase-two]
 
-### Phase 3: Notebooks and Tags (2 days)
+### Phase 3: Menus, Menu Items (1.5 days)
 
-Phase 3 adds organization to the Notes. Notes belong to a Notebook, which has
-its own `Index` view. Create JSON API for Notebooks. Notes can also now be
-tagged with multiple tags. Users can bring up notes in a separate `SearchIndex`
-view by searching for their tags. Once the tag search is implemented, I will
-extend this to a fuzzy search through every Note's content.
+The features implemented in Phase 3 will allow users to select specific
+restaurants and view menus and menu items. There will
+be a components to house each restaurants' menu, menu categories, and
+specific menu items.
+
+Again, I will seed the database -- this time with menus and menu items
+to start testing the order-creation process.
 
 [Details][phase-three]
 
-### Phase 4: Allow Complex Styling in Notes (1 day)
+### Phase 4: Order Creation and Completion (1.5 day)
 
-Using quill.js, allow for complex styling of notes.
+In Phase 4, I will ensure that orders can be created and committed to
+the database by users. Users will be able to select menu items to view
+details and add them to their Orders.
+
+After orders are submitted, the order statuses will be available,
+letting users know that their order is now in process and being handled
+by the restaurant.
+
+In order to complete orders, very basic credit card processing will be
+required. I will just validate that the user's VISA has the correct
+number and format of digits.
 
 [Details][phase-four]
 
-### Phase 5: Reminders and Garbage Collection (1 day)
+### Phase 5: Past Orders and Favorites (1 day)
 
-Phase 5 introduces two new features. First, users can set reminders on notes
-which will at the time they are set for prompt the user to review and edit the
-given note. In addition, I will implement a feature that asks users to review
-notes once they reach a certain age and ask whether they should be kept,
-archived, or deleted.
+Phase 5 will allow for users to review their past orders from their
+account page. They will also be able to favorite menu items and
+restaurants.
 
 [Details][phase-five]
 
-### Phase 6: Styling Cleanup and Seeding (1 day)
+### Phase 6: # Phase 6: Styling, Animation, and Cleanup (1 day)
 
-Bootstrap will have been used to keep things organized up until now, but in
-Phase 6 I will add styling flourishes and make modals out of some elements (like
-the NotebookForm).
+Phase 6 will be focused on adding styling and some effects to enhance
+the user experience.
 
 ### Potential Bonus Features
 - [ ] Allow users to view restaurant reviews pulled from Yelp
+- [ ] Allow users to view a map of available restaurants
 - [ ] Allow users to search for menu items
 - [ ] Allow users to use coupons
 - [ ] Allow users to enroll in rewards programs

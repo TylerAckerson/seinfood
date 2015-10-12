@@ -63,4 +63,10 @@ menu_item_id   | integer   | not null, foreign key (references menu items), inde
 quantity       | integer   | not null
 notes          | string    |
 
-### ratings will come from Yelp API
+## favorites (polymorphic)
+     column name | data type| details
+-----------------|----------|-----------------------
+id               | integer  | not null, primary key
+user_id          | integer  | not null, foreign key (references users), indexed
+favoritable_id   | integer  | not null, foreign key (references specific Restaurant or Menu Item), indexed
+favoritable_type | text     | not null, foreign key (references Restaurant or Menu Item class)
