@@ -110,6 +110,8 @@ restaurants.
 Phase 6 will be focused on adding styling and some effects to enhance
 the user experience.
 
+[Details][phase-six]
+
 ### Potential Bonus Features
 - [ ] Allow users to view restaurant reviews pulled from Yelp
 - [ ] Allow users to view a map of available restaurants
@@ -122,3 +124,4 @@ the user experience.
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
+[phase-five]: ./docs/phases/phase6.md
