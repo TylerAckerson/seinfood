@@ -1,24 +1,30 @@
 # Seinfood
 
-[Heroku link][heroku] **NB:** This should be a link to your production site
+[Heroku link][heroku]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: https://seinfood.herokuapp.com/
 
 ## Minimum Viable Product
 
-FresherNote is a web application inspired by Evernote built using Ruby on Rails
-and React.js. FresherNote allows users to:
+Seinfood is a [Seinfeld][seinfeld]-themed web application inspired by
+[EatStreet][eatstreet], which allows users to order delivery and takeout
+from fictional restaurants featured in the classic 90s sitcom. It was
+created using Ruby on Rails and React.js at Kramerica Industries.
 
-<!-- This is a Markdown checklist. Use it to keep track of your progress! -->
+Seinfood allows users to:
 
 - [ ] Create an account
-- [ ] Log in / Log out
-- [ ] Create, read, edit, and delete notes
-- [ ] Organize notes within Notebooks
-- [ ] Tag notes with multiple tags and search notes by tag
-- [ ] Search through notes for blocks of text
-- [ ] Apply complex styling to notes while editing
-- [ ] Set reminders on notes
+- [ ] Sign in / sign out
+- [ ] Search for restaurants in New York City... in the 90s.. from Seinfeld
+- [ ] Sort and filter restaurants
+- [ ] View a map of all available restaurants
+- [ ] View restaurant details and menu items
+- [ ] Create orders and check out
+- [ ] Save favorite menu items
+- [ ] Review past orders
+
+[seinfeld]: https://en.wikipedia.org/wiki/Seinfeld
+[eatstreet]: https://eatstreet.com/
 
 ## Design Docs
 * [View Wireframes][view]
@@ -84,12 +90,11 @@ Bootstrap will have been used to keep things organized up until now, but in
 Phase 6 I will add styling flourishes and make modals out of some elements (like
 the NotebookForm).
 
-### Bonus Features (TBD)
-- [ ] Prettify transitions
-- [ ] Use javascript library for cleaner tag selection
-- [ ] Changelogs for Notes
-- [ ] Pagination / infinite scroll for Notes Index
-- [ ] Multiple sessions
+### Potential Bonus Features
+- [ ] Allow users to view restaurant reviews pulled from Yelp
+- [ ] Allow users to search for menu items
+- [ ] Allow users to use coupons
+- [ ] Allow users to enroll in rewards programs
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
