@@ -63,6 +63,16 @@ menu_item_id   | integer   | not null, foreign key (references menu items), inde
 quantity       | integer   | not null
 notes          | string    |
 
+## reviews
+   column name | data type | details
+---------------|-----------|-----------------------
+id             | integer   | not null, primary key
+author_id      | integer   | not null, foreign key (references users), indexed
+restaurant_id  | integer   | not null, foreign key (references restaurants), indexed
+stars          | integer   | not null
+title          | string    | not null
+body           | string    | not null
+
 ## favorites (polymorphic)
      column name | data type| details
 -----------------|----------|-----------------------
