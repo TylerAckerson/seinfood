@@ -12,9 +12,6 @@
 
 ### Views
 * users/new.html.erb
-* users/edit.html.erb
-* users/show.html.erb
-
 * session/new.html.erb
 
 * home.html.erb

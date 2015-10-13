@@ -57,15 +57,15 @@ After the main Flux architecture has been set up, I will focus on
 creating the 'Search Results' component, which will contain a
 'Restaurant List' component to store specific 'Restaurant' components.
 It will also allow users to sort and filter restaurants using a
-'Filter' component. I will use the Google maps API to determine the
-distance of each restaurant from the user's location.
-
-At the end of Phase 2, users should be able to type in their address
+'Filter' component. At the end of Phase 2, users should be able to type in their address
 and receive a full list of restaurants near them. They should then be
 able to filter and sort the restaurants.
 
 I will start doing some basic styling with Bootstrap in Phase 2 and
 begin seeding the database with both Users and Restaurants.
+
+I will start by giving users all restaurant locations but will then use the Google maps API to determine the
+distance of each restaurant from the user's location.
 
 [Details][phase-two]
 
@@ -85,23 +85,17 @@ to start testing the order-creation process.
 
 In Phase 4, I will ensure that orders can be created and committed to
 the database by users. Users will be able to select menu items to view
-details and add them to their Orders.
+details and add them to their Orders. I will also need to create a way for users to place orders without entering payment information.
 
 After orders are submitted, the order statuses will be available,
 letting users know that their order is now in process and being handled
 by the restaurant.
 
-In order to complete orders, very basic credit card processing will be
-required. I will just validate that the user's VISA has the correct
-number and format of digits.
-
 [Details][phase-four]
 
-### Phase 5: Past Orders and Favorites (1 day)
+### Phase 5: Account Component and Past Orders (1 day)
 
-Phase 5 will allow for users to review their past orders from their
-account page. They will also be able to favorite menu items and
-restaurants.
+Phase 5 will create an account view/component and allow users to view their past orders.
 
 [Details][phase-five]
 
@@ -113,6 +107,7 @@ the user experience.
 [Details][phase-six]
 
 ### Potential Bonus Features
+- [ ]  Allow users to create and favorite menu items and restaurants
 - [ ] Allow users to view restaurant reviews pulled from Yelp
 - [ ] Allow users to view a map of available restaurants
 - [ ] Allow users to search for menu items
