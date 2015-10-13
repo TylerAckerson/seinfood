@@ -1,0 +1,44 @@
+<h1>Create User</h1>
+
+<form action="<%= users_url %>" method="POST">
+
+  <label>
+    Email:
+    <input type="text" name="user[email]">
+  </label>
+
+  <br>
+
+  <label>
+    Password:
+    <input type="password" name="user[password]">
+  </label>
+
+  <br><br>
+
+  <label>
+    Address:
+    <input type="text" name="user[address]">
+  </label>
+  <label>
+
+  <br>
+
+    City:
+    <input type="text" placeholder="New York City" name="user[city]">
+  </label>
+
+  <br>
+
+  <label>
+    State:
+    <input type="text" placeholder="New York" name="user[state]">
+  </label>
+
+  <br><br>
+
+  <%= form_auth %>
+
+  <input type="submit" value="Sign Up">
+
+</form>
