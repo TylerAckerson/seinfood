@@ -21,6 +21,7 @@ $(function() {
       <Route path="/" component={App}>
         <IndexRoute component={Search} />
       </Route>
+      <Route path="/restaurants" component={Restaurants}/>  
     </Router>
   );
 
