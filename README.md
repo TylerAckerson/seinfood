@@ -13,8 +13,8 @@ created using Ruby on Rails and React.js at Kramerica Industries.
 
 Seinfood allows users to:
 
-- [ ] Create an account
-- [ ] Sign in / sign out
+- [X] Create an account
+- [X] Sign in / sign out
 - [ ] Search for restaurants in New York City... in the 90s.. from Seinfeld
 - [ ] Sort and filter restaurants
 - [ ] View restaurant details and menu items

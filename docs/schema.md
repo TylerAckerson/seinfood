@@ -23,7 +23,7 @@ state          | text      | not null, default "New York"
 yelp_id        | integer   |
 opens_at       | integer   |
 closes_at      | integer   |
-delivery_min   | integer   |
+delivery_min   | float   |
 
 ## menu items
    column name | data type | details
