@@ -5,7 +5,7 @@
   var CHANGE_EVENT = "change";
 
   var resetRestaurants = function(restaurants){
-    // _restaurants = ApiUtil.fet;
+    _restaurants = restaurants;
   };
 
   root.RestaurantStore = $.extend({}, EventEmitter.prototype, {
@@ -22,10 +22,10 @@
     },
 
     dispatcherID: AppDispatcher.register(function(payload) {
-      switch (payload.actionType){
+      switch (payload.actionType) {
         case (RestaurantConstants.ALL_RESTAURANTS_RECEIVED):
           resetRestaurants(payload.restaurants);
-          RestaurantStore.emit(CHANGE_EVENT);
+          root.RestaurantStore.emit(CHANGE_EVENT);
           break;
         // case RestaurantConstants.SINGLE_RESTAURANT_RECEIVED):
       }

@@ -1,4 +1,4 @@
-class RestaurantsController < ApplicationController
+class Api::RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.all
@@ -6,6 +6,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    @restaurant = Restaurant.find(params[:id])
   end
-  
+
 end

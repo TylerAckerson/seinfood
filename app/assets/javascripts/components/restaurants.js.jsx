@@ -1,17 +1,30 @@
 Restaurants = React.createClass({
   getInitialState: function(){
-    return {restuarants: []};
+    return { restaurants: [] };
   },
+
+  _onChange: function(){
+    this.setState( { restaurants: RestaurantStore.all() } );
+  },
+
   componentDidMount: function(){
-    this.setState( { restuarants: RestaurantStore.all() } );
+    ApiUtil.fetchRestaurants();
+    RestaurantStore.addChangeListener(this._onChange);
   },
+
+  componentWillUnmount: function(){
+    RestaurantStore.removeChangeListener(this._onChange);
+  },
+
   render: function(){
     return (
-      <div>
-        HellllloOoOo
-        <RestaurantItem/>
+      <div id="restaurants-index">
+        <h2>Restaurants</h2> {
+          this.state.restaurants.map(function(restaurant){
+            return <RestaurantItem restaurant={restaurant} key={restaurant.id}/>;
+          })
+        }
       </div>
-
     );
   }
 });
