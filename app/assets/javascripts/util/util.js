@@ -10,7 +10,15 @@ window.ApiUtil = {
       }
     });
   },
-  fetchSingleRestuarant: function(restaurant){
-
+  fetchSingleRestaurant: function(restaurantId){
+    $.ajax({
+      url: 'api/restaurants/' + restaurantId,
+      success: function(restaurant){
+        ApiActions.receiveSingleRestaurant(restaurant);
+      },
+      error: function(resp){
+        console.log(resp);
+      }
+    });
   }
 };

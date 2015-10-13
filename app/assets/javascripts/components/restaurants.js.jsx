@@ -9,11 +9,11 @@ Restaurants = React.createClass({
 
   componentDidMount: function(){
     ApiUtil.fetchRestaurants();
-    RestaurantStore.addChangeListener(this._onChange);
+    RestaurantStore.addIndexChangeListener(this._onChange);
   },
 
   componentWillUnmount: function(){
-    RestaurantStore.removeChangeListener(this._onChange);
+    RestaurantStore.removeIndexChangeListener(this._onChange);
   },
 
   render: function(){
@@ -21,7 +21,8 @@ Restaurants = React.createClass({
       <div id="restaurants-index">
         <h2>Restaurants</h2> {
           this.state.restaurants.map(function(restaurant){
-            return <RestaurantItem restaurant={restaurant} key={restaurant.id}/>;
+            return <RestaurantItem restaurant={restaurant}
+            key={restaurant.id}/>;
           })
         }
       </div>

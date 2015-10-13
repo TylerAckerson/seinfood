@@ -2,7 +2,8 @@
   'use strict';
 
   var _restaurants = [];
-  var CHANGE_EVENT = "change";
+  var RESTAURANTS_CHANGE_EVENT = "restaurantsChange";
+  var RESTAURANT_DETAIL_CHANGE_EVENT = "restaurantDetailChange";
 
   var resetRestaurants = function(restaurants){
     _restaurants = restaurants;
@@ -13,21 +14,42 @@
       return _restaurants.slice();
     },
 
-    addChangeListener: function(callback){
-      root.RestaurantStore.on(CHANGE_EVENT, callback);
+    find: function(id) {
+      var restaurant = -1;
+
+      _restaurants.forEach(function(r){
+        if (id === r.id) { restaurant = r; }
+      });
+
+      return restaurant;
     },
 
-    removeChangeListener: function(callback){
-      root.RestaurantStore.removeListener(CHANGE_EVENT, callback);
+    addIndexChangeListener: function(callback){
+      root.RestaurantStore.on(RESTAURANTS_CHANGE_EVENT, callback);
+    },
+
+    removeIndexChangeListener: function(callback){
+      root.RestaurantStore.removeListener(RESTAURANTS_CHANGE_EVENT, callback);
+    },
+
+    addDetailChangeListener: function(callback){
+      root.RestaurantStore.on(RESTAURANT_DETAIL_CHANGE_EVENT, callback);
+    },
+
+    removeDetailChangeListener: function(callback){
+      root.RestaurantStore.removeListener(RESTAURANT_DETAIL_CHANGE_EVENT, callback);
     },
 
     dispatcherID: AppDispatcher.register(function(payload) {
       switch (payload.actionType) {
         case (RestaurantConstants.ALL_RESTAURANTS_RECEIVED):
           resetRestaurants(payload.restaurants);
-          root.RestaurantStore.emit(CHANGE_EVENT);
+          root.RestaurantStore.emit(RESTAURANTS_CHANGE_EVENT);
           break;
-        // case RestaurantConstants.SINGLE_RESTAURANT_RECEIVED):
+        case (RestaurantConstants.SINGLE_RESTAURANT_RECEIVED):
+          resetRestaurant(payload.restaurant);
+          root.RestaurantStore.emit(RESTAURANT_DETAIL_CHANGE_EVENT);
+          break;
       }
     })
   });
