@@ -1,25 +1,39 @@
 Navbar = React.createClass({
+  handleLogOut: function(){
+    ApiUtil.deleteSession();
+  },
   render: function(){
-    var current;
+    var navbar;
+    var signOut = <input
+       type="button"
+       onClick={this.handleLogOut}
+       value="Sign Out"
+       className="btn navbar-button navbar-right sign-out"/>;
+
     if (window.CURRENT_USER_ID) {
-      current = "Account";
+      navbar =
+        <ul className="nav nav-pills">
+          <li><a href="#">Account</a></li>
+          <li>{signOut}</li>
+          <li><a href="/">Home</a></li>
+        </ul>;
     } else {
-      current = "Sign In";
+      navbar =
+        <ul className="nav nav-pills">
+          <li><a href="users/new">Sign Up</a></li>
+          <li><a href="session/new">Sign In</a></li>
+          <li><a href="root_url">Home</a></li>
+        </ul>;
     }
 
-    return(
-      <ul>
-        <li>{current}</li>
-      </ul>
+    return (
+      <nav className="navbar navbar-default navbar-fixed-top">
+        <div className="container-fluid">
+          <div className="container-fluid">
+            {navbar}
+          </div>
+        </div>
+      </nav>
     );
   }
 });
-
-// <% if current_user %>
-// Logged in as <%= current_user.email %><br>
-//              <%= button_to "Sign Out", session_url, method: :delete %>
-// <% else %>
-//   <%= link_to "Sign Up", new_user_url %>
-//   <%= link_to "Sign In", new_session_url %>
-// <% end %>
-// <%= link_to "Home", root_url %>

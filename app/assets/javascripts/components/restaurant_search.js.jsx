@@ -8,8 +8,7 @@ RestaurantSearch = React.createClass({
 
     return (
       <div>
-        <span>Results for </span>
-        <span>{searchQuery}</span>
+        <span>Results for {searchQuery}</span>
       </div>
     );
   }

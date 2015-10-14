@@ -1,4 +1,4 @@
-$(function() {
+Seinfood = (function() {
   'use strict';
 
   var root = document.getElementById('application');

@@ -20,5 +20,17 @@ window.ApiUtil = {
         console.log(resp);
       }
     });
+  },
+  deleteSession: function() {
+    $.ajax({
+      url: '/session',
+      type: 'delete',
+      success: function(restaurant){
+        window.location = "/";
+      },
+      error: function(resp){
+        console.log(resp);
+      }
+    });
   }
 };
