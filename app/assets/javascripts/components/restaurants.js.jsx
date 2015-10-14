@@ -1,17 +1,18 @@
 Restaurants = React.createClass({
+  mixins: [ReactRouter.History],
+
   getInitialState: function(){
-    return { restaurants: [] };
+    return { restaurants: [], search: "" };
   },
 
   _onChange: function(){
     this.setState( { restaurants: RestaurantStore.all() } );
   },
 
-  componentDidMount: function(){
+  componentWillMount: function(){
     ApiUtil.fetchRestaurants();
     RestaurantStore.addIndexChangeListener(this._onChange);
   },
-
   componentWillUnmount: function(){
     RestaurantStore.removeIndexChangeListener(this._onChange);
   },
@@ -19,7 +20,9 @@ Restaurants = React.createClass({
   render: function(){
     return (
       <div id="restaurants-index">
-        <h2>Restaurants</h2> {
+        <div>
+          <RestaurantSearch search={this.props.location.query.search}/>
+        </div> {
           this.state.restaurants.map(function(restaurant){
             return <RestaurantItem restaurant={restaurant}
             key={restaurant.id}/>;

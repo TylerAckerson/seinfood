@@ -15,7 +15,7 @@ Seinfood allows users to:
 
 - [X] Create an account
 - [X] Sign in / sign out
-- [ ] Search for restaurants in New York City... in the 90s.. from Seinfeld
+- [X] Search for restaurants in New York City... in the 90s.. from Seinfeld
 - [ ] Sort and filter restaurants
 - [ ] View restaurant details and menu items
 - [ ] Create orders and check out

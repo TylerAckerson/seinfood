@@ -20,9 +20,9 @@ $(function() {
     <Router>
       <Route path="/" component={App}>
         <IndexRoute component={Search} />
+        <Route path="/restaurants" component={Restaurants}/>
+        <Route path="/restaurants/:restaurantId" component={RestaurantDetail}/>
       </Route>
-      <Route path="/restaurants" component={Restaurants}/>
-      <Route path="/restaurants/:restaurantId" component={RestaurantDetail}/>
     </Router>
   );
 
