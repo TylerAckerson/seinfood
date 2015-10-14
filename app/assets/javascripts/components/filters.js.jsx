@@ -1,124 +1,144 @@
 Filters = React.createClass({
- getInitialState: function() {
-   return {cuisine: null,
-           sort: 'alphabetical',
-           offers: {delivery: true, takeout: true},
-           features: {orderAhead: false, openOnTop: true}};
- },
  updateCuisine: function(e){
-   this.setState( {cuisine: e.target.value} );
+   FilterActions.updateCuisine(e.target.value);
  },
  updateSort: function(e){
-   this.setState( {sort: e.target.value} );
+   FilterActions.updateSort(e.target.value);
  },
- bothBoxesUnchecked: function(e) {
-   if (this.state.offers.delivery &&
-       this.state.offers.takeout &&
-       e.target.checked) { return true; }
+
+ updateOffers: function(e){
+   newOffers = this.getNewOffers(e);
+   FilterActions.updateOffers(newOffers);
+ },
+
+ updateFeatures: function(e){
+   FilterActions.updateFeatures(e.target.value);
+ },
+
+ resetFilters: function(e){
+    FilterActions.resetFilters();
+ },
+
+ offersInitial: function(e) {
+   if (!this.props.filterParams.offersDisplay.delivery &&
+       !this.props.filterParams.offersDisplay.takeout &&
+       this.props.filterParams.offers.delivery &&
+       this.props.filterParams.offers.takeout) { return true; }
 
   return false;
  },
  bothBoxesChecked: function(e) {
-   if (this.state.offers.delivery &&
-       this.state.offers.takeout &&
-       !e.target.checked) { return true; }
+   if (this.props.filterParams.offers.delivery &&
+       this.props.filterParams.offers.takeout) { return true; }
 
   return false;
  },
- updateOffers: function(e){
-   if (this.bothBoxesUnchecked(e)) {
+
+ getNewOffers: function(e){
+   if (this.offersInitial(e)) {
      if (e.target.value === "delivery") {
-       this.setState( { offers: {delivery: true, takeout: false}} );
+      newOffers = { offers: {delivery: true, takeout: false},
+                    offersDisplay: {delivery: true, takeout: false} };
+
+      // return newOffers;
      } else {
-       this.setState( { offers: {delivery: false, takeout: true}} );
+       newOffers = { offers: {delivery: false, takeout: true},
+                     offersDisplay: {delivery: false, takeout: true} };
+
+      //  return newOffers;
      }
    } else if (this.bothBoxesChecked(e)) {
      if (e.target.value === "delivery") {
-       this.setState( { offers: {delivery: false, takeout: true}} );
-     } else {
-       this.setState( { offers: {delivery: true, takeout: false}} );
-     }
-   } else  {
-     if (e.target.value === "delivery") {
-       var newDelivery = this.state.offers.delivery ? false : true;
-       newOffers = $.extend(this.state.offers, {delivery: newDelivery});
-       this.setState( {offers: newOffers} );
-     } else {
-       var newTakeout = this.state.offers.takeout ? false : true;
-       newOffers = $.extend(this.state.offers, {takeout: newTakeout});
-       this.setState( { offers: newOffers } );
-     }
-   }
- },
- updateFeatures: function(e){
-   if (e.target.value === "order-ahead") {
-     var newOrderAhead = this.state.features.orderAhead ? false : true;
-     newFeatures = $.extend(this.state.features, {orderAhead: newOrderAhead});
-     this.setState( {features: newFeatures} );
-   } else {
-     var newTakeout = this.state.features.openOnTop ? false : true;
-     newFeatures = $.extend(this.state.features, {openOnTop: newTakeout});
-     this.setState( { features: newFeatures } );
-   }
- },
+       newOffers = { offers: {delivery: false, takeout: true},
+                     offersDisplay: {delivery: false, takeout: true} };
 
- resetFilters: function(){
-   this.setState({ cuisine: null,
-                   sort: 'alphabetical',
-                   offers: {delivery: true, takeout: true},
-                   features: {orderAhead: false, openOnTop: true} });
+       return newOffers;
+     } else {
+       newOffers = { offers: {delivery: false, takeout: true},
+                     offersDisplay: {delivery: false, takeout: true} };
+
+      //  return newOffers;
+     }
+   } else {
+     if (e.target.value === "delivery") {
+       var newDelivery = this.props.filterParams.offers.delivery ? false : true;
+
+       newOffers = $.extend({}, {delivery: newDelivery,
+                    takeout: this.props.filterParams.offers.takeout});
+
+       newOffersDisplay = $.extend({}, {delivery: newDelivery,
+                    takeout: this.props.filterParams.offersDisplay.takeout});
+
+     } else {
+       var newTakeout = this.props.filterParams.offers.takeout ? false : true;
+
+       newOffers = $.extend({}, {takeout: newTakeout,
+                    delivery: this.props.filterParams.offers.takeout});
+
+       newOffersDisplay = $.extend({}, {takeout: newTakeout,
+                    delivery: this.props.filterParams.offersDisplay.takeout});
+
+     }
+
+    newOffers = $.extend({}, {offers: newOffers, offersDisplay: newOffersDisplay});
+   }
+
+   return $.extend(this.props.filterParams, newOffers);
  },
+ // updateFeatures: function(e){
+ //   if (e.target.value === "order-ahead") {
+ //     var newOrderAhead = this.state.features.orderAhead ? false : true;
+ //     newFeatures = $.extend(this.state.features, {orderAhead: newOrderAhead});
+ //     this.setState( {features: newFeatures} );
+ //   } else {
+ //     var newTakeout = this.state.features.openOnTop ? false : true;
+ //     newFeatures = $.extend(this.state.features, {openOnTop: newTakeout});
+ //     this.setState( { features: newFeatures } );
+ //   }
+ // },
+
  render: function(){
    return (
      <div id="filters">
+
      <h2>Filters</h2>
 
        <label> What are you hungry for? </label><br/>
-         <input type="text"
+         <input type="text" id="hungry-for"
                 placeholder="e.g. muffin tops"
-                onChange={this.updateCuisine}
-                value={this.state.cuisine} /><br/>
+                onChange={this.updateCuisine}/><br/>
 
        <label>Sort By</label><br/>
-         <select name="sort" onChange={this.updateSort}>
-                <option value="distance"
-                        selected={this.state.sort === "distance"}>
+         <select name="sort" id="sort-by" onChange={this.updateSort}>
+                <option value="distance">
                         Distance</option>
-                <option value="alphabetical"
-                        selected={this.state.sort === "alphabetical"}>
+                <option value="alphabetical">
                         Alphabetical</option>
-                <option value="rating"
-                        selected={this.state.sort === "rating"}>
+                <option value="rating">
                         Rating</option>
-                <option value="delivery_min"
-                        selected={this.state.sort === "delivery_min"}>
+                <option value="delivery_min">
                         Delivery Min</option>
-                <option value="delivery_fee"
-                        selected={this.state.sort === "delivery_fee"}>
+                <option value="delivery_fee">
                         Delivery Fee</option>
          </select><br/>
 
        <label>Offers</label><br/>
         <label>Delivery</label>
            <input type="checkbox"
-                  checked={this.state.offers.delivery}
                   onChange={this.updateOffers}
                   value="delivery"/><br/>
         <label>Takeout</label>
            <input type="checkbox"
-                  checked={this.state.offers.takeout}
                   onChange={this.updateOffers}
                   value="takeout"/><br/>
 
        <label>Features</label><br/>
         <label>Order Ahead</label>
            <input type="checkbox"
-                  checked={this.state.features.orderAhead}
                   onChange={this.updateFeatures}
                   value="order-ahead"/><br/>
         <label>Open Restaurants on Top</label>
            <input type="checkbox" id="open-on-top"
-                  checked={this.state.features.openOnTop}
                   onChange={this.updateFeatures}
                   value="open-on-top"/><br/>
 

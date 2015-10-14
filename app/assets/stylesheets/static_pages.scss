@@ -50,11 +50,13 @@ html {
 #restaurants-index {
   width: 500px;
   float: left;
-  // height: 100%;
-  // align-items: left;
-  // height: 700px;
-  // margin: 20px;
-  // border: 5px solid gray;
+  height: auto;
+  align-items: left;
+  height: 700px;
+  margin: 5px;
+  padding: 10px;
+  padding-left: 20px;
+  border: 2px solid gray;
 }
 
 #restaurants-index h2 {
@@ -63,12 +65,12 @@ html {
 
 #filters {
   width: 325px;
-  height: 700px;
+  float: left;
+  height: 300px;
+  margin: 5px;
   padding: 10px;
   padding-left: 20px;
-  float: left;
-  margin: 5px;
-  background-color: white;
-  opacity: 0.8;
+  // background-color: white;
+  // opacity: 0.8;
   border: 2px solid gray;
 }
