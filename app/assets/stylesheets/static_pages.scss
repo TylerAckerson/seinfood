@@ -31,7 +31,13 @@ ul {
 
 html {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-} 
+}
+
+#application{
+    margin: 0 auto;
+    width: auto;
+    position: relative;
+}
 
 #restaurant-item {
   border-bottom: wheat 2px solid;
@@ -41,6 +47,28 @@ html {
   border-bottom: 1px solid cornflowerblue;
 }
 
+#restaurants-index {
+  width: 500px;
+  float: left;
+  // height: 100%;
+  // align-items: left;
+  // height: 700px;
+  // margin: 20px;
+  // border: 5px solid gray;
+}
+
 #restaurants-index h2 {
   border-bottom: 1px solid red;
+}
+
+#filters {
+  width: 325px;
+  height: 700px;
+  padding: 10px;
+  padding-left: 20px;
+  float: left;
+  margin: 5px;
+  background-color: white;
+  opacity: 0.8;
+  border: 2px solid gray;
 }

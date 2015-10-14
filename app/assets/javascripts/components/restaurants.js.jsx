@@ -19,16 +19,19 @@ Restaurants = React.createClass({
 
   render: function(){
     return (
-      <div id="restaurants-index">
-        <div>
+      <div>
+        <div id="restaurants-index">
           <RestaurantSearch search={this.props.location.query.search}/>
-        </div> {
-          this.state.restaurants.map(function(restaurant){
-            return <RestaurantItem restaurant={restaurant}
-            key={restaurant.id}/>;
-          })
-        }
-      </div>
+          <div>{
+            this.state.restaurants.map(function(restaurant){
+              return <RestaurantItem restaurant={restaurant}
+              key={restaurant.id}/>;
+            })
+          }
+          </div>
+        </div>
+      <Filters/>
+    </div>
     );
   }
 });
