@@ -9,8 +9,12 @@ $(function() {
   var App = React.createClass({
     render: function(){
       return (
-        <div id="container">
-          {this.props.children}
+        <div>
+          <Navbar />
+          <h1>Seinfood</h1>
+          <div id="container">
+            {this.props.children}
+          </div>
         </div>
       );
     }
