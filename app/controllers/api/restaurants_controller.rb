@@ -9,9 +9,12 @@ class Api::RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
     @restaurants = filter_by_cuisine(@restaurants, cuisine) unless cuisine.empty?
     @restaurants = filter_by_offers(@restaurants, offers) if offers[:takeout] == false
-    # @restaurants = filter_by_features(@restaurants, features) if features.values.all? {|x| x == false }
 
-    render json: sort_restaurants(@restaurants, sort)
+    if features[:openOnTop] === 'true'
+      render json: sort_restaurants_open_on_top(@restaurants, sort)
+    else
+      render json: sort_restaurants(@restaurants, sort)
+    end
   end
 
   def filter_by_cuisine(restaurants, cuisine)
@@ -24,10 +27,21 @@ class Api::RestaurantsController < ApplicationController
     restaurants.filter do |restaurant|
       restaurant.takeout_only
     end
-
   end
 
   def filter_by_features
+  end
+
+  def sort_restaurants_open_on_top(restaurants, method)
+    current_hour = Time.now.hour*100
+
+    open, closed = restaurants.partition do |restaurant|
+      current_hour >= restaurant.opens_at &&
+      current_hour < restaurant.closes_at
+    end
+
+    return sort_restaurants(open, method).
+            concat(sort_restaurants(closed, method))
   end
 
   def sort_restaurants(restaurants, method)
@@ -38,7 +52,7 @@ class Api::RestaurantsController < ApplicationController
       return restaurants.sort_by { |restaurant| restaurant.name }
     when "distance"
       #need google maps distance API
-      return restaurants.sort_by { |restaurant| restaurant.name }.shuffle
+      return restaurants.sort_by { |restaurant| restaurant.name }
     when "rating"
       #need ratings
       return restaurants.sort_by { |restaurant| restaurant.name }.reverse

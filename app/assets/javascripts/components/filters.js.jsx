@@ -28,7 +28,6 @@ Filters = React.createClass({
                 openOnTop: newOpenOnTop}) ;
    }
 
-   console.log(newFeatures);
    FilterActions.updateFeatures(newFeatures);
  },
 
@@ -59,8 +58,8 @@ Filters = React.createClass({
       newOffers = { offers: {delivery: true, takeout: false},
                     offersDisplay: {delivery: true, takeout: false} };
      } else {
-       newOffers = { offers: {delivery: false, takeout: true},
-                     offersDisplay: {delivery: false, takeout: true} };
+      newOffers = { offers: {delivery: false, takeout: true},
+                   offersDisplay: {delivery: false, takeout: true} };
 
      }
     // handle cases where both delivery and takeout are checked
@@ -71,41 +70,40 @@ Filters = React.createClass({
 
        return newOffers;
      } else {
-       newOffers = { offers: {delivery: false, takeout: true},
-                     offersDisplay: {delivery: false, takeout: true} };
+       newOffers = { offers: {delivery: true, takeout: false},
+                     offersDisplay: {delivery: true, takeout: false} };
 
      }
-   //handle cases where only one of the boxes is checked
+   //  Need to handle cases where only one of the boxes is checked, then
+   //  is unchecked. So both are unchecked but need to be "true"
    } else {
     //  delivery box was changed
      if (e.target.value === "delivery") {
        var newDelivery = this.props.filterParams.offers.delivery ? false : true;
 
-       newOffers = $.extend({}, {delivery: newDelivery,
-                    takeout: this.props.filterParams.offers.takeout});
+       newOffers = { offers: {delivery: newDelivery,
+                    takeout: this.props.filterParams.offers.takeout}};
 
-       newOffersDisplay = $.extend({}, {delivery: newDelivery,
-                    takeout: this.props.filterParams.offersDisplay.takeout});
+       newOffersDisplay = { offersDisplay: {delivery: newDelivery,
+                    takeout: this.props.filterParams.offersDisplay.takeout}};
+
     // takeout box was changed
      } else {
        var newTakeout = this.props.filterParams.offers.takeout ? false : true;
 
-       newOffers = $.extend({}, {takeout: newTakeout,
-                    delivery: this.props.filterParams.offers.takeout});
+       newOffers = { offers: {delivery: this.props.filterParams.offers.delivery,
+                    takeout: newTakeout } };
 
-       newOffersDisplay = $.extend({}, {takeout: newTakeout,
-                    delivery: this.props.filterParams.offersDisplay.takeout});
-
+       newOffersDisplay = { offersDisplay: {delivery: this.props.filterParams.offers.delivery,
+                    takeout: newTakeout } };
      }
-
-    newOffers = $.extend({}, {offers: newOffers, offersDisplay: newOffersDisplay});
+    newOffers = $.extend({}, newOffers, newOffersDisplay);
    }
 
    return $.extend(this.props.filterParams, newOffers);
  },
 
  render: function(){
-
    return (
      <div id="filters">
      <h2>Filters</h2>
@@ -142,10 +140,12 @@ Filters = React.createClass({
        <label>Features</label><br/>
         <label>Order Ahead</label>
            <input type="checkbox"
+                  checked={this.props.filterParams.features.orderAhead}
                   onChange={this.updateFeatures}
                   value="order-ahead"/><br/>
         <label>Open Restaurants on Top</label>
            <input type="checkbox" id="open-on-top"
+                  checked={this.props.filterParams.features.openOnTop}
                   onChange={this.updateFeatures}
                   value="open-on-top"/><br/>
 
