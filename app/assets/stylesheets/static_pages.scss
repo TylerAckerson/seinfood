@@ -40,7 +40,7 @@ html {
 }
 
 #restaurant-item {
-  border-bottom: wheat 2px solid;
+  border-bottom: 2px solid wheat;
 }
 
 #restaurant-item h4 {
@@ -52,7 +52,7 @@ html {
   float: left;
   height: auto;
   align-items: left;
-  height: 700px;
+  height: 100%;
   margin: 5px;
   padding: 10px;
   padding-left: 20px;
@@ -64,7 +64,7 @@ html {
 }
 
 #filters {
-  width: 325px;
+  width: 300px;
   float: left;
   height: 300px;
   margin: 5px;

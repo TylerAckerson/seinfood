@@ -36,6 +36,8 @@
     },
 
     render: function(){
+      console.log(this.state.restaurants.length);
+      
       return (
         <div>
           <div id="restaurants-index">

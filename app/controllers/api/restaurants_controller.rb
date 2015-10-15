@@ -2,19 +2,37 @@ class Api::RestaurantsController < ApplicationController
 
   def index
     cuisine = params[:filterParams][:cuisine]
-    sort = params[:filterParams][:sort]
     offers = params[:filterParams][:offers]
     features = params[:filterParams][:features]
+    sort = params[:filterParams][:sort]
 
-    @restaurants = Restaurant.all.select do |restaurant|
-      (cuisine == restaurant.cuisine || cuisine.empty?)
-      #need to add field for offers and features for restaurants
-    end
+    @restaurants = Restaurant.all
+    @restaurants = filter_by_cuisine(@restaurants, cuisine) unless cuisine.empty?
+    @restaurants = filter_by_offers(@restaurants, offers) if offers[:takeout] == false
+    # @restaurants = filter_by_features(@restaurants, features) if features.values.all? {|x| x == false }
 
     render json: sort_restaurants(@restaurants, sort)
   end
 
+  def filter_by_cuisine(restaurants, cuisine)
+    restaurants.select do |restaurant|
+      restaurant.cuisine.downcase.include?(cuisine.downcase)
+    end
+  end
+
+  def filter_by_offers(restaurants, offers)
+    restaurants.filter do |restaurant|
+      restaurant.takeout_only
+    end
+
+  end
+
+  def filter_by_features
+  end
+
   def sort_restaurants(restaurants, method)
+    return restaurants if restaurants.nil?
+
     case method
     when "alphabetical"
       return restaurants.sort_by { |restaurant| restaurant.name }

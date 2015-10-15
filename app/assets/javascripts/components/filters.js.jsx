@@ -12,7 +12,24 @@ Filters = React.createClass({
  },
 
  updateFeatures: function(e){
-   FilterActions.updateFeatures(e.target.value);
+   if (e.target.value === "order-ahead") {
+     var newOrderAhead = this.props.filterParams.features.orderAhead ?
+                                                          false : true;
+     newFeatures = $.extend({},
+              { orderAhead: newOrderAhead,
+                openOnTop: this.props.filterParams.features.openOnTop}) ;
+
+   } else {
+     var newOpenOnTop = this.props.filterParams.features.openOnTop ?
+                                                          false : true;
+
+     newFeatures = $.extend({},
+              { orderAhead: this.props.filterParams.features.orderAhead,
+                openOnTop: newOpenOnTop}) ;
+   }
+
+   console.log(newFeatures);
+   FilterActions.updateFeatures(newFeatures);
  },
 
  resetFilters: function(e){
@@ -27,6 +44,7 @@ Filters = React.createClass({
 
   return false;
  },
+
  bothBoxesChecked: function(e) {
    if (this.props.filterParams.offers.delivery &&
        this.props.filterParams.offers.takeout) { return true; }
@@ -35,18 +53,17 @@ Filters = React.createClass({
  },
 
  getNewOffers: function(e){
+   //handle cases where nothing is checked (but delivery AND takeout are implied)
    if (this.offersInitial(e)) {
      if (e.target.value === "delivery") {
       newOffers = { offers: {delivery: true, takeout: false},
                     offersDisplay: {delivery: true, takeout: false} };
-
-      // return newOffers;
      } else {
        newOffers = { offers: {delivery: false, takeout: true},
                      offersDisplay: {delivery: false, takeout: true} };
 
-      //  return newOffers;
      }
+    // handle cases where both delivery and takeout are checked
    } else if (this.bothBoxesChecked(e)) {
      if (e.target.value === "delivery") {
        newOffers = { offers: {delivery: false, takeout: true},
@@ -57,9 +74,10 @@ Filters = React.createClass({
        newOffers = { offers: {delivery: false, takeout: true},
                      offersDisplay: {delivery: false, takeout: true} };
 
-      //  return newOffers;
      }
+   //handle cases where only one of the boxes is checked
    } else {
+    //  delivery box was changed
      if (e.target.value === "delivery") {
        var newDelivery = this.props.filterParams.offers.delivery ? false : true;
 
@@ -68,7 +86,7 @@ Filters = React.createClass({
 
        newOffersDisplay = $.extend({}, {delivery: newDelivery,
                     takeout: this.props.filterParams.offersDisplay.takeout});
-
+    // takeout box was changed
      } else {
        var newTakeout = this.props.filterParams.offers.takeout ? false : true;
 
@@ -85,34 +103,23 @@ Filters = React.createClass({
 
    return $.extend(this.props.filterParams, newOffers);
  },
- // updateFeatures: function(e){
- //   if (e.target.value === "order-ahead") {
- //     var newOrderAhead = this.state.features.orderAhead ? false : true;
- //     newFeatures = $.extend(this.state.features, {orderAhead: newOrderAhead});
- //     this.setState( {features: newFeatures} );
- //   } else {
- //     var newTakeout = this.state.features.openOnTop ? false : true;
- //     newFeatures = $.extend(this.state.features, {openOnTop: newTakeout});
- //     this.setState( { features: newFeatures } );
- //   }
- // },
 
  render: function(){
+
    return (
      <div id="filters">
-
      <h2>Filters</h2>
-
        <label> What are you hungry for? </label><br/>
          <input type="text" id="hungry-for"
                 placeholder="e.g. muffin tops"
                 onChange={this.updateCuisine}/><br/>
 
        <label>Sort By</label><br/>
-         <select name="sort" id="sort-by" onChange={this.updateSort}>
+         <select name="sort" id="sort-by" onChange={this.updateSort}
+                                          defaultValue='alphabetical'>
                 <option value="distance">
                         Distance</option>
-                <option value="alphabetical">
+                <option value="alphabetical" >
                         Alphabetical</option>
                 <option value="rating">
                         Rating</option>

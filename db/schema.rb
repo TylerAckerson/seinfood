@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013170441) do
+ActiveRecord::Schema.define(version: 20151015000727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20151013170441) do
     t.float    "delivery_min", default: 0.0
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.float    "delivery_fee", default: 0.0
+    t.boolean  "takeout_only", default: false
   end
 
   create_table "users", force: :cascade do |t|

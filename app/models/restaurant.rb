@@ -14,6 +14,8 @@
 #  delivery_min :float            default(0.0)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  delivery_fee :float            default(0.0)
+#  takeout_only :boolean          default(FALSE)
 #
 
 class Restaurant < ActiveRecord::Base
