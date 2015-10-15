@@ -13,16 +13,18 @@ Navbar = React.createClass({
     if (window.CURRENT_USER_ID) {
       navbar =
         <ul className="nav nav-pills">
+          <li id="header-logo">Seinfood</li>
+          <li><a href="/">Home</a></li>
           <li><a href="#">Account</a></li>
           <li>{signOut}</li>
-          <li><a href="/">Home</a></li>
         </ul>;
     } else {
       navbar =
         <ul className="nav nav-pills">
+          <li id="header-logo">Seinfood</li>
+          <li><a href="/">Home</a></li>
           <li><a href="users/new">Sign Up</a></li>
           <li><a href="session/new">Sign In</a></li>
-          <li><a href="root_url">Home</a></li>
         </ul>;
     }
 

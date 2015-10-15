@@ -33,10 +33,30 @@ html {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.group:after {
+  clear: both;
+  display: block;
+  content: "";
+  height: 0;
+}
+
 #application{
     margin: 0 auto;
     width: auto;
     position: relative;
+}
+
+.search-form{
+  position:relative;
+  width: 100%;
+  text-align: center;
+}
+
+.address-search {
+  height: 40px;
+  width: 600px;
+  float:inherit;
+  font-size: 20px;
 }
 
 #restaurant-item {
@@ -48,7 +68,7 @@ html {
 }
 
 #restaurants-index {
-  width: 500px;
+  width: 800px;
   float: left;
   height: auto;
   align-items: left;
@@ -64,13 +84,26 @@ html {
 }
 
 #filters {
-  width: 300px;
-  float: left;
+  width: 350px;
+  float: right;
   height: 300px;
   margin: 5px;
   padding: 10px;
   padding-left: 20px;
-  // background-color: white;
-  // opacity: 0.8;
   border: 2px solid gray;
+}
+
+#restaurant-hero{
+  width: 100%;
+  border: 2px solid orange;
+  position: relative;
+}
+
+#restaurant-card-item {
+  border: 1px solid green;
+  width: 17%;
+  height: 212px;
+  margin: 30px;
+  padding: 12px;
+  float: left;
 }

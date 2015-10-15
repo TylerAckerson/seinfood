@@ -36,16 +36,23 @@
     },
 
     render: function(){
-      console.log(this.state.restaurants.length);
-      
+      var cards = _.sample(this.state.restaurants, 4);
+
       return (
         <div>
-          <div id="restaurants-index">
+          <div id="restaurant-hero" className="group">{
+            cards.map(function(restaurant, idx) {
+              return <RestaurantCardItem restaurant={restaurant}
+                                            key={restaurant.id}/>;
+            })
+          }
+          </div>
+          <div id="restaurants-index" className="group">
             <RestaurantSearch search={this.props.location.query.search}/>
             <div>{
               this.state.restaurants.map(function(restaurant){
                 return <RestaurantItem restaurant={restaurant}
-                key={restaurant.id}/>;
+                                       key={restaurant.id}/>;
               })
             }
             </div>

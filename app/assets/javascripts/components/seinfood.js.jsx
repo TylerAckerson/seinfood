@@ -11,7 +11,6 @@ Seinfood = (function() {
       return (
         <div>
           <Navbar />
-          <h1>Seinfood</h1>
           <div id="container">
             {this.props.children}
           </div>

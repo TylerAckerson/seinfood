@@ -1,4 +1,4 @@
-RestaurantItem = React.createClass({
+RestaurantCardItem = React.createClass({
   handleDetailButton: function(){
     // debugger;
     // this.props.history.pushState(null, "/restaurants", { search: searchString});
@@ -10,7 +10,7 @@ RestaurantItem = React.createClass({
             "Free" : "$" + String(this.props.restaurant.delivery_fee);
 
     return (
-      <div id="restaurant-item">
+      <div id="restaurant-card-item">
           <h4>{this.props.restaurant.name}</h4>
         <ul>
           <li>Cuisine: {this.props.restaurant.cuisine}</li>
