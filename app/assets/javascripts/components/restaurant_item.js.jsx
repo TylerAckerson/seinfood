@@ -6,17 +6,20 @@ RestaurantItem = React.createClass({
   },
 
   render: function(){
-    var deliveryFee = this.props.restaurant.delivery_fee === 0 ?
-            "Free" : "$" + String(this.props.restaurant.delivery_fee);
+    restaurant = this.props.restaurant;
+
+    var deliveryFee = restaurant.delivery_fee === 0 ?
+            "Free" : "$" + String(restaurant.delivery_fee);
 
     return (
       <div id="restaurant-item">
-          <h4>{this.props.restaurant.name}</h4>
+          <h4>{restaurant.name}</h4>
         <ul>
-          <li>Cuisine: {this.props.restaurant.cuisine}</li>
-          <li>Address: {this.props.restaurant.address}</li>
-          <li>Delivery min: {this.props.restaurant.delivery_min}</li>
+          <li>Cuisine: {restaurant.cuisine}</li>
+          <li>Address: {restaurant.address}</li>
+          <li>Delivery min: {restaurant.delivery_min}</li>
           <li>Delivery fee: {deliveryFee}</li>
+          <li>Distance: {this.props.distance}</li>
           <input
              type="button"
              onClick={this.handleDetailButton}

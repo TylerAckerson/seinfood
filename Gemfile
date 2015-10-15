@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'google_distance_matrix'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -25,6 +26,7 @@ gem 'react-rails', '~> 1.3.0'
 gem 'flux-rails-assets'
 gem 'bootstrap-sass'
 gem 'underscore-rails'
+gem 'google_distance_matrix'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

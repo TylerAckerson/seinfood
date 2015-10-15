@@ -1,9 +1,9 @@
 window.ApiUtil = {
-  fetchRestaurants: function(filterParams){
+  fetchRestaurants: function(filterData){
     $.ajax({
       url: 'api/restaurants',
       dataType: 'json',
-      data: filterParams,
+      data: filterData,
       success: function(restaurants){
         ApiActions.receiveAllRestaurants(restaurants);
       },
@@ -24,7 +24,7 @@ window.ApiUtil = {
       }
     });
   },
-  
+
   deleteSession: function() {
     $.ajax({
       url: '/session',

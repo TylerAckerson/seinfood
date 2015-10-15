@@ -1,6 +1,7 @@
 class Api::RestaurantsController < ApplicationController
 
   def index
+
     cuisine = params[:filterParams][:cuisine]
     offers = params[:filterParams][:offers]
     features = params[:filterParams][:features]
@@ -8,13 +9,17 @@ class Api::RestaurantsController < ApplicationController
 
     @restaurants = Restaurant.all
     @restaurants = filter_by_cuisine(@restaurants, cuisine) unless cuisine.empty?
-    @restaurants = filter_by_offers(@restaurants, offers) if offers[:takeout] == false
+
+    if offers[:takeout] === 'false'
+      @restaurants = filter_by_offers(@restaurants, offers)
+    end
 
     if features[:openOnTop] === 'true'
-      render json: sort_restaurants_open_on_top(@restaurants, sort)
+      @restaurants = sort_restaurants_open_on_top(@restaurants, sort)
     else
-      render json: sort_restaurants(@restaurants, sort)
+      @restaurants = sort_restaurants(@restaurants, sort)
     end
+    render :index
   end
 
   def filter_by_cuisine(restaurants, cuisine)
@@ -24,12 +29,14 @@ class Api::RestaurantsController < ApplicationController
   end
 
   def filter_by_offers(restaurants, offers)
-    restaurants.filter do |restaurant|
-      restaurant.takeout_only
+    if offers[:delivery] === "true" && offers[:takeout] === "false"
+     restaurants.reject { |r| r.takeout_only }
+    elsif
+      offers[:delivery] === "true" && offers[:takeout] === "true"
+     restaurants
+    else
+     restaurants
     end
-  end
-
-  def filter_by_features
   end
 
   def sort_restaurants_open_on_top(restaurants, method)
@@ -51,8 +58,7 @@ class Api::RestaurantsController < ApplicationController
     when "alphabetical"
       return restaurants.sort_by { |restaurant| restaurant.name }
     when "distance"
-      #need google maps distance API
-      return restaurants.sort_by { |restaurant| restaurant.name }
+      return restaurants.sort_by { |restaurant| restaurant.distance_to }
     when "rating"
       #need ratings
       return restaurants.sort_by { |restaurant| restaurant.name }.reverse

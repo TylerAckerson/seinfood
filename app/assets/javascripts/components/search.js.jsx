@@ -1,4 +1,6 @@
 Search = React.createClass({
+  mixins: [React.addons.LinkedStateMixin],
+
   getInitialState:function(){
     return { search: "" };
   },
@@ -9,10 +11,6 @@ Search = React.createClass({
     this.props.history.pushState(null, "/restaurants", { search: searchString});
   },
 
-  updateSearch: function() {
-    this.setState( { search: event.target.value });
-  },
-
   render: function(){
       return (
         <form className="search-form" onSubmit={this.handleFormSubmit}>
@@ -21,7 +19,7 @@ Search = React.createClass({
           <input className="address-search"
                  type="text"
                  placeholder="  e.g 129 West 81st Street, Apartment 5A"
-                 onChange={this.updateSearch}/>
+                 valueLink={this.linkState("search")}/>
 
           <input type="submit" value="Find Restaurants"/>
         </form>

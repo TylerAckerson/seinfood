@@ -7,8 +7,7 @@ Filters = React.createClass({
  },
 
  updateOffers: function(e){
-   newOffers = this.getNewOffers(e);
-   FilterActions.updateOffers(newOffers);
+   FilterActions.updateOffers(this.getNewOffers(e));
  },
 
  updateFeatures: function(e){

@@ -29,4 +29,20 @@ class Restaurant < ActiveRecord::Base
     @restaurant = Restaurant.find(params[:id])
   end
 
+  def distance_to
+
+    matrix = GoogleDistanceMatrix::Matrix.new
+    # matrix.configure { |matrix| matrix.units = "IMPERIAL" }
+
+    origin = GoogleDistanceMatrix::Place.new address: self.address
+    matrix.origins << origin
+
+    destination = GoogleDistanceMatrix::Place.new address: "1595 Clay St san francisco ca"
+    matrix.destinations << destination
+
+    return matrix.data.first.first.distance_text
+  end
+
+
+
 end

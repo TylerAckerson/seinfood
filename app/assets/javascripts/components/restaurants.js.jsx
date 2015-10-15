@@ -42,8 +42,9 @@
         <div>
           <div id="restaurant-hero" className="group">{
             cards.map(function(restaurant, idx) {
-              return <RestaurantCardItem restaurant={restaurant}
-                                            key={restaurant.id}/>;
+              return <RestaurantCardItem restaurant={restaurant.extract}
+                                         distance={restaurant.ditance}
+                                         key={restaurant.id}/>;
             })
           }
           </div>
@@ -51,9 +52,13 @@
             <RestaurantSearch search={this.props.location.query.search}/>
             <div>{
               this.state.restaurants.map(function(restaurant){
-                return <RestaurantItem restaurant={restaurant}
-                                       key={restaurant.id}/>;
-              })
+                var rest = restaurant.extract;
+
+                return <RestaurantItem restaurant={rest}
+                           key={rest.id}
+                           distance={rest.distance}
+                           search={this.props.location.query.search}/>;
+              }.bind(this))
             }
             </div>
           </div>
