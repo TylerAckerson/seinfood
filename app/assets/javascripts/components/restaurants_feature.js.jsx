@@ -11,22 +11,17 @@ RestaurantsFeature = React.createClass({
 
   render: function(){
     return (
-      <section className="hero-unit hero-unit--rest-list hero-unit--cover-photo ng-scope">
-        <div className="container">
-            <div className="row">{
-              this.props.cards.map(function(restaurant){
-                var rest = restaurant.extract;
-                boundClick = this.handleDetailButton.bind(this, rest);
+        <div className="row">{
+          this.props.cards.map(function(restaurant){
+            var rest = restaurant.extract;
+            boundClick = this.handleDetailButton.bind(this, rest);
 
-                return <RestaurantCardItem className="col-3 ng-scope"
-                                           restaurant={restaurant.extract}
-                                           onClick={boundClick}
-                                           key={restaurant.extract.id}/>;
-              }.bind(this))
-          }
-          </div>
-        </div>
-      </section>
+            return <RestaurantCardItem restaurant={restaurant.extract}
+                                       onClick={boundClick}
+                                       key={restaurant.extract.id}/>;
+          }.bind(this))
+      }
+      </div>
     );
   }
 });

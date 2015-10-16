@@ -4,7 +4,7 @@ RestaurantCardItem = React.createClass({
             "Free" : "$" + String(this.props.restaurant.delivery_fee);
 
     return (
-      <div id="restaurant-card-item">
+      <div id="restaurant-card-item" className="col-4 ng-scope">
           <h4>{this.props.restaurant.name}</h4>
         <ul>
           <li>Cuisine: {this.props.restaurant.cuisine}</li>

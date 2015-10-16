@@ -104,7 +104,7 @@ Filters = React.createClass({
 
  render: function(){
    return (
-     <div className="container" id="filters">
+     <div>
        <h2>Filters</h2>
 
        <form role="form">

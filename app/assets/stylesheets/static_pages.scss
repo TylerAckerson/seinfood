@@ -59,45 +59,18 @@ html {
   font-size: 20px;
 }
 
-#restaurant-item {
-  border-bottom: 2px solid wheat;
-}
-
-#restaurant-item h4 {
-  border-bottom: 1px solid cornflowerblue;
-}
-
 #restaurants-index {
   width: 800px;
   float: left;
   height: auto;
   align-items: left;
-  height: 100%;
-  margin: 5px;
-  padding: 10px;
-  padding-left: 20px;
-  border: 2px solid gray;
-}
-
-#restaurants-index h2 {
-  border-bottom: 1px solid red;
 }
 
 #filters {
   width: 300px;
   float: right;
-  height: auto;
-  margin: 5px;
-  padding: 10px;
-  padding-left: 20px;
-  border: 2px solid gray;
 }
 
 #restaurant-card-item {
-  border: 1px solid green;
-  width: 17%;
-  height: 212px;
-  margin: 30px;
-  padding: 12px;
   float: left;
 }

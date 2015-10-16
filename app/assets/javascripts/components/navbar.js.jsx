@@ -9,7 +9,7 @@ Navbar = React.createClass({
        type="button"
        onClick={this.handleLogOut}
        value="Sign Out"
-       className="btn navbar-button navbar-right sign-out"/>;
+       className="btn btn-defatul"/>;
 
     if (window.CURRENT_USER_ID) {
       navbar =

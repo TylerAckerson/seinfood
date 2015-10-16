@@ -7,8 +7,10 @@ RestaurantSearch = React.createClass({
     }
 
     return (
-      <div>
-        <span>Results for {searchQuery}</span>
+      <div className="row">
+        <div className="col-8">
+          Results for {searchQuery}
+        </div>
       </div>
     );
   }

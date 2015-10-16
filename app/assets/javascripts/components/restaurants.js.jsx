@@ -44,26 +44,33 @@
 
       return (
         <div className="container">
-          <div className="container">
+
+          <div className="row">
             <RestaurantsFeature cards={cards}/>
           </div>
-          <div id="restaurants-index" className="container">
-            <RestaurantSearch search={this.props.location.query.search}/>
-            <div>{
-              this.state.restaurants.map(function(restaurant){
-                var rest = restaurant.extract;
-                var boundClick = this.handleDetailButton.bind(this, rest);
 
-                return <RestaurantItem restaurant={rest}
-                           key={rest.id}
-                           distance={restaurant.distance}
-                           search={this.props.location.query.search}
-                           onClick={boundClick}/>;
-              }.bind(this))
-            }
+          <div className="row">
+            <div className="col-8" id="restaurants-index">
+              <RestaurantSearch search={this.props.location.query.search}/>
+              <div>{
+                this.state.restaurants.map(function(restaurant){
+                  var rest = restaurant.extract;
+                  var boundClick = this.handleDetailButton.bind(this, rest);
+
+                  return <RestaurantItem className="list-group-item"
+                             restaurant={rest} key={rest.id}
+                             distance={restaurant.distance}
+                             search={this.props.location.query.search}
+                             onClick={boundClick}/>;
+                }.bind(this))
+              }
+              </div>
+            </div>
+
+            <div className="col-4" id="filters">
+              <Filters filterParams={_getFilterParams()}/>
             </div>
           </div>
-        <Filters filterParams={_getFilterParams()}/>
       </div>
       );
     }
