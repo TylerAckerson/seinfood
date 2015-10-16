@@ -35,16 +35,22 @@
       RestaurantStore.removeIndexChangeListener(this._restaurantsChanged);
     },
 
+    handleDetailButton: function(restaurant){
+      this.props.history.pushState(null, "/restaurants/" + restaurant.id );
+    },
+
     render: function(){
       var cards = _.sample(this.state.restaurants, 4);
 
       return (
         <div>
           <div id="restaurant-hero" className="group">{
-            cards.map(function(restaurant, idx) {
-              return <RestaurantCardItem restaurant={restaurant.extract}
-                                         distance={restaurant.ditance}
-                                         key={restaurant.id}/>;
+            cards.map(function(restaurant) {
+              var rest = restaurant.extract;
+
+              return <RestaurantCardItem restaurant={rest}
+                                         distance={restaurant.distance}
+                                         key={rest.id}/>;
             })
           }
           </div>
@@ -53,11 +59,13 @@
             <div>{
               this.state.restaurants.map(function(restaurant){
                 var rest = restaurant.extract;
+                var boundClick = this.handleDetailButton.bind(this, rest);
 
                 return <RestaurantItem restaurant={rest}
                            key={rest.id}
-                           distance={rest.distance}
-                           search={this.props.location.query.search}/>;
+                           distance={restaurant.distance}
+                           search={this.props.location.query.search}
+                           onClick={boundClick}/>;
               }.bind(this))
             }
             </div>

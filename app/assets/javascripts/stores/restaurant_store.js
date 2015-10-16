@@ -18,7 +18,7 @@
       var restaurant = -1;
 
       _restaurants.forEach(function(r){
-        if (id === r.id) { restaurant = r; }
+        if (id === r.extract.id) { restaurant = r.extract; }
       });
 
       return restaurant;

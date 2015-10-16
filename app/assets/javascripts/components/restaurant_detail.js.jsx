@@ -14,13 +14,12 @@ RestaurantDetail = React.createClass({
 
   componentDidMount: function() {
     RestaurantStore.addDetailChangeListener(this._onChange);
-
     var id = parseInt(this.props.params.restaurantId);
     ApiUtil.fetchSingleRestaurant(id);
   },
 
   componentWillUnmount: function() {
-    RestaurantStore.removeDetailChangeListener(this.onChange);
+    RestaurantStore.removeDetailChangeListener(this._onChange);
   },
 
   render: function() {

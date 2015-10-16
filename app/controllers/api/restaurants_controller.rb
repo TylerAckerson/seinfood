@@ -1,7 +1,6 @@
 class Api::RestaurantsController < ApplicationController
 
   def index
-
     cuisine = params[:filterParams][:cuisine]
     offers = params[:filterParams][:offers]
     features = params[:filterParams][:features]
@@ -56,22 +55,20 @@ class Api::RestaurantsController < ApplicationController
 
     case method
     when "alphabetical"
-      return restaurants.sort_by { |restaurant| restaurant.name }
+      restaurants.sort_by { |restaurant| restaurant.name }
     when "distance"
-      return restaurants.sort_by { |restaurant| restaurant.distance_to }
+      restaurants.sort_by { |rest| rest.distance_to.split.first.to_f }
     when "rating"
-      #need ratings
-      return restaurants.sort_by { |restaurant| restaurant.name }.reverse
+      restaurants.sort_by { |restaurant| restaurant.name }.reverse
     when "delivery_min"
-      return restaurants.sort_by { |restaurant| restaurant.delivery_min }
+      restaurants.sort_by { |restaurant| restaurant.delivery_min }
     when "delivery_fee"
-      return restaurants.sort_by { |restaurant| restaurant.delivery_fee }
+      restaurants.sort_by { |restaurant| restaurant.delivery_fee }
     end
   end
 
   def show
     @restaurant = Restaurant.find(params[:id])
-
     render json: @restaurant
   end
 
