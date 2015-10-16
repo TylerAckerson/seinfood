@@ -6,11 +6,11 @@ RestaurantItem = React.createClass({
             "Free" : "$" + String(restaurant.delivery_fee);
 
     var source = "assets/" + String(restaurant.id) + ".jpg";
-    
+
     return (
       <div className="row">
         <div className="col-1">
-          <img src={source}className="img-circle" width="100" height="100"/>
+          <img src={source}className="img-circle" width="75" height="75"/>
         </div>
 
         <div className="col-9">

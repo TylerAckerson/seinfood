@@ -62,8 +62,6 @@ html {
 #restaurants-index {
   width: 800px;
   float: left;
-  height: auto;
-  align-items: left;
 }
 
 #filters {
@@ -71,6 +69,16 @@ html {
   float: right;
 }
 
+#restaurants-feature {
+  text-align: center;
+}
+
 #restaurant-card-item {
   float: left;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+#test {
+  border: 5px black solid;
 }

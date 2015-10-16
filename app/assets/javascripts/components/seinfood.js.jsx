@@ -11,7 +11,7 @@ Seinfood = (function() {
       return (
         <div>
           <Navbar />
-          <div id="container">
+          <div id="container" className="container">
             {this.props.children}
           </div>
         </div>
@@ -25,6 +25,7 @@ Seinfood = (function() {
         <IndexRoute component={Search} />
         <Route path="/restaurants" component={Restaurants}/>
         <Route path="/restaurants/:restaurantId" component={RestaurantDetail}/>
+          <Route path="/menu" component={Menu}/>
       </Route>
     </Router>
   );

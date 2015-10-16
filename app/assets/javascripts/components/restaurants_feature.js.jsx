@@ -10,8 +10,10 @@ RestaurantsFeature = React.createClass({
   },
 
   render: function(){
+
+
     return (
-        <div className="row">{
+        <div className="row" id="restaurants-feature">{
           this.props.cards.map(function(restaurant){
             var rest = restaurant.extract;
             boundClick = this.handleDetailButton.bind(this, rest);

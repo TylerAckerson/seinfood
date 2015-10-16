@@ -43,14 +43,11 @@
       var cards = _.sample(this.state.restaurants, 4);
 
       return (
-        <div className="container">
+        <div className="container-fluid">
+          <RestaurantsFeature cards={cards}/>
 
           <div className="row">
-            <RestaurantsFeature cards={cards}/>
-          </div>
-
-          <div className="row">
-            <div className="col-8" id="restaurants-index">
+            <div className="col-md-8" id="restaurants-index">
               <RestaurantSearch search={this.props.location.query.search}/>
               <div>{
                 this.state.restaurants.map(function(restaurant){
@@ -67,7 +64,7 @@
               </div>
             </div>
 
-            <div className="col-4" id="filters">
+            <div className="col-md-4" id="filters">
               <Filters filterParams={_getFilterParams()}/>
             </div>
           </div>

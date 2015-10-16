@@ -22,12 +22,26 @@ RestaurantDetail = React.createClass({
     RestaurantStore.removeDetailChangeListener(this._onChange);
   },
 
+  goBack: function(){
+    this.props.history.pushState(null, "/restaurants");
+  },
+
   render: function() {
+    var restaurant = this.state.restaurant;
+
     return (
-      <div className="restaurant-detail">
-        <h2>The Dream Cafe Menu</h2>
-        <li>Cuisine: {this.state.restaurant.cuisine}</li>
-        <li>Address: {this.state.restaurant.address}</li>
+      <div className="container restaurant-detail">
+        <div className="row">
+          <button type="button" className="btn btn-default"
+                  onClick={this.goBack}>{"< Back to NYC Restaurants"}
+          </button>
+        </div>
+
+        <div className="row">
+          <RestaurantDetailHeader restaurant={restaurant} />
+        </div>
+        {this.props.children}
+
       </div>
     );
   }
