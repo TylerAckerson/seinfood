@@ -18,7 +18,7 @@ RestaurantItem = React.createClass({
              type="button"
              onClick={this.props.onClick}
              value="View Menu"
-             className="btn navbar-button navbar-right sign-out"/>
+             className="btn navbar-button navbar-right"/>
         </ul>
       </div>
     );

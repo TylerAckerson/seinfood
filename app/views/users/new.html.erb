@@ -1,44 +1,43 @@
 <h1>Create User</h1>
 
-<form action="<%= users_url %>" method="POST">
+<form action="<%= users_url %>" method="POST" role="form">
+  <div class="form-group">
+    <label>
+      Email:
+      <input type="text" class="form-control" name="user[email]">
+    </label>
+  </div>
 
-  <label>
-    Email:
-    <input type="text" name="user[email]">
-  </label>
+  <div class="form-group">
+    <label>
+      Password:
+      <input type="password" class="form-control" name="user[password]">
+    </label>
+  </div>
 
-  <br>
+  <div class="form-group">
+    <label>
+      Address:
+      <input type="text" class="form-control" name="user[address]">
+    </label>
+  </div>
 
-  <label>
-    Password:
-    <input type="password" name="user[password]">
-  </label>
+  <div class="form-group">
+    <label>
+      City:
+      <input type="text" class="form-control" placeholder="New York City" name="user[city]">
+    </label>
+  </div>
 
-  <br><br>
-
-  <label>
-    Address:
-    <input type="text" name="user[address]">
-  </label>
-  <label>
-
-  <br>
-
-    City:
-    <input type="text" placeholder="New York City" name="user[city]">
-  </label>
-
-  <br>
-
-  <label>
-    State:
-    <input type="text" placeholder="New York" name="user[state]">
-  </label>
-
-  <br><br>
+  <div class="form-group">
+    <label>
+      State:
+      <input type="text" class="form-control" placeholder="New York" name="user[state]">
+    </label>
+  </div>
 
   <%= form_auth %>
 
-  <input type="submit" value="Sign Up">
+  <button type="submit" class="btn btn-default">Sign Up</button>
 
 </form>

@@ -84,19 +84,13 @@ html {
 }
 
 #filters {
-  width: 350px;
+  width: 300px;
   float: right;
-  height: 300px;
+  height: auto;
   margin: 5px;
   padding: 10px;
   padding-left: 20px;
   border: 2px solid gray;
-}
-
-#restaurant-hero{
-  width: 100%;
-  border: 2px solid orange;
-  position: relative;
 }
 
 #restaurant-card-item {

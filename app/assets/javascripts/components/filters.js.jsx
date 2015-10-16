@@ -104,53 +104,63 @@ Filters = React.createClass({
 
  render: function(){
    return (
-     <div id="filters">
-     <h2>Filters</h2>
-       <label> What are you hungry for? </label><br/>
-         <input type="text" id="hungry-for"
-                placeholder="e.g. muffin tops"
-                onChange={this.updateCuisine}/><br/>
+     <div className="container" id="filters">
+       <h2>Filters</h2>
 
-       <label>Sort By</label><br/>
-         <select name="sort" id="sort-by" onChange={this.updateSort}
-                                          defaultValue='alphabetical'>
-                <option value="distance">
-                        Distance</option>
-                <option value="alphabetical" >
-                        Alphabetical</option>
-                <option value="rating">
-                        Rating</option>
-                <option value="delivery_min">
-                        Delivery Min</option>
-                <option value="delivery_fee">
-                        Delivery Fee</option>
-         </select><br/>
+       <form role="form">
+         <div className="form-group">
+           <label> What are you hungry for? </label>
+             <input type="text" id="hungry-for" className="form-control"
+                    placeholder="e.g. muffin tops"
+                    onChange={this.updateCuisine}/>
+          </div>
 
-       <label>Offers</label><br/>
-        <label>Delivery</label>
-           <input type="checkbox"
-                  onChange={this.updateOffers}
-                  value="delivery"/><br/>
-        <label>Takeout</label>
-           <input type="checkbox"
-                  onChange={this.updateOffers}
-                  value="takeout"/><br/>
+        <div className="form-group">
+         <label>Sort By</label>
+           <select name="sort" id="sort-by" onChange={this.updateSort}
+                                            defaultValue='alphabetical'
+                                            className="form-control">
+                  <option value="distance">
+                          Distance</option>
+                  <option value="alphabetical" >
+                          Alphabetical</option>
+                  <option value="rating">
+                          Rating</option>
+                  <option value="delivery_min">
+                          Delivery Min</option>
+                  <option value="delivery_fee">
+                          Delivery Fee</option>
+           </select>
+        </div>
 
-       <label>Features</label><br/>
-        <label>Order Ahead</label>
-           <input type="checkbox"
-                  checked={this.props.filterParams.features.orderAhead}
-                  onChange={this.updateFeatures}
-                  value="order-ahead"/><br/>
-        <label>Open Restaurants on Top</label>
-           <input type="checkbox" id="open-on-top"
-                  checked={this.props.filterParams.features.openOnTop}
-                  onChange={this.updateFeatures}
-                  value="open-on-top"/><br/>
+        <div className="form-group">
+         <label>Offers</label>
+             <input type="checkbox"
+                    className="form-control"
+                    onChange={this.updateOffers}
+                    value="delivery">Delivery</input>
+             <input type="checkbox"
+                    className="form-control"
+                    onChange={this.updateOffers}
+                    value="takeout">Takeout</input>
+        </div>
 
-      <input type="button"
-             value="Reset Filters"
-             onClick={this.resetFilters}/>
+        <div className="form-group">
+         <label>Features</label>
+             <input type="checkbox" className="form-control"
+                    checked={this.props.filterParams.features.orderAhead}
+                    onChange={this.updateFeatures}
+                    value="order-ahead">Order Ahead</input>
+             <input type="checkbox" className="form-control"
+                    checked={this.props.filterParams.features.openOnTop}
+                    onChange={this.updateFeatures}
+                    value="open-on-top">Open Restaurants on Top</input>
+        </div>
+
+          <button type="submit"
+                  className="btn btn-default"
+                  onClick={this.resetFilters}>Reset Filters</button>
+      </form>
     </div>
   );
  }

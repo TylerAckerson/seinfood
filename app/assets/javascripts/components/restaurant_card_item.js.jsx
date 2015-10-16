@@ -12,6 +12,11 @@ RestaurantCardItem = React.createClass({
           <li>Delivery min: {this.props.restaurant.delivery_min}</li>
           <li>Delivery fee: {deliveryFee}</li>
           <li>Distance: {this.props.distance}</li>
+          <input
+             type="button"
+             onClick={this.props.onClick}
+             value="View Menu"
+             className="btn navbar-button navbar-center"/>
         </ul>
       </div>
     );

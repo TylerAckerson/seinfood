@@ -43,18 +43,11 @@
       var cards = _.sample(this.state.restaurants, 4);
 
       return (
-        <div>
-          <div id="restaurant-hero" className="group">{
-            cards.map(function(restaurant) {
-              var rest = restaurant.extract;
-
-              return <RestaurantCardItem restaurant={rest}
-                                         distance={restaurant.distance}
-                                         key={rest.id}/>;
-            })
-          }
+        <div className="container">
+          <div className="container">
+            <RestaurantsFeature cards={cards}/>
           </div>
-          <div id="restaurants-index" className="group">
+          <div id="restaurants-index" className="container">
             <RestaurantSearch search={this.props.location.query.search}/>
             <div>{
               this.state.restaurants.map(function(restaurant){
