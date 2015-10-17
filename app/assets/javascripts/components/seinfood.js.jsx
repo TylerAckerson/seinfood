@@ -24,8 +24,9 @@ Seinfood = (function() {
       <Route path="/" component={App}>
         <IndexRoute component={Search} />
         <Route path="/restaurants" component={Restaurants}/>
-        <Route path="/restaurants/:restaurantId" component={RestaurantDetail}/>
-          <Route path="/menu" component={Menu}/>
+        <Route path="/restaurants/:restaurantId" component={RestaurantDetail}>
+          <Route path="menu" component={Menu}/>
+        </Route>
       </Route>
     </Router>
   );

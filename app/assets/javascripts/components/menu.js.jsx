@@ -1,7 +1,7 @@
 Menu = React.createClass({
   render: function(){
     return(
-      <div className="row">
+      <div className="row" id="restaurant-menu">
         helloOoOoO
       </div>
     );

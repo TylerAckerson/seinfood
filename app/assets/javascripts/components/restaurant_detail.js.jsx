@@ -5,7 +5,7 @@ RestaurantDetail = React.createClass({
 
   getStateFromStore: function() {
     var id = parseInt(this.props.params.restaurantId);
-    return { restaurant: RestaurantStore.find(id) };
+    return { restaurant: RestaurantStore.retrieveRestaurant(id) };
   },
 
   _onChange: function(){
@@ -27,7 +27,7 @@ RestaurantDetail = React.createClass({
   },
 
   render: function() {
-    var restaurant = this.state.restaurant;
+    var restaurant = this.state.restaurant.extract;
 
     return (
       <div className="container restaurant-detail">
@@ -40,8 +40,8 @@ RestaurantDetail = React.createClass({
         <div className="row">
           <RestaurantDetailHeader restaurant={restaurant} />
         </div>
-        {this.props.children}
 
+        {this.props.children}
       </div>
     );
   }

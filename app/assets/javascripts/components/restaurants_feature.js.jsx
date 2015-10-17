@@ -6,7 +6,7 @@ RestaurantsFeature = React.createClass({
   },
 
   handleDetailButton: function(restaurant){
-    this.history.pushState(null, "/restaurants/" + restaurant.id );
+    this.history.pushState(null, "/restaurants/" + restaurant.id + "/menu");
   },
 
   render: function(){

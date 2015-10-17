@@ -9,11 +9,11 @@ RestaurantItem = React.createClass({
 
     return (
       <div className="row">
-        <div className="col-1">
+        <div className="col-xs-2">
           <img src={source}className="img-circle" width="75" height="75"/>
         </div>
 
-        <div className="col-9">
+        <div className="col-xs-8">
             <h4 className="list-group-item-heading">{restaurant.name}</h4>
             <ul className="list-group">
               <li className="list-group-item">Cuisine: {restaurant.cuisine}</li>
@@ -24,7 +24,7 @@ RestaurantItem = React.createClass({
             </ul>
         </div>
 
-        <div className="col-2">
+        <div className="col-xs-2">
           <input
              type="button"
              onClick={this.props.onClick}

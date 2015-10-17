@@ -36,7 +36,7 @@
     },
 
     handleDetailButton: function(restaurant){
-      this.props.history.pushState(null, "/restaurants/" + restaurant.id );
+      this.props.history.pushState(null, "/restaurants/" + restaurant.id +"/menu");
     },
 
     render: function(){

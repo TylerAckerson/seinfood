@@ -9,16 +9,36 @@
     _restaurants = restaurants;
   };
 
+  var resetRestaurant = function(restaurant){
+    var found = RestaurantStore.find(restaurant.id);
+
+    if (found !== -1) {
+       _restaurants[found] = restaurant;
+       return _restaurants[found];
+    } else {
+      _restaurants.concat(restaurant);
+      return _last(_restaurants);
+    }
+
+  };
+
   root.RestaurantStore = $.extend({}, EventEmitter.prototype, {
     all: function() {
       return _restaurants.slice();
     },
 
+    retrieveRestaurant: function(restaurantId){
+      var idx = RestaurantStore.find(restaurantId);
+
+      if (idx !== -1) { return _restaurants[idx]; }
+    },
+
     find: function(id) {
       var restaurant = -1;
 
-      _restaurants.forEach(function(r){
-        if (id === r.extract.id) { restaurant = r.extract; }
+      _restaurants.forEach(function(r, idx){
+        debugger;
+        if (id === r.extract.id) { restaurant = idx; }
       });
 
       return restaurant;
