@@ -3,27 +3,37 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-// html, body, div, span, object, iframe,
-// h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-// a, abbr, acronym, address, big, cite, code,
-// del, dfn, em, img, ins, kbd, q, s, samp,
-// small, strike, strong, sub, sup, tt, var,
-// b, u, i,
-// dl, dt, dd, ol, ul, li,
-// fieldset, form, label, legend,
-// table, caption, tbody, tfoot, thead, tr, th, td,
-// article, aside, canvas, details, embed,
-// figure, figcaption, footer, header, hgroup,
-// menu, nav, output, ruby, section, summary,
-// time, mark, audio, video {
-// 	margin: 0;
-// 	padding: 0;
-// 	border: 0;
-// 	font-size: 100%;
-// 	font: inherit;
-// 	vertical-align: baseline;
-//   list-style: none;
-// }
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+  list-style: none;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
+img {
+  margin: 10px;
+  border: 10px solid white;
+  z-index: 999;
+}
 
 ul {
   list-style: none;
@@ -31,19 +41,6 @@ ul {
 
 html {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-.group:after {
-  clear: both;
-  display: block;
-  content: "";
-  height: 0;
-}
-
-#application{
-    margin: 0 auto;
-    width: auto;
-    position: relative;
 }
 
 .search-form{
@@ -59,24 +56,101 @@ html {
   font-size: 20px;
 }
 
+.vertical-center {
+  float: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.restaurant-item {
+  padding-top: 20px;
+  border: 1px solid lightgray;
+  border-bottom: 0;
+  background-color: white;
+  margin-bottom: -1px;
+}
+
+.align-center{
+  text-align: center;;
+}
+
 #restaurants-index {
-  width: 800px;
   float: left;
 }
 
 #filters {
-  width: 300px;
   float: right;
 }
 
 #restaurants-feature {
+  background-color: darkgray;
+  padding: 60px;
+  padding-top: 20px;
+  padding-bottom: 0;
+  margin-bottom: 10px;
+  width: 130%;
+  left: -150px;
+  position: relative;
+  border-radius: 0;
   text-align: center;
+}
+
+#restaurants-feature > .row {
+  left: 2%;
+  width: 90%;
+  position: relative;
+  margin: 20px;
+  padding-bottom: 40px;
 }
 
 #restaurant-card-item {
   float: left;
-  margin-right: 50px;
+  padding: 15px;
   margin-left: 50px;
+  width: 250px;
+  height: 250px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: white;
+  font-family: "Gotham A","Gotham B",sans-serif
+}
+
+// .card-item-header {
+//   height: 70px;
+//   position: absolute;
+//   background-color: wheat;
+//   z-index: 1;
+//   width: 250px;
+//   margin-top: -16px;
+//   margin-left: -16px;
+//   border-radius: 5px;
+// }
+
+.restaurant-detail {
+  margin: 10px;
+  padding: 5px;
+  font-weight: 500;
+  color: black;
+}
+
+.restaurant-detail > li {
+  border: 0;
+  padding: 2px;
+  color: gray;
+}
+
+
+.restaurant-detail > button {
+  padding: 5px;
+  margin: 3px;
+  border: 0;
+  color: cornflowerblue;
+}
+
+.takeout {
+  background-color: gray;
+  border: 2px solid black;
+  border-radius: 50%;
 }
 
 #restaurant-menu {

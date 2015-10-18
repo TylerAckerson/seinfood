@@ -37,7 +37,6 @@
       var restaurant = -1;
 
       _restaurants.forEach(function(r, idx){
-        debugger;
         if (id === r.extract.id) { restaurant = idx; }
       });
 

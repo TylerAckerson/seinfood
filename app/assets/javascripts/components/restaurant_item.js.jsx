@@ -8,14 +8,14 @@ RestaurantItem = React.createClass({
     var source = "assets/" + String(restaurant.id) + ".jpg";
 
     return (
-      <div className="row">
-        <div className="col-xs-2">
+      <div className="row restaurant-item">
+        <div className="col-xs-2 align-center">
           <img src={source}className="img-circle" width="75" height="75"/>
         </div>
 
         <div className="col-xs-8">
             <h4 className="list-group-item-heading">{restaurant.name}</h4>
-            <ul className="list-group">
+            <ul className="list-group restaurant-detail">
               <li className="list-group-item">Cuisine: {restaurant.cuisine}</li>
               <li className="list-group-item">Address: {restaurant.address}</li>
               <li className="list-group-item">Minimum: {restaurant.delivery_min}</li>

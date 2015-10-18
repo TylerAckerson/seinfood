@@ -26,12 +26,11 @@ RestaurantDetailHeader = React.createClass({
                "  Delivery Fee: " + deliveryFee}</li>
       </ul>;
     }
-
+    
     return(
-
       <div className="row">
         <div className="col-12">
-          <img src={this.props.source}className="img-circle" width="75" height="75"/>
+          <img src={source}className="img-circle" width="75" height="75"/>
         </div>
 
         <div className="row">

@@ -11,7 +11,7 @@ Seinfood = (function() {
       return (
         <div>
           <Navbar />
-          <div id="container" className="container">
+          <div id="container">
             {this.props.children}
           </div>
         </div>
