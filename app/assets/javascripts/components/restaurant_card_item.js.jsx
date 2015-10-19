@@ -3,6 +3,7 @@ RestaurantCardItem = React.createClass({
     restaurant = this.props.restaurant;
     var deliveryFee = restaurant.delivery_fee === 0 ?
             "Free" : "$" + String(restaurant.delivery_fee);
+    var deliveryMin = "$" + String(restaurant.delivery_fee);
     var source = "assets/" + String(restaurant.id) + ".jpg";
     var button = <button
                    type="button"
@@ -21,7 +22,7 @@ RestaurantCardItem = React.createClass({
       listItems =
         <ul className="list-group restaurant-detail">
           {this.props.restaurant.name}
-          <li className="list-group-item">Delivery min: {restaurant.delivery_min}</li>
+          <li className="list-group-item">Delivery min: {deliveryMin}</li>
           <li className="list-group-item">Delivery fee: {deliveryFee}</li>
           {button}
         </ul>;

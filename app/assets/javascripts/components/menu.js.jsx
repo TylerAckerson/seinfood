@@ -2,7 +2,7 @@ Menu = React.createClass({
   render: function(){
     return(
       <div className="row" id="restaurant-menu">
-        helloOoOoO
+        Menu
       </div>
     );
   }

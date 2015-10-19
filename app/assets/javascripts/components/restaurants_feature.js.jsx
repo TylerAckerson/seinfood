@@ -13,18 +13,28 @@ RestaurantsFeature = React.createClass({
 
 
     return (
-        <div className="row">
-        {
-          this.props.cards.map(function(restaurant){
-            var rest = restaurant.extract;
-            boundClick = this.handleDetailButton.bind(this, rest);
+      <div className="row">
+        <div className="col-sm-1">
+        </div>
 
-            return <RestaurantCardItem restaurant={restaurant.extract}
-                                       onClick={boundClick}
-                                       key={restaurant.extract.id}/>;
-          }.bind(this))
-      }
+        <div className="col-sm-10">
+          <div className="row" id="features">
+          {
+            this.props.cards.map(function(restaurant){
+              var rest = restaurant.extract;
+              boundClick = this.handleDetailButton.bind(this, rest);
+
+              return <RestaurantCardItem restaurant={restaurant.extract}
+                                         onClick={boundClick}
+                                         key={restaurant.extract.id}/>;
+            }.bind(this))
+        }
+        </div>
       </div>
+
+      <div className="col-sm-1">
+      </div>
+    </div>
     );
   }
 });

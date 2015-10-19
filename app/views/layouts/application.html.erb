@@ -15,13 +15,17 @@
     </script>
   <% end %>
 
+  <link rel="icon"
+      type="image/png"
+      href="assets/Seinfeld.png">
+
 </head>
 
 <body>
 
   <%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
 
-<div class="container" id="app">
+<div id="app">
   <%= yield %>
 </div>
 

@@ -49,6 +49,7 @@
         </div>
 
         <div className="container">
+
           <div className="row">
             <div className="col-sm-8" id="restaurants-index">
               <RestaurantSearch search={this.props.location.query.search}/>
@@ -70,8 +71,10 @@
             <div className="col-sm-3" id="filters">
               <Filters filterParams={_getFilterParams()}/>
             </div>
+
           </div>
-      </div>
+        </div>
+
     </div>
       );
     }
