@@ -1,4 +1,13 @@
 json.array!(@restaurants) do |restaurant|
-  json.extract(restaurant)
+  json.extract! restaurant, :id, :name, :cuisine, :address, :city, :state,
+                             :opens_at, :closes_at, :delivery_min,
+                             :delivery_fee, :takeout_only
+
+  json.menu_items do
+    json.array! restaurant.menu_items do |menu_item|
+      json.extract! menu_item, :name, :description, :category, :price
+    end
+  end
+
   json.distance restaurant.distance_to
 end

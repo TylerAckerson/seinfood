@@ -21,6 +21,8 @@
 class Restaurant < ActiveRecord::Base
   validates :name, :cuisine, :address, :city, :state, presence: true
 
+  has_many :menu_items
+
   def index
     @restaurants = Restaurant.all
   end

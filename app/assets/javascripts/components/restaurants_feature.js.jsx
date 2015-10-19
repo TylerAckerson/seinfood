@@ -6,7 +6,7 @@ RestaurantsFeature = React.createClass({
   },
 
   handleDetailButton: function(restaurant){
-    this.history.pushState(null, "/restaurants/" + restaurant.id + "/menu");
+    this.history.pushState(null, "/restaurants/" + restaurant.id);
   },
 
   render: function(){
@@ -21,12 +21,11 @@ RestaurantsFeature = React.createClass({
           <div className="row" id="features">
           {
             this.props.cards.map(function(restaurant){
-              var rest = restaurant.extract;
-              boundClick = this.handleDetailButton.bind(this, rest);
+              boundClick = this.handleDetailButton.bind(this, restaurant);
 
-              return <RestaurantCardItem restaurant={restaurant.extract}
+              return <RestaurantCardItem restaurant={restaurant}
                                          onClick={boundClick}
-                                         key={restaurant.extract.id}/>;
+                                         key={restaurant.id}/>;
             }.bind(this))
         }
         </div>

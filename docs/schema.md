@@ -32,8 +32,9 @@ id             | integer   | not null, primary key
 name           | string    | not null
 description    | string    | not null
 category       | string    | not null, indexed
-restaurant_id  | string    | not null, foreign key (references restaurants), indexed
-archived       | boolean   | not null, default: false
+restaurant_id  | integer   | not null, foreign key (references restaurants), indexed
+archived       | boolean   | default: false
+price          | float     | default: 0.0
 
 ## orders
    column name | data type | details

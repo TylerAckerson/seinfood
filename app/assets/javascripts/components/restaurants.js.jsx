@@ -36,7 +36,7 @@
     },
 
     handleDetailButton: function(restaurant){
-      this.props.history.pushState(null, "/restaurants/" + restaurant.id +"/menu");
+      this.props.history.pushState(null, "/restaurants/" + restaurant.id);
     },
 
     render: function(){
@@ -55,11 +55,10 @@
               <RestaurantSearch search={this.props.location.query.search}/>
               <div>{
                 this.state.restaurants.map(function(restaurant){
-                  var rest = restaurant.extract;
-                  var boundClick = this.handleDetailButton.bind(this, rest);
+                  var boundClick = this.handleDetailButton.bind(this, restaurant);
 
                   return <RestaurantItem className="list-group-item"
-                             restaurant={rest} key={rest.id}
+                             restaurant={restaurant} key={restaurant.id}
                              distance={restaurant.distance}
                              search={this.props.location.query.search}
                              onClick={boundClick}/>;

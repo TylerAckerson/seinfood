@@ -32,3 +32,42 @@ dream_cafe = Restaurant.create!( name: "Dream Cafe",
                             closes_at: 2200,
                             delivery_fee: 0.50,
                             delivery_min: 4.75);
+
+
+#  id            :integer          not null, primary key
+#  name          :string           not null
+#  description   :string           not null
+#  category      :string           not null
+#  restaurant_id :integer          not null
+#  archived      :boolean          default(FALSE)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+menuItem1 = MenuItem.create!( name: "The Big Salad",
+                              description: "a big salad",
+                              category: "Salads",
+                              restaurant_id: monks.id,
+                              price: 7.00);
+
+menuItem2 = MenuItem.create!( name: "Small Salad",
+                              description: "a normal sized salad",
+                              category: "Salads",
+                              restaurant_id: monks.id,
+                              price: 1.50);
+
+menuItem3 = MenuItem.create!( name: "Coffee",
+                              description: "black, with no cream",
+                              category: "Beverages",
+                              restaurant_id: monks.id,
+                              price: 1.50);
+
+menuItem4 = MenuItem.create!( name: "Iced Tea",
+                              description: "Sweet or not",
+                              category: "Beverages",
+                              restaurant_id: monks.id,
+                              price: 2.00);
+
+menuItem5 = MenuItem.create!( name: "Chicken Salad",
+                              description: "Best on Rye",
+                              category: "Sandwiches",
+                              restaurant_id: monks.id,
+                              price: 6.50);

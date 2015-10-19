@@ -17,7 +17,7 @@
        return _restaurants[found];
     } else {
       _restaurants.concat(restaurant);
-      return _last(_restaurants);
+      return _.last(_restaurants);
     }
 
   };
@@ -37,7 +37,7 @@
       var restaurant = -1;
 
       _restaurants.forEach(function(r, idx){
-        if (id === r.extract.id) { restaurant = idx; }
+        if (id === r.id) { restaurant = idx; }
       });
 
       return restaurant;

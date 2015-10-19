@@ -69,7 +69,7 @@ class Api::RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
-    render json: @restaurant
+    render :show
   end
 
 end

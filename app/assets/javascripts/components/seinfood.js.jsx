@@ -25,8 +25,8 @@ Seinfood = (function() {
         <IndexRoute component={Search} />
         <Route path="/restaurants" component={Restaurants}/>
         <Route path="/restaurants/:restaurantId" component={RestaurantDetail}>
-          <Route path="menu" component={Menu}/>
-          {/* <Route path="reviews" component={Reviews}/> */}
+          {/* <Route path="menu" component={Menu}/>
+           <Route path="reviews" component={Reviews}/> */}
         </Route>
       </Route>
     </Router>

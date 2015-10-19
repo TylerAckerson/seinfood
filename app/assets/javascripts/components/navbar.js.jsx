@@ -27,7 +27,9 @@ Navbar = React.createClass({
       navbar =
         <ul className="nav navbar-nav pull-right">
           <li id="header-logo">
-              <a className="navbar-brand" href="/">Seinfood</a>
+            <a className="navbar-brand" href="/">
+              <img src="assets/Seinfeld.png" />
+            </a>
           </li>
           <li><a href="/">Home</a></li>
           <li><a href="users/new">Sign Up</a></li>
