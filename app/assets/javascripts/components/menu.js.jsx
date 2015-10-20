@@ -4,15 +4,12 @@ MenuItem = React.createClass({
     var price = "$" + item.price;
 
     return (
-      <div className="row menu-item">
-        <div className="col-xs-2"></div>
-        <div className="col-xs-6">
-          <h4>{item.name}</h4>
-          <span>{item.description}</span>
-          <button type="button"
-                  onClick={this.props.onClick}
-                  className="btn btn-default order-item-price">{price}</button>
-        </div>
+      <div className="menu-item ">
+        <h4>{item.name}</h4>
+        <span>{item.description}</span>
+        <button type="button"
+                onClick={this.props.onClick}
+                className="btn btn-default order-item-price">{price}</button>
       </div>
      );
      }
@@ -47,20 +44,12 @@ MenuCategory = React.createClass({
 
   render: function() {
     return (
-      <div className={this.state.class}>
-        <div className="row top-buffer sectionhead" onClick={this.handleClick}>{this.props.title}</div>
-        <button type="button" className="btn btn-default" id="menu-category-btn">
-            <span className="glyphicon glyphicon-chevron-down"></span>
-        </button>
-        <div className="category-wrap col-sm-8">
-          <div className="category row">
-            <h1>{this.props.category}</h1>{
+        <div className="menu-category" onClick={this.handleClick}>{this.props.title}
+            <h2>{this.props.category}</h2>{
               this.props.items.map(function(item) {
-                return <MenuItem item={item} onClick={this.orderItem}/>;
+                return <MenuItem item={item} key={item.id} onClick={this.orderItem}/>;
               }.bind(this))
             }
-          </div>
-        </div>
       </div>
     );
   }
@@ -87,7 +76,7 @@ Menu = React.createClass({
     var categorized = this.categorized();
 
     return (
-      <div className="container menu-main" id="restaurant-menu">{
+      <div className="menu-main" id="restaurant-menu">{
         _.keys(categorized).map(function(category){
           return <MenuCategory title={category}
                                key={category}

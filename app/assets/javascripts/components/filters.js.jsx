@@ -105,7 +105,7 @@ Filters = React.createClass({
  render: function(){
    return (
      <div className="row">
-      <div className="filters-header">
+      <div className="header">
         <h3>Filters</h3>
       </div>
 
@@ -163,7 +163,7 @@ Filters = React.createClass({
           </div>
         </form>
       </div>
-      <div className="filters-footer">
+      <div className="footer">
         <button type="submit"
                 className="btn btn-default full-width"
                 onClick={this.resetFilters}>Reset Filters</button>

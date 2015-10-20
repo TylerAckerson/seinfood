@@ -34,12 +34,21 @@ RestaurantDetail = React.createClass({
               <div className="row">
                 <RestaurantDetailHeader restaurant={restaurant} />
               </div>
+
             </div>
-
           </div>
-
         </div>
-          <Menu restaurant={restaurant} />
+
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-8">
+              <Menu restaurant={restaurant} />
+            </div>
+            <div className="col-xs-4">
+              <Order restaurant={restaurant} />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
