@@ -2,6 +2,7 @@
   'use strict';
 
   var _items = [];
+  var itemsCounter = 0;
   var ORDER_CHANGE_EVENT = "change";
 
   root.OrderStore = $.extend({}, EventEmitter.prototype, {
@@ -10,7 +11,9 @@
     },
 
     addItem: function(item){
-      _items.push(item);
+      var added = $.extend({counter: itemsCounter}, item);
+      itemsCounter++;
+      _items.push(added);
     },
 
     removeItem: function(item){

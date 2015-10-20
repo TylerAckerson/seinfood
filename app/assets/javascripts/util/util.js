@@ -36,5 +36,31 @@ window.ApiUtil = {
         console.log(resp);
       }
     });
+  },
+
+  fetchOrder: function(data) {
+    $.ajax({
+      url: 'api/orders',
+      data: data,
+      success: function(restaurant){
+        window.location = "/";
+      },
+      error: function(resp){
+        console.log(resp);
+      }
+    });
+  },
+
+  createOrder: function(order) {
+    $.ajax({
+      url: 'api/orders/',
+      data: order,
+      success: function(order){
+        window.location = "/";
+      },
+      error: function(resp){
+        console.log(resp);
+      }
+    });
   }
 };

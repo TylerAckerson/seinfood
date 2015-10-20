@@ -19,7 +19,7 @@ OrderItem = React.createClass({
 });
 
 Order = React.createClass({
-  mixins: [React.addons.LinkedStateMixin],
+  mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
   getInitialState: function(){
     return { items: OrderStore.allItems() };
@@ -37,6 +37,9 @@ Order = React.createClass({
     this.setState( {items: OrderStore.allItems()} );
   },
 
+  handleOrder: function(){
+  },
+
   render: function(){
       return (
         <div className="row order">
@@ -45,17 +48,19 @@ Order = React.createClass({
          </div>
 
          <div className="order-body">
-
            <table className="table">
-            <tr>
-              <th>Item</th>
-              <th>Price</th>
-            </tr>
-            {
-              this.state.items.map(function(item){
-                return <OrderItem item={item} />;
-              })
-            }
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th></th>
+              </tr>
+              <tbody>
+              {
+                this.state.items.map(function(item){
+                  return <OrderItem item={item} key={item.counter} />;
+                })
+              }
+            </tbody>
            </table>
 
         </div>
