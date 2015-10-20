@@ -26,15 +26,15 @@ RestaurantDetailHeader = React.createClass({
                "  Delivery Fee: " + deliveryFee}</li>
       </ul>;
     }
-    
+
     return(
-      <div className="row">
-        <div className="col-12">
-          <img src={source}className="img-circle" width="75" height="75"/>
+      <div className="row top-buffer">
+        <div className="col-xs-2">
+          <img src={source}className="img-circle" />
         </div>
 
-        <div className="row">
-          <h2 className="list-group-item-heading">{restaurant.name}</h2>
+        <div className="col-xs-10">
+          <h2>{restaurant.name}</h2>
           {listing}
         </div>
       </div>

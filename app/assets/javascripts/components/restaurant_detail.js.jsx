@@ -21,20 +21,25 @@ RestaurantDetail = React.createClass({
     var restaurant = this.state.restaurant;
 
     return (
-      <div className="container restaurant-detail">
-        <div className="row">
-          <button type="button" className="btn btn-default"
-                  onClick={this.goBack}>{"< Back to NYC Restaurants"}
-          </button>
-        </div>
+      <div>
+        <div className="restaurant-detail-header">
+          <div className="row">
+            <div className="col-xs-1"></div>
 
-        <div className="row">
-          <RestaurantDetailHeader restaurant={restaurant} />
-        </div>
+            <div className="col-xs-7">
+              <button type="button" className="btn btn-default"
+                      onClick={this.goBack}>{"< Back to NYC Restaurants"}
+              </button>
 
-        <div className="row">
+              <div className="row">
+                <RestaurantDetailHeader restaurant={restaurant} />
+              </div>
+            </div>
+
+          </div>
+
+        </div>
           <Menu restaurant={restaurant} />
-        </div>
       </div>
     );
   }
