@@ -32,6 +32,7 @@ Filters = React.createClass({
  },
 
  resetFilters: function(e){
+    e.preventDefault();
     FilterActions.resetFilters();
  },
 
@@ -116,6 +117,7 @@ Filters = React.createClass({
          <div className="form-group">
            <label> What are you hungry for? </label>
              <input type="text" id="hungry-for" className="form-control"
+                    value={this.props.filterParams.cuisine}
                     placeholder="e.g. muffin tops"
                     onChange={this.updateCuisine}/>
           </div>
@@ -123,18 +125,13 @@ Filters = React.createClass({
           <div className="form-group">
            <label>Sort By</label>
              <select name="sort" id="sort-by" onChange={this.updateSort}
-                                              defaultValue='alphabetical'
+                                              value={this.props.filterParams.sort}
                                               className="form-control">
-                    <option value="distance">
-                            Distance</option>
-                    <option value="alphabetical" >
-                            Alphabetical</option>
-                    <option value="rating">
-                            Rating</option>
-                    <option value="delivery_min">
-                            Delivery Min</option>
-                    <option value="delivery_fee">
-                            Delivery Fee</option>
+              <option value="distance">Distance</option>
+              <option value="alphabetical" >Alphabetical</option>
+              <option value="rating">Rating</option>
+              <option value="delivery_min">Delivery Min</option>
+              <option value="delivery_fee">Delivery Fee</option>
              </select>
           </div>
 
@@ -142,10 +139,12 @@ Filters = React.createClass({
             <div className="checkbox">
              <label>
                  <input type="checkbox"
+                        checked={this.props.filterParams.offersDisplay.delivery}
                         onChange={this.updateOffers}
                         value="delivery"/>Delivery</label>
                 <label>
                  <input type="checkbox"
+                        checked={this.props.filterParams.offersDisplay.takeout}
                         onChange={this.updateOffers}
                         value="takeout"/>Takeout</label>
             </div>

@@ -30,7 +30,7 @@ dream_cafe = Restaurant.create!( name: "Dream Cafe",
                             state: "NY",
                             opens_at: 1000,
                             closes_at: 2200,
-                            delivery_fee: 0.50,
+                            delivery_fee: 3.0,
                             delivery_min: 4.75);
 
 

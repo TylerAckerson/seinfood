@@ -23,10 +23,9 @@ FilterActions = {
       features: features
     });
   },
-  resetFilters: function(filterParams){
+  resetFilters: function(){
     AppDispatcher.dispatch({
-      actionType: FilterConstants.RESET_FILTERS,
-      filters: filterParams
+      actionType: FilterConstants.RESET_FILTERS
     });
   }
 };

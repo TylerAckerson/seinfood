@@ -34,16 +34,10 @@ class Restaurant < ActiveRecord::Base
   end
 
   def distance_to
-    matrix = GoogleDistanceMatrix::Matrix.new
-    # matrix.configure { |matrix| matrix.units = "IMPERIAL" }
+    restaurant = Geokit::Geocoders::GoogleGeocoder.geocode self.address
+    customer = Geokit::Geocoders::GoogleGeocoder.geocode 'new york city new york'
 
-    origin = GoogleDistanceMatrix::Place.new address: self.address
-    matrix.origins << origin
-
-    destination = GoogleDistanceMatrix::Place.new address: "new york city new york"
-    matrix.destinations << destination
-
-    return matrix.data[0][0].distance_text
+    return restaurant.distance_to(customer)
   end
 
 

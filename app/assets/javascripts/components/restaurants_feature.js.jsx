@@ -2,7 +2,7 @@ RestaurantsFeature = React.createClass({
   mixins: [ReactRouter.History],
 
   shouldComponentUpdate: function() {
-    return this.props.cards.length !== 4;
+    return this.props.cards.length === 0;
   },
 
   handleDetailButton: function(restaurant){
@@ -10,8 +10,6 @@ RestaurantsFeature = React.createClass({
   },
 
   render: function(){
-
-
     return (
       <div className="row">
         <div className="col-sm-1">

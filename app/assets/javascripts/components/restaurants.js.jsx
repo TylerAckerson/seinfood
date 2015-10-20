@@ -22,7 +22,7 @@
 
     _filtersChanged: function(){
       var newParams = _getFilterParams();
-      this.setState( {filterParams: newParams } );
+      this.setState( { filterParams: newParams } );
       ApiUtil.fetchRestaurants( {filterParams: newParams} );
     },
 
@@ -31,6 +31,7 @@
       FilterParamStore.addChangeListener(this._filtersChanged);
       ApiUtil.fetchRestaurants( {filterParams: _getFilterParams()} );
     },
+
     componentWillUnmount: function(){
       RestaurantStore.removeIndexChangeListener(this._restaurantsChanged);
     },
@@ -59,7 +60,6 @@
 
                   return <RestaurantItem
                              restaurant={restaurant} key={restaurant.id}
-                             distance={restaurant.distance}
                              search={this.props.location.query.search}
                              onClick={boundClick}/>;
                 }.bind(this))
@@ -68,7 +68,7 @@
             </div>
 
             <div className="col-sm-3" id="filters">
-              <Filters filterParams={_getFilterParams()}/>
+              <Filters filterParams={this.state.filterParams}/>
             </div>
 
           </div>

@@ -1,24 +1,26 @@
 class Api::RestaurantsController < ApplicationController
 
   def index
+    @restaurants = sort_restaurants(filter_restaurants)
+
+    render :index
+  end
+
+  def filter_restaurants
     cuisine = params[:filterParams][:cuisine]
     offers = params[:filterParams][:offers]
-    features = params[:filterParams][:features]
-    sort = params[:filterParams][:sort]
 
-    @restaurants = Restaurant.all
-    @restaurants = filter_by_cuisine(@restaurants, cuisine) unless cuisine.empty?
+    filtered = Restaurant.all
 
+    ## filter by cuisine/text
+    filtered = filter_by_cuisine(filtered, cuisine) unless cuisine.empty?
+
+    ## filter by offers
     if offers[:takeout] === 'false'
-      @restaurants = filter_by_offers(@restaurants, offers)
+      filtered = filter_by_offers(filtered, offers)
     end
 
-    if features[:openOnTop] === 'true'
-      @restaurants = sort_restaurants_open_on_top(@restaurants, sort)
-    else
-      @restaurants = sort_restaurants(@restaurants, sort)
-    end
-    render :index
+    filtered
   end
 
   def filter_by_cuisine(restaurants, cuisine)
@@ -28,17 +30,26 @@ class Api::RestaurantsController < ApplicationController
   end
 
   def filter_by_offers(restaurants, offers)
+    # only matters if delivery is "true" -- all restaurants offer takeout
     if offers[:delivery] === "true" && offers[:takeout] === "false"
      restaurants.reject { |r| r.takeout_only }
-    elsif
-      offers[:delivery] === "true" && offers[:takeout] === "true"
-     restaurants
     else
      restaurants
     end
   end
 
-  def sort_restaurants_open_on_top(restaurants, method)
+  def sort_restaurants(restaurants)
+    features = params[:filterParams][:features]
+    sort_method = params[:filterParams][:sort]
+
+    if features[:openOnTop] === 'true'
+      sort_restaurants_open_on_top(restaurants, sort_method)
+    else
+      sort_restaurants_by_method(restaurants, sort_method)
+    end
+  end
+
+  def sort_restaurants_open_on_top(restaurants, sort_method)
     current_hour = Time.now.hour*100
 
     open, closed = restaurants.partition do |restaurant|
@@ -46,18 +57,18 @@ class Api::RestaurantsController < ApplicationController
       current_hour < restaurant.closes_at
     end
 
-    return sort_restaurants(open, method).
-            concat(sort_restaurants(closed, method))
+    return sort_restaurants_by_method(open, sort_method).
+            concat(sort_restaurants_by_method(closed, sort_method))
   end
 
-  def sort_restaurants(restaurants, method)
+  def sort_restaurants_by_method(restaurants, method)
     return restaurants if restaurants.nil?
 
     case method
     when "alphabetical"
       restaurants.sort_by { |restaurant| restaurant.name }
     when "distance"
-      restaurants.sort_by { |rest| rest.distance_to.split.first.to_f }
+      restaurants.sort_by { |restaurant | restaurant.distance_to }
     when "rating"
       restaurants.sort_by { |restaurant| restaurant.name }.reverse
     when "delivery_min"

@@ -7,6 +7,7 @@ RestaurantItem = React.createClass({
 
     var source = "assets/" + String(restaurant.id) + ".jpg";
 
+    var distance = String(Math.round(restaurant.distance * 10)/10) + " mi";
     return (
       <div className="row restaurant-item">
         <div className="col-xs-2 align-center">
@@ -20,7 +21,7 @@ RestaurantItem = React.createClass({
               <li className="list-group-item">Address: {restaurant.address}</li>
               <li className="list-group-item">Minimum: {restaurant.delivery_min}</li>
               <li className="list-group-item">Delivery fee: {deliveryFee}</li>
-              <li className="list-group-item">Distance: {this.props.distance}</li>
+              <li className="list-group-item">Distance: {distance}</li>
             </ul>
         </div>
 
