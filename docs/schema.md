@@ -45,8 +45,8 @@ restaurant_id  | string    | not null, foreign key (references restaurants), ind
 scheduled_for  | datetime  | not null
 type           | string    | not null (delivery vs takeout)
 status         | string    | not null
-subtotal       | float     | not null
-delivery fee   | float     | not null
+subtotal       | decimal   | not null
+delivery fee   | decimal   | not null
 
 ## order items
    column name | data type | details

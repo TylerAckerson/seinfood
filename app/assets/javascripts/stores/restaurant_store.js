@@ -2,6 +2,7 @@
   'use strict';
 
   var _restaurants = [];
+  
   var RESTAURANTS_CHANGE_EVENT = "restaurantsChange";
   var RESTAURANT_DETAIL_CHANGE_EVENT = "restaurantDetailChange";
 

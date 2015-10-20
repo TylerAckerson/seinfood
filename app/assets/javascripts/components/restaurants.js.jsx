@@ -57,7 +57,7 @@
                 this.state.restaurants.map(function(restaurant){
                   var boundClick = this.handleDetailButton.bind(this, restaurant);
 
-                  return <RestaurantItem className="list-group-item"
+                  return <RestaurantItem
                              restaurant={restaurant} key={restaurant.id}
                              distance={restaurant.distance}
                              search={this.props.location.query.search}

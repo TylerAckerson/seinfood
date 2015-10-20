@@ -16,10 +16,9 @@ Seinfood allows users to:
 - [X] Create an account
 - [X] Sign in / sign out
 - [X] Search for restaurants in New York City... in the 90s.. from Seinfeld
-- [ ] Sort and filter restaurants
-- [ ] View restaurant details and menu items
+- [X] Sort and filter restaurants
+- [X] View restaurant details and menu items
 - [ ] Create orders and check out
-- [ ] Save favorite menu items and restaurants
 - [ ] Review past orders
 
 [seinfeld]: https://en.wikipedia.org/wiki/Seinfeld
@@ -107,7 +106,7 @@ the user experience.
 [Details][phase-six]
 
 ### Potential Bonus Features
-- [ ]  Allow users to create and favorite menu items and restaurants
+- [ ] Allow users to create and favorite menu items and restaurants
 - [ ] Allow users to view restaurant reviews pulled from Yelp
 - [ ] Allow users to view a map of available restaurants
 - [ ] Allow users to search for menu items

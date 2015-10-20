@@ -1,4 +1,8 @@
 MenuItem = React.createClass({
+  handleClick: function () {
+    OrderActions.orderAddItem(this.props.item);
+  },
+
   render: function(){
     var item = this.props.item;
     var price = "$" + item.price;
@@ -8,7 +12,7 @@ MenuItem = React.createClass({
         <h4>{item.name}</h4>
         <span>{item.description}</span>
         <button type="button"
-                onClick={this.props.onClick}
+                onClick={this.handleClick}
                 className="btn btn-default order-item-price">{price}</button>
       </div>
      );
@@ -38,17 +42,13 @@ MenuCategory = React.createClass({
      });
    },
 
-  orderItem: function(e){
-    console.log("clicked");
-  },
-
   render: function() {
     return (
         <div className="menu-category" onClick={this.handleClick}>{this.props.title}
             <h2>{this.props.category}</h2>{
               this.props.items.map(function(item) {
-                return <MenuItem item={item} key={item.id} onClick={this.orderItem}/>;
-              }.bind(this))
+                return <MenuItem item={item} key={item.id} />;
+              })
             }
       </div>
     );

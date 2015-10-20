@@ -2,6 +2,7 @@ Filters = React.createClass({
  updateCuisine: function(e){
    FilterActions.updateCuisine(e.target.value);
  },
+
  updateSort: function(e){
    FilterActions.updateSort(e.target.value);
  },

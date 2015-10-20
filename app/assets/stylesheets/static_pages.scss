@@ -246,7 +246,7 @@ html {
 	color: #6A7781;
 }
 
-.restaurant-detail-header {
+.restaurant-detail-page {
 	position: relative;
 	background: url("https://eatstreet.com/redesign/img/bg-rest-list.jpg");
   padding: 20px;
@@ -255,13 +255,13 @@ html {
 	border: 2px solid gray;
 }
 
-.restaurant-detail-header img {
+.restaurant-detail-page img {
 	border: 8px solid white;
 	height: 125px;
 	width: 125px;
 	float:right;
 }
-.restaurant-detail-header h2, article {
+.restaurant-detail-page h2, article {
 	color: white;
 	padding-left: 3px;
 	font-weight: 700;

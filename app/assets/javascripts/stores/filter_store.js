@@ -2,10 +2,16 @@
   'use strict';
 
   var _params = { cuisine: null,
-                  sort: 'alphabetical',
-                  offers: {delivery: true, takeout: true},
-                  offersDisplay: {delivery: false, takeout: false },
-                  features: {orderAhead: false, openOnTop: true}};
+                        sort: 'alphabetical',
+                        offers: {delivery: true, takeout: true},
+                        offersDisplay: {delivery: false, takeout: false },
+                        features: {orderAhead: false, openOnTop: true}};
+
+  var defaultParams = { cuisine: null,
+                        sort: 'alphabetical',
+                        offers: {delivery: true, takeout: true},
+                        offersDisplay: {delivery: false, takeout: false },
+                        features: {orderAhead: false, openOnTop: true}};
 
   var CHANGE_EVENT = "change";
 
@@ -42,7 +48,7 @@
           FilterParamStore.emit(CHANGE_EVENT);
           break;
         case FilterConstants.RESET_FILTERS:
-          _params = payload;
+          _params = defaultParams;
           FilterParamStore.emit(CHANGE_EVENT);
           break;
       }

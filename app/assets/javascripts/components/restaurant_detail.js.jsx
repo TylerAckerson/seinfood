@@ -5,13 +5,16 @@ RestaurantDetail = React.createClass({
 
   getStateFromStore: function() {
     var id = parseInt(this.props.params.restaurantId);
+    ApiUtil.fetchSingleRestaurant(id);
+    // var id = parseInt(this.props.params.restaurantId);
     var targetRestaurant = RestaurantStore.retrieveRestaurant(id);
     return { restaurant: targetRestaurant };
   },
 
-  componentWillMount: function() {
-    ApiUtil.fetchSingleRestaurant(this.state.restaurant.id);
-  },
+  // componentWillMount: function() {
+  //   id = parseInt(this.props.params.restaurantId);
+  //   ApiUtil.fetchSingleRestaurant(id);
+  // },
 
   goBack: function(){
     this.props.history.pushState(null, "/restaurants");
@@ -22,7 +25,7 @@ RestaurantDetail = React.createClass({
 
     return (
       <div>
-        <div className="restaurant-detail-header">
+        <div className="restaurant-detail-page">
           <div className="row">
             <div className="col-xs-1"></div>
 
