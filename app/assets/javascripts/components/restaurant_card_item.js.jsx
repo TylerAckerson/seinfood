@@ -4,7 +4,6 @@ RestaurantCardItem = React.createClass({
     var deliveryFee = restaurant.delivery_fee === 0 ?
             "Free" : "$" + String(restaurant.delivery_fee);
     var deliveryMin = "$" + String(restaurant.delivery_fee);
-    var source = "assets/" + String(restaurant.id) + ".jpg";
     var button = <button
                    type="button"
                    onClick={this.props.onClick}
@@ -32,7 +31,7 @@ RestaurantCardItem = React.createClass({
       <div id="restaurant-card-item" className="col-sm-3 card text-center">
         <div className="card-item-header">
         </div>
-        <img src={source}className="img-circle"/>
+        <img src={restaurant.image_link}className="img-circle"/>
         {listItems}
       </div>
     );

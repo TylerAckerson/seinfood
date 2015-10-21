@@ -22,7 +22,6 @@ RestaurantDetailHeader = React.createClass({
   render: function(){
     var fees, hours;
     var restaurant = this.props.restaurant;
-    var source = "assets/" + String(restaurant.id) + ".jpg";
 
     var deliveryFee = restaurant.delivery_fee === 0 ? "Free" :
                                   "$" + String(restaurant.delivery_fee);
@@ -47,7 +46,7 @@ RestaurantDetailHeader = React.createClass({
     return(
       <div className="row top-bottom-buffer">
         <div className="col-xs-4">
-          <img src={source}className="img-circle" />
+          <img src={restaurant.image_link}className="img-circle" />
         </div>
 
         <div className="col-xs-8">

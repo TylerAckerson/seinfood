@@ -32,11 +32,13 @@ body {
   background-color: whitesmoke;
 }
 
-img {
+.img-circle {
   margin: 10px;
-  border: 10px solid white;
+  border: 5px solid steelblue;
   z-index: 999;
 }
+// img {
+// }
 
 .navbar img {
 	margin: 0;

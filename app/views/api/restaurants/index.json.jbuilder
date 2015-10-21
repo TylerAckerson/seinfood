@@ -1,7 +1,7 @@
 json.array!(@restaurants) do |restaurant|
   json.extract! restaurant, :id, :name, :cuisine, :address, :city, :state,
                              :opens_at, :closes_at, :delivery_min,
-                             :delivery_fee, :takeout_only
+                             :delivery_fee, :takeout_only, :image_link
 
   json.menu_items do
     json.array! restaurant.menu_items do |menu_item|

@@ -5,13 +5,11 @@ RestaurantItem = React.createClass({
     var deliveryFee = restaurant.delivery_fee === 0 ?
             "Free" : "$" + String(restaurant.delivery_fee);
 
-    var source = "assets/" + String(restaurant.id) + ".jpg";
-
     var distance = String(Math.round(restaurant.distance * 10)/10) + " mi";
     return (
       <div className="row restaurant-item">
         <div className="col-xs-2 align-center">
-          <img src={source}className="img-circle" width="75" height="75"/>
+          <img src={restaurant.image_link}className="img-circle" width="75" height="75"/>
         </div>
 
         <div className="col-xs-8">
