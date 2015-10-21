@@ -149,6 +149,7 @@ html {
 #restaurants-feature {
   position: relative;
   padding: 20px;
+	min-resolution: 290px;
   padding-bottom: 0;
   border-radius: 0;
 	border: 2px solid gray;
@@ -158,6 +159,11 @@ html {
       rgba(0, 0, 0, 0.7)
     ),
   	url("https://eatstreet.com/redesign/img/bg-rest-list.jpg");
+}
+
+#features.row {
+	margin-left: 6%;
+
 }
 
 //
@@ -177,6 +183,9 @@ html {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+.bottom-buffer {
+	margin-bottom: 20px;
+}
 
 #restaurants-feature > .row {
 	text-align: center;
@@ -191,7 +200,7 @@ html {
   background-color: white;
   font-family: "Gotham A","Gotham B",sans-serif;
   padding: 15px;
-  margin: 0 20px;
+  margin: 0 2.8%;
 	margin-bottom: 20px;
 }
 
@@ -206,7 +215,7 @@ html {
   height: 270px;
 	transition: .5s;
 	padding: 25px;
-	margin: 0 10px;
+	margin: 0 2.22%;
 	margin-bottom: 10px;
 	margin-top: -10px;
 	font-size: 105%;
@@ -293,6 +302,14 @@ html {
 	margin: 17.5px 0;
 	font-weight: 500;
 }
+.footer > .btn.half-width {
+	border: 1px solid lightgray;
+	border-radius: 0;
+	width: 25%;
+	height: 35px;
+	margin: 17.5px 12%;
+	font-weight: 500;
+}
 
 .restaurant-detail-page {
 	position: relative;
@@ -322,7 +339,6 @@ html {
 
 // menu stuff
 .menu-main {
-  border: 2px solid green;
 }
 
 .menu-category {
@@ -335,9 +351,11 @@ html {
 }
 
 //order stuff
-.order {
-	border: 2px solid black;
-}
+// #order {
+// 	border: 2px solid black;
+// 	margin-left: 5%;
+// 	width: 30%;
+// }
 
 .order-item-price {
 	float: right;

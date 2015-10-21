@@ -57,7 +57,7 @@ MenuCategory = React.createClass({
 
 Menu = React.createClass({
   categorized: function(){
-    var menu_items = this.props.restaurant.menu_items;
+    var menu_items = this.state.restaurant.menu_items;
     var categorized = {};
 
     menu_items.forEach(function(item){
@@ -71,18 +71,34 @@ Menu = React.createClass({
     return categorized;
   },
 
+  getInitialState: function() {
+      return this.getStateFromStore();
+    },
+
+  getStateFromStore: function() {
+    var id = parseInt(this.props.params.restaurantId);
+    ApiUtil.fetchSingleRestaurant(id);
+    var targetRestaurant = RestaurantStore.retrieveRestaurant(id);
+    return { restaurant: targetRestaurant };
+  },
 
   render: function() {
     var categorized = this.categorized();
 
     return (
-      <div className="menu-main" id="restaurant-menu">{
-        _.keys(categorized).map(function(category){
-          return <MenuCategory title={category}
-                               key={category}
-                               items={categorized[category]}/>;
-        })
-      }</div>
+      <div>
+        <div className="col-xs-2"></div>
+        <div className="col-xs-5 menu-main" id="restaurant-menu">
+          <div className="header">
+            <h3>Menu</h3>
+          </div>{
+          _.keys(categorized).map(function(category){
+            return <MenuCategory title={category}
+                                 key={category}
+                                 items={categorized[category]}/>;
+          })
+        }</div>
+      </div>
     );
   }
 });

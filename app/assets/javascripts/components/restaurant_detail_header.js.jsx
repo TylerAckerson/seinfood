@@ -39,8 +39,8 @@ RestaurantDetailHeader = React.createClass({
     if (restaurant.takeout_only) {
       fees = "Takeout Only";
     } else {
-      fees = "Delivery Min: " + restaurant.delivery_min +
-                                      "  Delivery Fee: " + deliveryFee;
+      fees = "Delivery Min: $" + restaurant.delivery_min +
+                                      "    Delivery Fee: " + deliveryFee;
     }
 
     return(

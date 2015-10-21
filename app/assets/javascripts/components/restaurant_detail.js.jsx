@@ -16,7 +16,7 @@ RestaurantDetail = React.createClass({
   //   ApiUtil.fetchSingleRestaurant(id);
   // },
 
-  goBack: function(){
+  goBackToRestaurants: function(){
     this.props.history.pushState(null, "/restaurants");
   },
 
@@ -25,13 +25,13 @@ RestaurantDetail = React.createClass({
 
     return (
       <div>
-        <div className="restaurant-detail-page">
+        <div className="row restaurant-detail-page bottom-buffer">
           <div className="row">
             <div className="col-xs-1"></div>
 
             <div className="col-xs-7">
               <button type="button" className="btn btn-default"
-                      onClick={this.goBack}>{"< Back to NYC Restaurants"}
+                      onClick={this.goBackToRestaurants}>{"< Back to NYC Restaurants"}
               </button>
 
               <div className="row">
@@ -44,12 +44,7 @@ RestaurantDetail = React.createClass({
 
         <div className="container">
           <div className="row">
-            <div className="col-xs-8">
-              <Menu restaurant={restaurant} />
-            </div>
-            <div className="col-xs-4">
-              <Order restaurant={restaurant} />
-            </div>
+            {this.props.children}
           </div>
         </div>
       </div>

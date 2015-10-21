@@ -22,7 +22,7 @@ Order = React.createClass({
   mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
   getInitialState: function(){
-    return { items: OrderStore.allItems() };
+    return { items: OrderStore.allItems()};
   },
 
   componentDidMount : function(){
@@ -38,11 +38,24 @@ Order = React.createClass({
   },
 
   handleOrder: function(){
+    this.history.pushState(null, this.props.location.pathname + "/checkout", {order: this.state});
   },
 
   render: function(){
-      return (
-        <div className="row order">
+    var button;
+
+    if (!this.props.location.pathname.includes("checkout")){
+      button = <div className="footer">
+                 <button type="submit"
+                         disabled={this.state.items.length < 1}
+                         className="btn btn-default full-width"
+                         onClick={this.handleOrder}>Proceed to Checkout</button>
+               </div>;
+    }
+
+    return (
+      <div>
+        <div className="col-xs-3 order">
          <div className="header">
            <h3>Your Order</h3>
          </div>
@@ -62,15 +75,11 @@ Order = React.createClass({
               }
             </tbody>
            </table>
-
         </div>
-
-         <div className="footer">
-           <button type="submit"
-                   className="btn btn-default full-width"
-                   onClick={this.handleOrder}>Proceed to Checkout</button>
-         </div>
+        {button}
        </div>
+       <div className="col-xs-2"></div>
+      </div>
      );
   }
 });

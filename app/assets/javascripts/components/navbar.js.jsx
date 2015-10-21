@@ -13,7 +13,7 @@ Navbar = React.createClass({
 
     if (window.CURRENT_USER_ID) {
       navbar =
-        <ul className="nav navbar-nav pull-right">
+        <ul className="nav navbar-nav navbar-right">
           <li id="header-logo">
             <a className="navbar-brand" href="/">
               <img src="https://dl.dropboxusercontent.com/u/4448887/seinfood/Seinfeld.png"
@@ -26,7 +26,7 @@ Navbar = React.createClass({
         </ul>;
     } else {
       navbar =
-        <ul className="nav navbar-nav pull-right">
+        <ul className="nav navbar-nav navbar-right">
           <li id="header-logo">
             <a className="navbar-brand" href="/">
               <img src="https://dl.dropboxusercontent.com/u/4448887/seinfood/Seinfeld.png"

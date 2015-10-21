@@ -24,10 +24,13 @@ Seinfood = (function() {
       <Route path="/" component={App}>
         <IndexRoute component={Search} />
         <Route path="/restaurants" component={Restaurants}/>
-        <Route path="/restaurants/:restaurantId" component={RestaurantDetail}>
-        <Route path="/checkout" component={OrderCheckout} />
-          {/* <Route path="menu" component={Menu}/>
-           <Route path="reviews" component={Reviews}/> */}
+        <Route path="/restaurants/:restaurantId">
+          <IndexRoute components={{detail: RestaurantDetail,
+                                     menu: Menu,
+                                    order: Order}} />
+          <Route path="checkout" components={{detail: RestaurantDetail,
+                                            checkout: OrderCheckout,
+                                               order: Order}} />
         </Route>
       </Route>
     </Router>
