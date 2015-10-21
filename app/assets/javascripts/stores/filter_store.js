@@ -48,7 +48,7 @@
           FilterParamStore.emit(CHANGE_EVENT);
           break;
         case FilterConstants.RESET_FILTERS:
-          _params = defaultParams;
+          _params = $.extend({}, defaultParams);
           FilterParamStore.emit(CHANGE_EVENT);
           break;
       }

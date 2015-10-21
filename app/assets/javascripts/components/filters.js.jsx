@@ -137,29 +137,44 @@ Filters = React.createClass({
 
           <div className="form-group">
             <div className="checkbox">
-             <label>
-                 <input type="checkbox"
+             <div className="checkbox">
+                <input type="checkbox" className="form-control"
                         checked={this.props.filterParams.offersDisplay.delivery}
                         onChange={this.updateOffers}
-                        value="delivery"/>Delivery</label>
-                <label>
-                 <input type="checkbox"
-                        checked={this.props.filterParams.offersDisplay.takeout}
-                        onChange={this.updateOffers}
-                        value="takeout"/>Takeout</label>
+                        value="delivery">
+                          <label>Delivery</label>
+                </input>
+                <div className="checkbox">
+                   <input type="checkbox" className="form-control"
+                          checked={this.props.filterParams.offersDisplay.takeout}
+                          onChange={this.updateOffers}
+                          value="takeout">
+                          <label>Takeout</label>
+                   </input>
+                </div>
+              </div>
             </div>
           </div>
 
           <div className="form-group">
            <label>Features</label>
+              <div className="checkbox">
                <input type="checkbox" className="form-control"
                       checked={this.props.filterParams.features.orderAhead}
                       onChange={this.updateFeatures}
-                      value="order-ahead">Order Ahead</input>
+                      value="order-ahead">
+                      <label>Order Ahead</label>
+                </input>
+              </div>
+
+              <div className="checkbox">
                <input type="checkbox" className="form-control"
                       checked={this.props.filterParams.features.openOnTop}
                       onChange={this.updateFeatures}
-                      value="open-on-top">Open Restaurants on Top</input>
+                      value="open-on-top">
+                      <label>Open Restaurants on Top</label>
+               </input>
+              </div>
           </div>
         </form>
       </div>
