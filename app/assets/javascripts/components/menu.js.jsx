@@ -8,9 +8,9 @@ MenuItem = React.createClass({
     var price = "$" + item.price;
 
     return (
-      <div className="menu-item ">
-        <h4>{item.name}</h4>
-        <span>{item.description}</span>
+      <div className="menu-item">
+        <h4 className="menu-item-name">{item.name}</h4>
+        <span className="menu-item-detail">{item.description}</span>
         <button type="button"
                 onClick={this.handleClick}
                 className="btn btn-default order-item-price">{price}</button>

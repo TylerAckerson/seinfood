@@ -11,7 +11,7 @@ RestaurantsFeature = React.createClass({
 
   render: function(){
     return (
-      <div className="row">
+      <div className="row restaurants-feature-bg">
         <div className="col-sm-1">
         </div>
 

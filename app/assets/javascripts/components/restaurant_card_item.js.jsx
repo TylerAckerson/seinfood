@@ -9,7 +9,7 @@ RestaurantCardItem = React.createClass({
                    type="button"
                    onClick={this.props.onClick}
                    value="View Menu"
-                   className="btn btn-default">Menu</button>;
+                   className="btn btn-default menu-button">Menu</button>;
 
     if (restaurant.takeout_only) {
       listItems =
@@ -32,7 +32,7 @@ RestaurantCardItem = React.createClass({
       <div id="restaurant-card-item" className="col-sm-3 card text-center">
         <div className="card-item-header">
         </div>
-        <img src={source}className="img-circle" width="75" height="75"/>
+        <img src={source}className="img-circle"/>
         {listItems}
       </div>
     );
