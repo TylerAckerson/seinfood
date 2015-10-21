@@ -26,7 +26,6 @@ gem 'flux-rails-assets'
 gem 'bootstrap-sass'
 gem 'underscore-rails'
 gem 'geokit'
-gem 'react-bootstrap'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
