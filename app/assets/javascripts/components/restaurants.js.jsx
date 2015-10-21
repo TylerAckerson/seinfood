@@ -44,7 +44,7 @@
       var cards = _.sample(this.state.restaurants, 4);
 
       return (
-      <div>
+      <div className="restaurants">
         <div className="jumbotron" id="restaurants-feature">
             <RestaurantsFeature cards={cards}/>
         </div>

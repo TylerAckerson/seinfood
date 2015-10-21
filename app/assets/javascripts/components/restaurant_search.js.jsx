@@ -3,7 +3,7 @@ RestaurantSearch = React.createClass({
     if (this.props.search !== "") {
       searchQuery = this.props.search;
     } else {
-      searchQuery = "all of New York... in the 90s... from Seinfeld";
+      searchQuery = "all of New York, yada yada yada Seinfeld";
     }
 
     return (

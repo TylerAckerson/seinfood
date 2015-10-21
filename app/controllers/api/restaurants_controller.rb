@@ -10,7 +10,7 @@ class Api::RestaurantsController < ApplicationController
     cuisine = params[:filterParams][:cuisine]
     offers = params[:filterParams][:offers]
 
-    filtered = Restaurant.all
+    filtered = Restaurant.includes(:menu_items)
 
     ## filter by cuisine/text
     filtered = filter_by_cuisine(filtered, cuisine) unless cuisine.empty?
