@@ -5,7 +5,7 @@ MenuItem = React.createClass({
 
   render: function(){
     var item = this.props.item;
-    var price = "$" + item.price;
+    var price = "$" + item.price.toFixed(2);
 
     return (
       <div className="menu-item">
@@ -57,10 +57,12 @@ MenuCategory = React.createClass({
 
 Menu = React.createClass({
   getInitialState: function(){
-      return this._getStateFromStore();
+      return {restaurant: RestaurantStore.retrieveRestaurant(this.props.params.restaurantId)};
   },
 
   componentDidMount: function(){
+    var id = parseInt(this.props.params.restaurantId);
+    ApiUtil.fetchSingleRestaurant(id);
     RestaurantStore.addDetailChangeListener(this._getStateFromStore);
   },
 
@@ -70,10 +72,9 @@ Menu = React.createClass({
 
   _getStateFromStore: function() {
     var id = parseInt(this.props.params.restaurantId);
-    ApiUtil.fetchSingleRestaurant(id);
 
     var targetRestaurant = RestaurantStore.retrieveRestaurant(id);
-    return { restaurant: targetRestaurant };
+    this.setState({ restaurant: targetRestaurant });
   },
 
   categorized: function(){

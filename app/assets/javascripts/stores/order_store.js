@@ -1,9 +1,14 @@
 (function(root) {
   'use strict';
 
-  var _currentOrder = { items: {} };
+  var _currentOrder = { items: {},
+                        subtotal: 0,
+                        tax: 0,
+                        total: 0,
+                        tipPercent: 0 };
 
   var itemsCounter = 0;
+
   var ORDER_CHANGE_EVENT = "changeOrder";
   var COMPLETE_ORDER_EVENT = "completeOrder";
   var RECEIVE_ORDER_EVENT = "receiveOrder";
@@ -15,12 +20,42 @@
 
     addItem: function(item){
       var added = $.extend({counter: itemsCounter}, item);
-      itemsCounter++;
       _currentOrder.items[itemsCounter] = added;
+      itemsCounter++;
+
+      this.calculateTotals();
+    },
+
+    calculateTotals: function(){
+      if (_.isEmpty(_currentOrder.items)) {
+        this.resetTotals();
+        return;
+      }
+
+      var prices = _.mapObject(_currentOrder.items, function(item) {
+        return item.price;
+      });
+
+      _currentOrder.subtotal = _.values(prices).reduce(function(price, total){
+        return total + price;
+      });
+
+      _currentOrder.tax = _currentOrder.subtotal * 0.075;
+      _currentOrder.total = _currentOrder.subtotal +
+                            _currentOrder.tax;
+    },
+
+    resetTotals: function(){
+      _currentOrder.subtotal = 0;
+      _currentOrder.tax = 0;
+      _currentOrder.total = 0;
+      _currentOrder.tipPercent = 0;
     },
 
     removeItem: function(itemIdx){
       delete _currentOrder.items[itemIdx];
+
+      this.calculateTotals();
     },
 
     completeOrder: function(order){

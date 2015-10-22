@@ -13,6 +13,7 @@ Search = React.createClass({
 
   render: function(){
       return (
+        <div className="splash-page">
         <form role="form" className="form-inline search-form" onSubmit={this.handleFormSubmit}>
           <div className="container-fluid">
             <div className="row">
@@ -22,6 +23,7 @@ Search = React.createClass({
               <h3>... from restaurants featured in the 90s sitcom Seinfeld</h3>
             </div>
             <div className="row">
+                <span className="address-label">Enter your address</span>
               <div className="col-xs-8">
                 <input className="address-search"
                        type="text"
@@ -34,6 +36,7 @@ Search = React.createClass({
            </div>
           </div>
         </form>
+        </div>
       );
   }
 });

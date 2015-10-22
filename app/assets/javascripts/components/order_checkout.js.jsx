@@ -20,6 +20,7 @@ OrderCheckout = React.createClass({
 
   componentDidMount: function(){
     OrderStore.addCompletionChangeListener(this._orderCompleted);
+    this.setState({ order: OrderStore.currentOrder() });
   },
 
   componentWillUnmount: function(){
@@ -29,6 +30,14 @@ OrderCheckout = React.createClass({
   _orderCompleted: function(){
     completedOrder = OrderStore.currentOrder();
     this.props.history.pushState(null, "/orders/" + completedOrder.id);
+  },
+
+  addTip: function(e) {
+    e.preventDefault();
+    var percentage = parseInt(e.target.value)/100;
+    var tipAmount = this.state.order.total * percentage;
+
+    this.setState( {order: newOrder} );
   },
 
   render: function(){
@@ -47,7 +56,7 @@ OrderCheckout = React.createClass({
           </div>
 
           <div className="order-body">
-            <form role="form" className="form">
+            <form role="form" className="form-inline">
               <h3>Contact Info</h3>
               <div className="form-group">
                 <label>First Name
@@ -70,6 +79,23 @@ OrderCheckout = React.createClass({
                   <textarea className="form-control"
                             id="order-notes"
                             rows="8" cols="80"></textarea>
+              </div>
+
+              <h3>Payment Info</h3>
+              <div className="form-group">
+                <label>Add a tip?
+                <button className="btn btn-default"
+                        value="10"
+                        onClick={this.addTip}>10%</button>
+                <button className="btn btn-default"
+                        value="20"
+                        onClick={this.addTip}>10%</button>
+                <button className="btn btn-default"
+                        value="10"
+                        onClick={this.addTip}>10%</button>
+                <input type="text" className="form-control" id="custom-tip"
+                       placeholder="custom tip amount"/>
+                </label>
               </div>
             </form>
           </div>

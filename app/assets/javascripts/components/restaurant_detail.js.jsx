@@ -1,20 +1,19 @@
 RestaurantDetail = React.createClass({
   getInitialState: function() {
-      return this._getStateFromStore();
+      return {restaurant: RestaurantStore.retrieveRestaurant(this.props.params.restaurantId)};
     },
 
   _getStateFromStore: function() {
     var id = parseInt(this.props.params.restaurantId);
-    ApiUtil.fetchSingleRestaurant(id);
 
     var targetRestaurant = RestaurantStore.retrieveRestaurant(id);
-    return { restaurant: targetRestaurant };
+    this.setState({ restaurant: targetRestaurant });
   },
 
   componentDidMount: function() {
-    RestaurantStore.addDetailChangeListener(this._getStateFromStore);
     var id = parseInt(this.props.params.restaurantId);
     ApiUtil.fetchSingleRestaurant(id);
+    RestaurantStore.addDetailChangeListener(this._getStateFromStore);
   },
 
   componentWillUnmount: function() {

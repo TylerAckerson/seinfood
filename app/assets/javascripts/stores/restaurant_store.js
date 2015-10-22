@@ -16,9 +16,8 @@
     if (found !== -1) {
        _restaurants[found] = restaurant;
     } else {
-      _restaurants.concat(restaurant);
+      _restaurants.push(restaurant);
     }
-
   };
 
   root.RestaurantStore = $.extend({}, EventEmitter.prototype, {

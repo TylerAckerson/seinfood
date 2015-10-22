@@ -5,10 +5,12 @@ OrderItem = React.createClass({
   },
 
   render: function() {
+    price = this.props.item.price.toFixed(2);
+
     return (
         <tr>
           <td>{this.props.item.name}</td>
-          <td>{this.props.item.price}</td>
+          <td>${price}</td>
           <td>
             <button type="submit"
                     className="btn btn-default full-width"
@@ -22,7 +24,7 @@ Order = React.createClass({
   mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
   getInitialState: function(){
-    return { order: OrderStore.currentOrder()};
+    return { order: OrderStore.currentOrder() };
   },
 
   componentDidMount : function(){
@@ -47,11 +49,15 @@ Order = React.createClass({
     if (!this.props.location.pathname.includes("checkout")){
       button = <div className="footer">
                  <button type="submit"
-                         disabled={this.state.order.items.isEmpty}
+                         disabled={_.isEmpty(this.state.order.items)}
                          className="btn btn-default full-width"
                          onClick={this.handleOrder}>Proceed to Checkout</button>
                </div>;
     }
+
+    subtotal = this.state.order.subtotal.toFixed(2);
+    tax = this.state.order.tax.toFixed(2);
+    total = this.state.order.total.toFixed(2);
 
     return (
       <div>
@@ -65,14 +71,29 @@ Order = React.createClass({
               <tr>
                 <th>Item</th>
                 <th>Price</th>
-                <th></th>
               </tr>
               <tbody>
               {
               _.mapObject(this.state.order.items, function(item){
-                  return <OrderItem item={item} key={item.counter}/>;
+                  return <OrderItem item={item} key={item}/>;
                 })
               }
+            </tbody>
+           </table>
+           <table className="table">
+              <tr>
+                <th>Subtotal</th>
+                <th>${subtotal}</th>
+              </tr>
+              <tr>
+                <td>Tax</td>
+                <td>${tax}</td>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <th>${total} + tip</th>
+              </tr>
+              <tbody>
             </tbody>
            </table>
         </div>

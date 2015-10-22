@@ -1,6 +1,8 @@
 Seinfood = (function() {
   'use strict';
-
+  // console.warn = function (msg) {
+  //   throw new Error(msg);
+  // };
   var root = document.getElementById('application');
   var Router = ReactRouter.Router;
   var Route = ReactRouter.Route;
