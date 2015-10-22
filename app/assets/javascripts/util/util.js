@@ -53,12 +53,11 @@ window.ApiUtil = {
 
   },
 
-  fetchOrder: function(data) {
+  fetchOrder: function(orderId) {
     $.ajax({
-      url: 'api/orders',
-      data: data,
-      success: function(restaurant){
-        window.location = "/";
+      url: 'api/orders/' + orderId,
+      success: function(order){
+        ApiActions.receiveOrder(order);
       },
       error: function(resp){
         console.log(resp);
@@ -66,13 +65,13 @@ window.ApiUtil = {
     });
   },
 
-  createOrder: function(orderInfo) {
+  createOrder: function(newOrder) {
     $.ajax({
       url: 'api/orders',
-      data: orderInfo,
+      data: newOrder,
       method: 'post',
       success: function(order){
-        window.location = "/";
+        ApiActions.completeOrder(order);
       },
       error: function(resp){
         console.log(resp);

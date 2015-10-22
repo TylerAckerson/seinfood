@@ -29,7 +29,6 @@
     componentDidMount: function(){
       RestaurantStore.addIndexChangeListener(this._restaurantsChanged);
       FilterParamStore.addChangeListener(this._filtersChanged);
-      // ApiUtil.fetchRestaurants( {filterParams: _getFilterParams()} );
       ApiUtil.fetchRestaurants( {filterParams: this.state.filterParams} );
     },
 
@@ -44,7 +43,7 @@
     render: function(){
       var cards = _.sample(this.state.restaurants, 4);
 
-      if (this.state.restaurants.length < 4) {
+      if (this.state.restaurants.length < 1) {
         return (<div className="throbber-loader" id="loader">
                   Loading…
                 </div>);

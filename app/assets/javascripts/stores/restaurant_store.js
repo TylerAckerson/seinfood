@@ -15,10 +15,8 @@
 
     if (found !== -1) {
        _restaurants[found] = restaurant;
-       return _restaurants[found];
     } else {
       _restaurants.concat(restaurant);
-      return _.last(_restaurants);
     }
 
   };
@@ -30,8 +28,7 @@
 
     retrieveRestaurant: function(restaurantId){
       var idx = RestaurantStore.find(restaurantId);
-
-      if (idx !== -1) { return _restaurants[idx]; }
+      return _restaurants[idx];
     },
 
     find: function(id) {

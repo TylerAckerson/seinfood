@@ -32,6 +32,7 @@ Seinfood = (function() {
                                             checkout: OrderCheckout,
                                                order: Order}} />
         </Route>
+        <Route path="/orders/:orderId" component={CompletedOrder}/>
       </Route>
     </Router>
   );

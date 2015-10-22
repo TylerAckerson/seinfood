@@ -1,6 +1,6 @@
 OrderCheckout = React.createClass({
   getInitialState: function(){
-    return { userId: 1 };
+    return { order: {} };
   },
 
   handleBack: function(){
@@ -9,10 +9,26 @@ OrderCheckout = React.createClass({
 
   handleOrder: function(e){
     e.preventDefault();
-    var orderItems = $.extend({}, OrderStore.allItems());
-    ApiUtil.createOrder({ orderInfo: {order: orderItems,
-                                      userId: this.state.userId,
-                                      restaurantId: this.props.params.restaurantId}} );
+    var orderItems = $.extend({}, OrderStore.currentOrder());
+    var order = {items: orderItems,
+                 userId: parseInt(window.CURRENT_USER_ID),
+                 restaurantId: this.props.params.restaurantId};
+
+    this.setState({order: order});
+    ApiUtil.createOrder(order);
+  },
+
+  componentDidMount: function(){
+    OrderStore.addCompletionChangeListener(this._orderCompleted);
+  },
+
+  componentWillUnmount: function(){
+    OrderStore.removeCompletionChangeListener(this._orderCompleted);
+  },
+
+  _orderCompleted: function(){
+    completedOrder = OrderStore.currentOrder();
+    this.props.history.pushState(null, "/orders/" + completedOrder.id);
   },
 
   render: function(){

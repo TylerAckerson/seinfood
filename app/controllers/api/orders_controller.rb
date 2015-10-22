@@ -1,31 +1,31 @@
 class Api::OrdersController < ApplicationController
 
   def show
+    @order = Order.find(params[:id])
+    
+    render :show
   end
 
   def create
-    order_items = params[:orderInfo][:order]
-    user_id = params[:orderInfo][:user_id].to_i
-    restaurant_id = params[:orderInfo][:restaurantId].to_i
+    order_items = params[:items][:items]
+    user_id = params[:user_id].to_i
+    restaurant_id = params[:restaurantId].to_i
 
-    #adding temp params
     @order = Order.create(user_id: user_id,
                           restaurant_id: restaurant_id,
-                          type: "delivery",
+                          scheduled_for: Time.now,
+                          order_type: "delivery",
                           subtotal: 10.5,
                           delivery_fee: 2.5)
+    if @order.save
+      render :show
+    end
 
-    a = Order.create(user_id: 1,
-                          restaurant_id: 1,
-                          type: "delivery",
-                          subtotal: 10.5,
-                          delivery_fee: 2.5)
-
-    fail
   end
 
   private
   def order_params
-    params.require(:order).permit(:user_id, :restaurant_id, :type, :subtotal, :delivery_fee, )
+    params.require(:order).permit(:user_id, :restaurant_id,
+                  :scheduled_for, :order_type, :subtotal, :delivery_fee)
   end
 end

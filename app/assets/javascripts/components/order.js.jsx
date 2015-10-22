@@ -1,7 +1,7 @@
 OrderItem = React.createClass({
   removeItem: function(e) {
     e.preventDefault();
-    OrderActions.orderRemoveItem(this.props.item);
+    OrderActions.orderRemoveItem(this.props.item.counter);
   },
 
   render: function() {
@@ -22,7 +22,7 @@ Order = React.createClass({
   mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
   getInitialState: function(){
-    return { items: OrderStore.allItems()};
+    return { order: OrderStore.currentOrder()};
   },
 
   componentDidMount : function(){
@@ -34,7 +34,7 @@ Order = React.createClass({
   },
 
   _orderChange: function(){
-    this.setState( {items: OrderStore.allItems()} );
+    this.setState( { order : OrderStore.currentOrder()} );
   },
 
   handleOrder: function(){
@@ -47,7 +47,7 @@ Order = React.createClass({
     if (!this.props.location.pathname.includes("checkout")){
       button = <div className="footer">
                  <button type="submit"
-                         disabled={this.state.items.length < 1}
+                         disabled={this.state.order.items.isEmpty}
                          className="btn btn-default full-width"
                          onClick={this.handleOrder}>Proceed to Checkout</button>
                </div>;
@@ -69,8 +69,8 @@ Order = React.createClass({
               </tr>
               <tbody>
               {
-                this.state.items.map(function(item){
-                  return <OrderItem item={item} key={item.counter} />;
+              _.mapObject(this.state.order.items, function(item){
+                  return <OrderItem item={item} key={item.counter}/>;
                 })
               }
             </tbody>

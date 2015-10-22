@@ -26,7 +26,7 @@
 * Order
 
 ### Actions
-* ApiActions.recieveAllMenuItems
+* ApiActions.receiveAllMenuItems
 * ApiActions.receiveAllReviews
 
 ### ApiUtil

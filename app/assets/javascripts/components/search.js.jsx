@@ -14,14 +14,24 @@ Search = React.createClass({
   render: function(){
       return (
         <form role="form" className="form-inline search-form" onSubmit={this.handleFormSubmit}>
-          <div>
-            <h1>Order Food Delivery & Takeout</h1>
-            <h3>... from restaurants featured in the 90s sitcom Seinfeld</h3>
-            <input className="address-search"
-                   type="text"
-                   placeholder="  e.g 129 West 81st Street, Apartment 5A"
-                   valueLink={this.linkState("search")}/>
-           <input type="submit" className="search-button" value="Find Restaurants"/>
+          <div className="container-fluid">
+            <div className="row">
+              <h1>Order Food Delivery & Takeout</h1>
+            </div>
+            <div className="row">
+              <h3>... from restaurants featured in the 90s sitcom Seinfeld</h3>
+            </div>
+            <div className="row">
+              <div className="col-xs-8">
+                <input className="address-search"
+                       type="text"
+                       placeholder="  e.g 129 West 81st Street, Apartment 5A"
+                       valueLink={this.linkState("search")}/>
+              </div>
+              <div className="col-xs-2">
+                <input type="submit" className="search-button" value="Find Restaurants"/>
+              </div>
+           </div>
           </div>
         </form>
       );

@@ -56,6 +56,26 @@ MenuCategory = React.createClass({
 });
 
 Menu = React.createClass({
+  getInitialState: function(){
+      return this._getStateFromStore();
+  },
+
+  componentDidMount: function(){
+    RestaurantStore.addDetailChangeListener(this._getStateFromStore);
+  },
+
+  componentWillUnmount: function(){
+    RestaurantStore.removeDetailChangeListener(this._getStateFromStore);
+  },
+
+  _getStateFromStore: function() {
+    var id = parseInt(this.props.params.restaurantId);
+    ApiUtil.fetchSingleRestaurant(id);
+
+    var targetRestaurant = RestaurantStore.retrieveRestaurant(id);
+    return { restaurant: targetRestaurant };
+  },
+
   categorized: function(){
     var menu_items = this.state.restaurant.menu_items;
     var categorized = {};
@@ -71,26 +91,11 @@ Menu = React.createClass({
     return categorized;
   },
 
-  componentDidMount: function(){
-    this.getStateFromStore();
-  },
-
-  getInitialState: function() {
-      return { restaurant: null };
-    },
-
-  getStateFromStore: function() {
-    var id = parseInt(this.props.params.restaurantId);
-    ApiUtil.fetchSingleRestaurant(id);
-    var targetRestaurant = RestaurantStore.retrieveRestaurant(id);
-    this.setState( { restaurant: targetRestaurant });
-  },
-
   render: function() {
-    if (this.state.restaurant === null){
+    if (this.state.restaurant === undefined){
       return (<div></div>);
     }
-    
+
     var categorized = this.categorized();
 
     return (
