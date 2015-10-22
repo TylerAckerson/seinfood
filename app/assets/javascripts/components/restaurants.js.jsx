@@ -13,7 +13,7 @@
     mixins: [ReactRouter.History],
 
     getInitialState: function(){
-      return { restaurants: [], search: "", filterParams: _getFilterParams() };
+      return { restaurants: _getAllRestaurants(), search: "", filterParams: _getFilterParams() };
     },
 
     _restaurantsChanged: function(){
@@ -29,7 +29,8 @@
     componentDidMount: function(){
       RestaurantStore.addIndexChangeListener(this._restaurantsChanged);
       FilterParamStore.addChangeListener(this._filtersChanged);
-      ApiUtil.fetchRestaurants( {filterParams: _getFilterParams()} );
+      // ApiUtil.fetchRestaurants( {filterParams: _getFilterParams()} );
+      ApiUtil.fetchRestaurants( {filterParams: this.state.filterParams} );
     },
 
     componentWillUnmount: function(){
@@ -42,6 +43,12 @@
 
     render: function(){
       var cards = _.sample(this.state.restaurants, 4);
+
+      if (this.state.restaurants.length < 4) {
+        return (<div className="throbber-loader" id="loader">
+                  Loading…
+                </div>);
+      }
 
       return (
       <div className="restaurants">

@@ -23,6 +23,10 @@ RestaurantDetail = React.createClass({
   render: function() {
     var restaurant = this.state.restaurant;
 
+    if (restaurant === undefined){
+      return (<div></div>);
+    }
+
     return (
       <div>
         <div className="row restaurant-detail-page bottom-buffer">

@@ -7,7 +7,7 @@ RestaurantItem = React.createClass({
 
     var distance = String(Math.round(restaurant.distance * 10)/10) + " mi";
     return (
-      <div className="row restaurant-item">
+      <div className="row restaurant-item" onClick={this.props.onClick}>
         <div className="col-xs-2 align-center">
           <img src={restaurant.image_link}className="img-circle" width="75" height="75"/>
         </div>

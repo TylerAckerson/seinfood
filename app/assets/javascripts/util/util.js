@@ -38,6 +38,21 @@ window.ApiUtil = {
     });
   },
 
+  fetchUserInfo: function(userId){
+    $.ajax({
+      url: '/users/' + userId,
+      dataType: 'json',
+      success: function(user){
+        // ApiActions.receiveUser(user);
+        return user;
+      },
+      error: function(resp){
+        console.log(resp);
+      }
+    });
+
+  },
+
   fetchOrder: function(data) {
     $.ajax({
       url: 'api/orders',
@@ -51,10 +66,11 @@ window.ApiUtil = {
     });
   },
 
-  createOrder: function(order) {
+  createOrder: function(orderInfo) {
     $.ajax({
-      url: 'api/orders/',
-      data: order,
+      url: 'api/orders',
+      data: orderInfo,
+      method: 'post',
       success: function(order){
         window.location = "/";
       },

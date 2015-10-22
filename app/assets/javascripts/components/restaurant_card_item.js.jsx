@@ -28,7 +28,9 @@ RestaurantCardItem = React.createClass({
     }
 
     return (
-      <div id="restaurant-card-item" className="col-sm-3 card text-center">
+      <div id="restaurant-card-item" onClick={this.props.onClick}
+                                  className="col-sm-3 card text-center">
+
         <div className="card-item-header">
         </div>
         <img src={restaurant.image_link}className="img-circle"/>

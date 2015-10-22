@@ -71,18 +71,26 @@ Menu = React.createClass({
     return categorized;
   },
 
+  componentDidMount: function(){
+    this.getStateFromStore();
+  },
+
   getInitialState: function() {
-      return this.getStateFromStore();
+      return { restaurant: null };
     },
 
   getStateFromStore: function() {
     var id = parseInt(this.props.params.restaurantId);
     ApiUtil.fetchSingleRestaurant(id);
     var targetRestaurant = RestaurantStore.retrieveRestaurant(id);
-    return { restaurant: targetRestaurant };
+    this.setState( { restaurant: targetRestaurant });
   },
 
   render: function() {
+    if (this.state.restaurant === null){
+      return (<div></div>);
+    }
+    
     var categorized = this.categorized();
 
     return (

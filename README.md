@@ -4,6 +4,15 @@
 
 [heroku]: https://seinfood.herokuapp.com/
 
+##TODO
+- [ ] Order checkout
+- [ ] Fix logo and favicon
+- [ ] Clean up/ format header
+- [ ] Fix restaurant page refresh bug
+- [ ] Formatting for Filters, Order, Menu, etc
+- [ ] Use search location and default to "new york city, new york"
+- [ ] Add s'more seed data
+
 ## Minimum Viable Product
 
 Seinfood is a [Seinfeld][seinfeld]-themed web application inspired by

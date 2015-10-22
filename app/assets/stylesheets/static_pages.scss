@@ -32,13 +32,21 @@ time, mark, audio, video {
   background-color: whitesmoke;
 }
 
+.container {
+	background-color: whitesmoke;
+}
+
+#container {
+}
+
 body {
-	background:
-		linear-gradient(
-			rgba(0, 0, 0, 0.7),
-			rgba(0, 0, 0, 0.7)
-		),
-		url("http://static.deathandtaxesmag.com/uploads/2014/01/seinfeld-toms-restaurant-2880_1920x1080_43-hd.jpg");
+	background-color: whitesmoke;
+	// background:
+	// 	linear-gradient(
+	// 		rgba(0, 0, 0, 0.7),
+	// 		rgba(0, 0, 0, 0.7)
+	// 	),
+	// 	url("http://static.deathandtaxesmag.com/uploads/2014/01/seinfeld-toms-restaurant-2880_1920x1080_43-hd.jpg");
 }
 
 .img-circle {
@@ -85,6 +93,11 @@ html {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+#loader {
+	margin-left: 50%;
+  margin-top: 20%
+}
+
 .search-form{
   position:relative;
 	top: 300px;
@@ -102,6 +115,12 @@ html {
 .search-form h3 {
 	color: darkgray;
 	font-style: italic;
+}
+
+.search-button {
+	line-height: 55px;
+	margin-right: -30px;
+	border: 10px solid lightgrey;
 }
 
 .address-search {
@@ -134,6 +153,9 @@ html {
 
 .restaurant-item:hover > div.col-xs-2:last-child {
 	display: block;
+}
+.restaurant-item:hover, .card:hover {
+	cursor: pointer;
 }
 
 #filters.col-sm-3 {
