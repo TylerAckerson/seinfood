@@ -13,8 +13,10 @@ OrderItem = React.createClass({
           <td>${price}</td>
           <td>
             <button type="submit"
-                    className="btn btn-default full-width"
-                    onClick={this.removeItem}>Remove</button></td>
+                    className="btn btn-default full-width remove"
+                    onClick={this.removeItem}>
+                      <span className="glyphicon glyphicon-remove"/>
+                    </button></td>
         </tr>
       );
    }
@@ -46,14 +48,19 @@ Order = React.createClass({
   render: function(){
     var button;
 
-    if (!this.props.location.pathname.includes("checkout")){
-      button = <div className="footer">
-                 <button type="submit"
-                         disabled={_.isEmpty(this.state.order.items)}
-                         className="btn btn-default full-width"
-                         onClick={this.handleOrder}>Proceed to Checkout</button>
-               </div>;
+    if (!(this.props.location.pathname.includes("checkout") ||
+                                  _.isEmpty(this.state.order.items))){
+      classes = "footer show";
+    } else {
+      classes = "footer";
     }
+
+    button = <div className={classes}>
+               <button type="submit"
+                       disabled={_.isEmpty(this.state.order.items)}
+                       className="btn btn-default full-width"
+                       onClick={this.handleOrder}>Proceed to Checkout</button>
+             </div>;
 
     var subtotal = this.state.order.subtotal.toFixed(2);
     var tax = this.state.order.tax.toFixed(2);
@@ -98,6 +105,7 @@ Order = React.createClass({
               <tr>
                 <th>Item</th>
                 <th>Price</th>
+                <th/>
               </tr>
               <tbody>
               {

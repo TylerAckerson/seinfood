@@ -170,7 +170,7 @@ html {
   vertical-align: middle;
 }
 
-.restaurant-item, #filters {
+.restaurant-item {
   padding-top: 20px;
   border: 1px solid lightgray;
   background-color: white;
@@ -189,28 +189,38 @@ html {
 	cursor: pointer;
 }
 
-#filters.col-sm-3 {
-	padding-top: 0;
-}
+// #filters.col-sm-3 {
+// 	padding-top: 0;
+// }
 
 .align-center{
   text-align: center;;
 }
 
-#restaurants-index {
-  float: left;
-	margin-bottom: 80px;
+.filters {
+	border: 1px solid steelblue;
+	outline: 1px solid whitesmoke;
+	background-color: white;
+	border-radius: 5px;
+	margin-left: 2%;
+	padding: 0 30px;
 }
 
-#filters {
-  float: right;
-	border: solid 1px lightgray;
-	margin-left: 1%;
+.restaurant-index {
+	border: 1px solid steelblue;
+	border-radius: 5px;
+	padding: 15px 30px;
+	margin-bottom: 50px;;
 }
 
-.filters-body {
-	padding: 0 10px;
-}
+// #restaurants-index {
+//   float: left;
+// 	margin-bottom: 80px;
+// }
+
+// .filters-body {
+// 	padding: 0 10px;
+// }
 
 #filters .checkbox label {
 	margin-left: 20%;
@@ -365,6 +375,28 @@ html {
 	background-color: #E8E8E8;
 }
 
+.order > .footer {
+	margin: 0;
+	height: 0;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 1s ease;
+}
+.order > .footer.show {
+	margin-top: 30px;
+	margin-bottom: 16px;
+	height: 70px;
+	opacity: 1;
+	visibility: visible;
+	transition: all 1s ease;
+}
+
+.order > .footer.show:hover .btn.btn-default {
+	color: white;
+	background-color: green;
+	transition: all 1s ease;
+}
+
 .header {
 	margin-top: -5px;
 	margin-bottom: 20px;
@@ -428,9 +460,17 @@ html {
 	outline: 1px solid whitesmoke;
   border-radius: 5px;
 	margin-right: 1%;
+	padding-bottom: 15px;
+}
+.menu-main {
+	padding-bottom: 30px;
 }
 
 .menu-category {
+}
+
+.menu-item {
+	margin-bottom: 10px;
 }
 
 .menu-item-name {
@@ -450,9 +490,9 @@ html {
 	margin-left: 1%;
 }
 .order-item-price {
-	float: right;
-	margin-right: 20px;
-	color: steelblue;
+	position: absolute;
+	bottom: 15px;
+	right: 0px;
 }
 
 .order-item-price:hover {

@@ -92,11 +92,11 @@
     },
 
     addOrderDetailChangeListener: function(callback){
-      this.on(RECEIVE_ORDER_EVENT, callback);
+      this.on(ORDER_CHANGE_EVENT, callback);
     },
 
     removeOrderDetailChangeListener: function(callback){
-      this.removeListener(RECEIVE_ORDER_EVENT, callback);
+      this.removeListener(ORDER_CHANGE_EVENT, callback);
     },
 
     dispatcherID: AppDispatcher.register(function(payload) {

@@ -11,10 +11,12 @@ MenuItem = React.createClass({
 
     return (
       <div className="row">
-        <div className="col-xs-2 col-sm-2 col-md-2" />
-        <div className="col-xs-9 col-sm-8 col-md-8 menu-item">
-          <h4 className="menu-item-name">{item.name}</h4>
-          <span className="menu-item-detail">{item.description}</span>
+        <div className="col-xs-1 col-sm-1 col-md-1" />
+        <div className="col-xs-10 col-sm-10 col-md-10 menu-item">
+          <h4 className="row menu-item-name">{item.name}</h4>
+          <div className="row menu-item-detail">
+            {item.description}
+          </div>
           <button type="button"
                   onClick={this.handleClick}
                   className="btn btn-default order-item-price">{price}</button>
@@ -51,8 +53,8 @@ MenuCategory = React.createClass({
     return (
         <div className="row menu-category" onClick={this.handleClick}>
           <div className="col-xs-1"/>
-          <div className="col-xs-11">
-            <h2>{this.props.title}</h2>
+          <div className="col-xs-10">
+            <h3>{this.props.title}</h3>
                 {
                 this.props.items.map(function(item) {
                   return <MenuItem item={item} key={item.id} />;

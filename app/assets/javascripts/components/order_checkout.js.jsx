@@ -1,6 +1,6 @@
 OrderCheckout = React.createClass({
   getInitialState: function(){
-    return { order: {} };
+    return {};
   },
 
   handleBack: function(){
@@ -9,24 +9,23 @@ OrderCheckout = React.createClass({
 
   handleOrder: function(e){
     e.preventDefault();
-    var orderItems = $.extend({}, OrderStore.currentOrder());
-    var order = {items: orderItems,
-                 userId: parseInt(window.CURRENT_USER_ID),
-                 restaurantId: this.props.params.restaurantId};
+    var order = $.extend({}, OrderStore.currentOrder());
+    order.userId = parseInt(window.CURRENT_USER_ID);
+    order.restaurantId = this.props.params.restaurantId;
 
-    this.setState({order: order});
+    this.setState(order);
     ApiUtil.createOrder(order);
   },
 
   componentDidMount: function(){
     OrderStore.addCompletionChangeListener(this._orderCompleted);
-    // OrderStore.addOrderDetailChangeListener(this._orderChanged);
-    this.setState({ order: OrderStore.currentOrder() });
+    OrderStore.addOrderDetailChangeListener(this._orderChanged);
+    this.setState( OrderStore.currentOrder() );
   },
 
   componentWillUnmount: function(){
     OrderStore.removeCompletionChangeListener(this._orderCompleted);
-    // OrderStore.removeOrderDetailChangeListener(this._orderChanged);
+    OrderStore.removeOrderDetailChangeListener(this._orderChanged);
   },
 
   _orderCompleted: function(){
@@ -34,11 +33,19 @@ OrderCheckout = React.createClass({
     this.props.history.pushState(null, "/orders/" + completedOrder.id, {tip: this.state.tipPercent});
   },
 
+  _orderChanged: function(){
+    var order = $.extend({}, this.state, OrderStore.currentOrder());
+    order.tipPercent = this.state.tipPercent;
+
+    this.setState(order);
+  },
+
   addTip: function(e) {
     e.preventDefault();
     var percentage = parseInt(e.target.value)/100;
 
-    var newOrder = $.extend(this.state.order, {tipPercent: percentage} );
+    var newOrder = $.extend({}, this.state);
+    newOrder.tipPercent = percentage;
     this.setState(newOrder);
   },
 
@@ -49,11 +56,14 @@ OrderCheckout = React.createClass({
       //need to add fluxiness for this to work
     }
 
-    if (this.state.order.tipPercent !== null && this.state.order.tipPercent !== undefined){
+    if (this.state.tipPercent !== null && this.state.tipPercent !== undefined){
       var tip = <div className="col-xs-2">
-                {" Tip: $" + (this.state.order.tipPercent * this.state.order.total).toFixed(2)}
+                {" Tip: $" + (this.state.tipPercent *
+                              this.state.total).toFixed(2)}
                 </div>;
     }
+
+
 
     return (
       <div>
@@ -91,19 +101,19 @@ OrderCheckout = React.createClass({
 
               <h3>Payment Info</h3>
               <div className="row">
-                <div className="col-xs-2 col-sm-1 col-md-1"/>
-                <div className="btn-group col-xs-7 col-sm-7 col-md-7" role="group">
-                  <label>Add a tip?
+                <div className="col-xs-2 col-sm-2 col-md-2">
+                  <span className="pull-right">Add a tip?</span>
+                </div>
+                <div className="btn-group-vertical col-xs-2 col-sm-2 col-md-2" role="group">
                   <button type="button" className="btn btn-default"
-                          value="10"
-                          onClick={this.addTip}>10%</button>
+                          value="30"
+                          onClick={this.addTip}>30%</button>
                   <button type="button" className="btn btn-default"
                           value="20"
                           onClick={this.addTip}>20%</button>
                   <button type="button" className="btn btn-default"
-                          value="30"
-                          onClick={this.addTip}>30%</button>
-                  </label>
+                          value="10"
+                          onClick={this.addTip}>10%</button>
                 </div>
               {tip}
               </div>
