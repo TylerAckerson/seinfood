@@ -20,24 +20,26 @@ OrderCheckout = React.createClass({
 
   componentDidMount: function(){
     OrderStore.addCompletionChangeListener(this._orderCompleted);
+    // OrderStore.addOrderDetailChangeListener(this._orderChanged);
     this.setState({ order: OrderStore.currentOrder() });
   },
 
   componentWillUnmount: function(){
     OrderStore.removeCompletionChangeListener(this._orderCompleted);
+    // OrderStore.removeOrderDetailChangeListener(this._orderChanged);
   },
 
   _orderCompleted: function(){
     completedOrder = OrderStore.currentOrder();
-    this.props.history.pushState(null, "/orders/" + completedOrder.id);
+    this.props.history.pushState(null, "/orders/" + completedOrder.id, {tip: this.state.tipPercent});
   },
 
   addTip: function(e) {
     e.preventDefault();
     var percentage = parseInt(e.target.value)/100;
-    var tipAmount = this.state.order.total * percentage;
 
-    this.setState( {order: newOrder} );
+    var newOrder = $.extend(this.state.order, {tipPercent: percentage} );
+    this.setState(newOrder);
   },
 
   render: function(){
@@ -45,6 +47,12 @@ OrderCheckout = React.createClass({
     if (userId) {
       userInfo = ApiUtil.fetchUserInfo(parseInt(userId));
       //need to add fluxiness for this to work
+    }
+
+    if (this.state.order.tipPercent !== null && this.state.order.tipPercent !== undefined){
+      var tip = <div className="col-xs-2">
+                {" Tip: $" + (this.state.order.tipPercent * this.state.order.total).toFixed(2)}
+                </div>;
     }
 
     return (
@@ -82,20 +90,21 @@ OrderCheckout = React.createClass({
               </div>
 
               <h3>Payment Info</h3>
-              <div className="form-group">
+              <div className="row">
+              <div className="btn-group col-xs-5" role="group">
                 <label>Add a tip?
-                <button className="btn btn-default"
+                <button type="button" className="btn btn-default"
                         value="10"
                         onClick={this.addTip}>10%</button>
-                <button className="btn btn-default"
+                <button type="button" className="btn btn-default"
                         value="20"
-                        onClick={this.addTip}>10%</button>
-                <button className="btn btn-default"
-                        value="10"
-                        onClick={this.addTip}>10%</button>
-                <input type="text" className="form-control" id="custom-tip"
-                       placeholder="custom tip amount"/>
+                        onClick={this.addTip}>20%</button>
+                <button type="button" className="btn btn-default"
+                        value="30"
+                        onClick={this.addTip}>30%</button>
                 </label>
+              </div>
+              {tip}
               </div>
             </form>
           </div>

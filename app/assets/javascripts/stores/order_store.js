@@ -5,7 +5,9 @@
                         subtotal: 0,
                         tax: 0,
                         total: 0,
-                        tipPercent: 0 };
+                        deliveryFee: null,
+                        tipPercent: null,
+                        restaurant: null};
 
   var itemsCounter = 0;
 
@@ -18,10 +20,14 @@
       return $.extend({}, _currentOrder);
     },
 
-    addItem: function(item){
-      var added = $.extend({counter: itemsCounter}, item);
+    addItem: function(itemInfo){
+      var added = $.extend({counter: itemsCounter}, itemInfo.item);
       _currentOrder.items[itemsCounter] = added;
       itemsCounter++;
+
+      if (_currentOrder.restaurant === null) {
+      _currentOrder.restaurant = itemInfo.item.restaurant;
+      }
 
       this.calculateTotals();
     },
@@ -41,13 +47,16 @@
       });
 
       _currentOrder.tax = _currentOrder.subtotal * 0.075;
+      _currentOrder.deliveryFee = _currentOrder.restaurant.delivery_fee;
       _currentOrder.total = _currentOrder.subtotal +
+                            _currentOrder.deliveryFee +
                             _currentOrder.tax;
     },
 
     resetTotals: function(){
       _currentOrder.subtotal = 0;
       _currentOrder.tax = 0;
+      _currentOrder.deliveryFee = null;
       _currentOrder.total = 0;
       _currentOrder.tipPercent = 0;
     },

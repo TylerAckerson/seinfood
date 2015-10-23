@@ -1,15 +1,15 @@
 OrderItem = React.createClass({
   removeItem: function(e) {
     e.preventDefault();
-    OrderActions.orderRemoveItem(this.props.item.counter);
+    OrderActions.orderRemoveItem(this.props.orderItem.counter);
   },
 
   render: function() {
-    price = this.props.item.price.toFixed(2);
+    price = this.props.orderItem.price.toFixed(2);
 
     return (
         <tr>
-          <td>{this.props.item.name}</td>
+          <td>{this.props.orderItem.name}</td>
           <td>${price}</td>
           <td>
             <button type="submit"
@@ -55,9 +55,36 @@ Order = React.createClass({
                </div>;
     }
 
-    subtotal = this.state.order.subtotal.toFixed(2);
-    tax = this.state.order.tax.toFixed(2);
-    total = this.state.order.total.toFixed(2);
+    var subtotal = this.state.order.subtotal.toFixed(2);
+    var tax = this.state.order.tax.toFixed(2);
+    var total = this.state.order.total.toFixed(2);
+
+    var tip, delivery;
+    if (this.state.order.tipPercent !== null){
+      var tipAmount = total * this.state.order.tipPercent.toFixed(2);
+
+      tip = <tr>
+                  <td>Tip</td>
+                  <td>${tipAmount}</td>
+                </tr>;
+    } else {
+      tip = "";
+    }
+
+    if (this.state.order.deliveryFee !== null) {
+      if (this.state.order.deliveryFee !== 0){
+        deliveryFee = "$" + this.state.order.deliveryFee.toFixed(2);
+        delivery = <tr>
+                    <td>Delivery</td>
+                    <td>{deliveryFee}</td>
+                   </tr>;
+      } else {
+        delivery = <tr>
+                    <td>Delivery</td>
+                    <td>Free</td>
+                   </tr>;
+      }
+    }
 
     return (
       <div>
@@ -74,8 +101,8 @@ Order = React.createClass({
               </tr>
               <tbody>
               {
-              _.mapObject(this.state.order.items, function(item){
-                  return <OrderItem item={item} key={item}/>;
+              _.mapObject(this.state.order.items, function(item, itemIdx){
+                  return <OrderItem orderItem={item} key={itemIdx}/>;
                 })
               }
             </tbody>
@@ -85,16 +112,15 @@ Order = React.createClass({
                 <th>Subtotal</th>
                 <th>${subtotal}</th>
               </tr>
-              <tr>
-                <td>Tax</td>
-                <td>${tax}</td>
-              </tr>
-              <tr>
-                <th>Total</th>
-                <th>${total} + tip</th>
-              </tr>
               <tbody>
-            </tbody>
+                <tr>
+                  <td>Tax</td>
+                  <td>${tax}</td>
+                </tr>
+                  {delivery}
+              </tbody>
+              <th>Total</th>
+              <th>${total} + tip</th>
            </table>
         </div>
         {button}

@@ -4,7 +4,7 @@ json.extract! @restaurant, :id, :name, :cuisine, :address, :city, :state,
 
 json.menu_items do
   json.array! @restaurant.menu_items do |menu_item|
-    json.extract! menu_item, :id, :name, :description, :category, :price
+    json.extract! menu_item, :id, :name, :description, :category, :price, :restaurant
   end
 end
 

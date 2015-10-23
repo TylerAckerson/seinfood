@@ -1,6 +1,8 @@
 MenuItem = React.createClass({
+  mixins: [ReactRouter.History],
+
   handleClick: function () {
-    OrderActions.orderAddItem(this.props.item);
+    OrderActions.orderAddItem({item: this.props.item});
   },
 
   render: function(){

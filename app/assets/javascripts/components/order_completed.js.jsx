@@ -4,9 +4,10 @@ CompletedOrder = React.createClass({
   },
 
   componentDidMount: function(){
-    OrderStore.addOrderDetailChangeListener(this._onChange);
     orderId = parseInt(this.props.params.orderId);
     ApiUtil.fetchOrder(orderId);
+    var tipPercent = this.props.location.query.tip;
+    this.setState({tipPercent: tipPercent});
   },
 
   componentWillUnmount: function(){

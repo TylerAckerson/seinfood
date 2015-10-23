@@ -1,8 +1,8 @@
 OrderActions ={
-  orderAddItem: function(item) {
+  orderAddItem: function(itemInfo) {
     AppDispatcher.dispatch({
       actionType: OrderConstants.ORDER_ADD_ITEM,
-      item: item
+      item: itemInfo
     });
   },
 
