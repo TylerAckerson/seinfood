@@ -1,6 +1,6 @@
 OrderCheckout = React.createClass({
   getInitialState: function(){
-    return {};
+    return { renderCount: 0 };
   },
 
   handleBack: function(){
@@ -20,7 +20,15 @@ OrderCheckout = React.createClass({
   componentDidMount: function(){
     OrderStore.addCompletionChangeListener(this._orderCompleted);
     OrderStore.addOrderDetailChangeListener(this._orderChanged);
+    UserStore.addChangeListener(this._userChanged);
+
     this.setState( OrderStore.currentOrder() );
+    ApiUtil.fetchUserInfo(window.CURRENT_USER_ID);
+  },
+
+  _userChanged: function() {
+    this.currentUser = UserStore.user();
+    this.forceUpdate();
   },
 
   componentWillUnmount: function(){
@@ -43,30 +51,37 @@ OrderCheckout = React.createClass({
   addTip: function(e) {
     e.preventDefault();
     var percentage = parseInt(e.target.value)/100;
-
     var newOrder = $.extend({}, this.state);
     newOrder.tipPercent = percentage;
+
+    $(".tip").removeClass('active');
+    $(e.target).addClass('active');
+
     this.setState(newOrder);
   },
 
   render: function(){
-    var userId = window.CURRENT_USER_ID;
-    if (userId) {
-      userInfo = ApiUtil.fetchUserInfo(parseInt(userId));
-      //need to add fluxiness for this to work
+    if (this.state.renderCount === 0){
+      this.classes="checkout-main";
+
+      setTimeout(function() {
+        this.classes ="checkout-main show";
+        this.forceUpdate();
+      }.bind(this), 300);
+
+      this.state.renderCount++;
     }
 
     if (this.state.tipPercent !== null && this.state.tipPercent !== undefined){
-      var tip = <div className="col-xs-2">
+      var tip = <span className="pull-left tip-label">
                 {" Tip: $" + (this.state.tipPercent *
                               this.state.total).toFixed(2)}
-                </div>;
+                </span>;
     }
 
-
-
     return (
-      <div>
+      <div className={this.classes}>
+        <div> {this.currentUser}</div>
         <div className="col-xs-2"></div>
         <div className="col-xs-5 checkout">
           <div className="header">
@@ -101,21 +116,43 @@ OrderCheckout = React.createClass({
 
               <h3>Payment Info</h3>
               <div className="row">
-                <div className="col-xs-2 col-sm-2 col-md-2">
-                  <span className="pull-right">Add a tip?</span>
+                <div className="col-xs-3 col-sm-3 col-md-3 align-center">
+
                 </div>
-                <div className="btn-group-vertical col-xs-2 col-sm-2 col-md-2" role="group">
-                  <button type="button" className="btn btn-default"
+                <div className="col-xs-3 col-sm-3 col-md-3 align-center">
+                  <button type="button" className="btn btn-default tip"
                           value="30"
                           onClick={this.addTip}>30%</button>
-                  <button type="button" className="btn btn-default"
+                </div>
+                <div className="col-xs-3 col-sm-3 col-md-3 align-center">
+
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-3 col-sm-3 col-md-3 align-center">
+                    <span className="pull-right tip-label">Add a tip?</span>
+                </div>
+                <div className="col-xs-3 col-sm-3 col-md-3 align-center">
+                  <button type="button" className="btn btn-default tip"
                           value="20"
                           onClick={this.addTip}>20%</button>
-                  <button type="button" className="btn btn-default"
+                </div>
+                <div className="col-xs-3 col-sm-3 col-md-3 align-center">
+                  {tip}
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-3 col-sm-3 col-md-3 align-center">
+
+                </div>
+                <div className="col-xs-3 col-sm-3 col-md-3 align-center align-center">
+                  <button type="button" className="btn btn-default tip"
                           value="10"
                           onClick={this.addTip}>10%</button>
                 </div>
-              {tip}
+                <div className="col-xs-3 col-sm-3 col-md-3 align-center">
+
+                </div>
               </div>
             </form>
           </div>

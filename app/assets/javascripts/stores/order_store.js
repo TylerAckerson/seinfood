@@ -22,11 +22,12 @@
 
     addItem: function(itemInfo){
       var added = $.extend({counter: itemsCounter}, itemInfo.item);
+
       _currentOrder.items[itemsCounter] = added;
       itemsCounter++;
 
       if (_currentOrder.restaurant === null) {
-      _currentOrder.restaurant = itemInfo.item.restaurant;
+        _currentOrder.restaurant = itemInfo.item.restaurant;
       }
 
       this.calculateTotals();

@@ -43,8 +43,7 @@ window.ApiUtil = {
       url: '/users/' + userId,
       dataType: 'json',
       success: function(user){
-        // ApiActions.receiveUser(user);
-        return user;
+        ApiActions.receiveUser(user);
       },
       error: function(resp){
         console.log(resp);

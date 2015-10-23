@@ -137,8 +137,8 @@ html {
 
 .address-label{
 	position: absolute;
-	left: 7%;
-	bottom: 29%;
+	left: 50px;
+	bottom: 72px;
 	z-index: 1;
 	color: red;
 	font-weight: bolder;
@@ -193,8 +193,8 @@ html {
 // 	padding-top: 0;
 // }
 
-.align-center{
-  text-align: center;;
+div .align-center{
+  text-align: center;
 }
 
 .filters {
@@ -375,6 +375,26 @@ html {
 	background-color: #E8E8E8;
 }
 
+.order .btn.btn-default.remove {
+	border: 0;
+	background-color: white;
+	font-size: 20px;
+	padding: 0;
+}
+.order > .remove:hover {
+	background-color: white;
+}
+
+.order .remove > span::before {
+	border: 0;
+  content: "\e014";
+	transition: all 1s ease;
+}
+.order .remove:hover > span::before {
+	color: red;
+	content: "\2212";
+}
+
 .order > .footer {
 	margin: 0;
 	height: 0;
@@ -394,6 +414,8 @@ html {
 .order > .footer.show:hover .btn.btn-default {
 	color: white;
 	background-color: green;
+	font-weight: 200;
+	font-size: 14px;
 	transition: all 1s ease;
 }
 
@@ -511,4 +533,29 @@ html {
 .btn.btn-default:hover {
 	background-color: steelblue;
 	color: white;
+}
+
+.checkout-main {
+	margin: 0;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 5s ease;
+}
+
+.checkout-main.show {
+	margin-top: 30px;
+	margin-bottom: 16px;
+	opacity: 1;
+	visibility: visible;
+	transition: all 1s ease;
+}
+
+button.btn.btn-default.tip.active {
+	background-color: steelblue;
+	color: white;
+}
+
+.tip-label {
+	font-size: 16px;
+	color: red;
 }

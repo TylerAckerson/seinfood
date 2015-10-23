@@ -7,5 +7,3 @@ json.menu_items do
     json.extract! menu_item, :id, :name, :description, :category, :price, :restaurant
   end
 end
-
-json.distance @restaurant.distance_to

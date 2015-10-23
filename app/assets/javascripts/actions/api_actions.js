@@ -25,5 +25,12 @@ ApiActions = {
       actionType: OrderConstants.RECEIVE_ORDER,
       order: order
     });
+  },
+
+  receiveUser: function(user){
+    AppDispatcher.dispatch({
+      actionType: UserConstants.RECEIVE_USER,
+      order: user
+    });
   }
 };

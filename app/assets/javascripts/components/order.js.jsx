@@ -1,7 +1,10 @@
 OrderItem = React.createClass({
   removeItem: function(e) {
     e.preventDefault();
-    OrderActions.orderRemoveItem(this.props.orderItem.counter);
+
+    setTimeout(function() {
+      OrderActions.orderRemoveItem(this.props.orderItem.counter);
+    }.bind(this), 500 );
   },
 
   render: function() {
@@ -15,7 +18,7 @@ OrderItem = React.createClass({
             <button type="submit"
                     className="btn btn-default full-width remove"
                     onClick={this.removeItem}>
-                      <span className="glyphicon glyphicon-remove"/>
+                      <span className="glyphicon glyphicon-minus"/>
                     </button></td>
         </tr>
       );
@@ -46,7 +49,7 @@ Order = React.createClass({
   },
 
   render: function(){
-    var button;
+    var footer;
 
     if (!(this.props.location.pathname.includes("checkout") ||
                                   _.isEmpty(this.state.order.items))){
@@ -55,7 +58,7 @@ Order = React.createClass({
       classes = "footer";
     }
 
-    button = <div className={classes}>
+    footer = <div className={classes}>
                <button type="submit"
                        disabled={_.isEmpty(this.state.order.items)}
                        className="btn btn-default full-width"
@@ -82,8 +85,10 @@ Order = React.createClass({
       if (this.state.order.deliveryFee !== 0){
         deliveryFee = "$" + this.state.order.deliveryFee.toFixed(2);
         delivery = <tr>
+                    <td />
                     <td>Delivery</td>
                     <td>{deliveryFee}</td>
+                    <td width="80"/>
                    </tr>;
       } else {
         delivery = <tr>
@@ -92,7 +97,7 @@ Order = React.createClass({
                    </tr>;
       }
     }
-
+    
     return (
       <div>
         <div className="col-xs-3 order">
@@ -110,6 +115,8 @@ Order = React.createClass({
               <tbody>
               {
               _.mapObject(this.state.order.items, function(item, itemIdx){
+                  // var item2 = React.addons.createFragment(item);
+                  // var itemIdx2 = React.addons.createFragment(itemIdx);
                   return <OrderItem orderItem={item} key={itemIdx}/>;
                 })
               }
@@ -117,21 +124,27 @@ Order = React.createClass({
            </table>
            <table className="table">
               <tr>
+                <th/>
                 <th>Subtotal</th>
                 <th>${subtotal}</th>
+                <th width="80"/>
               </tr>
               <tbody>
                 <tr>
+                  <td/>
                   <td>Tax</td>
                   <td>${tax}</td>
+                  <td width="80"/>
                 </tr>
                   {delivery}
               </tbody>
+              <th/>
               <th>Total</th>
               <th>${total} + tip</th>
+              <th width="80"/>
            </table>
         </div>
-        {button}
+        {footer}
        </div>
        <div className="col-xs-2"></div>
       </div>
