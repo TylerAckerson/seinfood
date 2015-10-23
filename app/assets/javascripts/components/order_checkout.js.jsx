@@ -64,7 +64,7 @@ OrderCheckout = React.createClass({
           </div>
 
           <div className="order-body">
-            <form role="form" className="form-inline">
+            <form role="form" className="form">
               <h3>Contact Info</h3>
               <div className="form-group">
                 <label>First Name
@@ -91,19 +91,20 @@ OrderCheckout = React.createClass({
 
               <h3>Payment Info</h3>
               <div className="row">
-              <div className="btn-group col-xs-5" role="group">
-                <label>Add a tip?
-                <button type="button" className="btn btn-default"
-                        value="10"
-                        onClick={this.addTip}>10%</button>
-                <button type="button" className="btn btn-default"
-                        value="20"
-                        onClick={this.addTip}>20%</button>
-                <button type="button" className="btn btn-default"
-                        value="30"
-                        onClick={this.addTip}>30%</button>
-                </label>
-              </div>
+                <div className="col-xs-2 col-sm-1 col-md-1"/>
+                <div className="btn-group col-xs-7 col-sm-7 col-md-7" role="group">
+                  <label>Add a tip?
+                  <button type="button" className="btn btn-default"
+                          value="10"
+                          onClick={this.addTip}>10%</button>
+                  <button type="button" className="btn btn-default"
+                          value="20"
+                          onClick={this.addTip}>20%</button>
+                  <button type="button" className="btn btn-default"
+                          value="30"
+                          onClick={this.addTip}>30%</button>
+                  </label>
+                </div>
               {tip}
               </div>
             </form>

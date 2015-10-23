@@ -11,12 +11,9 @@ RestaurantsFeature = React.createClass({
 
   render: function(){
     return (
-      <div className="row">
-        <div className="col-sm-1">
-        </div>
-
-        <div className="col-sm-10">
-          <div className="row" id="features">
+      <div className="container-fluid">
+        <div className="col-xs-12 col-sm-12 col-md-12">
+          <div className="row cards-container">
           {
             this.props.cards.map(function(restaurant){
               boundClick = this.handleDetailButton.bind(this, restaurant);
@@ -27,9 +24,6 @@ RestaurantsFeature = React.createClass({
             }.bind(this))
         }
         </div>
-      </div>
-
-      <div className="col-sm-1">
       </div>
     </div>
     );

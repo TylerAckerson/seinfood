@@ -5,10 +5,10 @@
 [heroku]: https://seinfood.herokuapp.com/
 
 ##TODO
-- [ ] Order checkout
+- [X] Order checkout
 - [ ] Fix logo and favicon
 - [ ] Clean up/ format header
-- [ ] Fix restaurant page refresh bug
+- [X] Fix restaurant page refresh bug
 - [ ] Formatting for Filters, Order, Menu, etc
 - [ ] Use search location and default to "new york city, new york"
 - [ ] Add s'more seed data
@@ -27,7 +27,7 @@ Seinfood allows users to:
 - [X] Search for restaurants in New York City... in the 90s.. from Seinfeld
 - [X] Sort and filter restaurants
 - [X] View restaurant details and menu items
-- [ ] Create orders and check out
+- [X] Create orders and check out
 - [ ] Review past orders
 
 [seinfeld]: https://en.wikipedia.org/wiki/Seinfeld

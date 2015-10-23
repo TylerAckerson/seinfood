@@ -10,12 +10,15 @@ MenuItem = React.createClass({
     var price = "$" + item.price.toFixed(2);
 
     return (
-      <div className="menu-item">
-        <h4 className="menu-item-name">{item.name}</h4>
-        <span className="menu-item-detail">{item.description}</span>
-        <button type="button"
-                onClick={this.handleClick}
-                className="btn btn-default order-item-price">{price}</button>
+      <div className="row">
+        <div className="col-xs-2 col-sm-2 col-md-2" />
+        <div className="col-xs-9 col-sm-8 col-md-8 menu-item">
+          <h4 className="menu-item-name">{item.name}</h4>
+          <span className="menu-item-detail">{item.description}</span>
+          <button type="button"
+                  onClick={this.handleClick}
+                  className="btn btn-default order-item-price">{price}</button>
+        </div>
       </div>
      );
      }
@@ -46,12 +49,16 @@ MenuCategory = React.createClass({
 
   render: function() {
     return (
-        <div className="menu-category" onClick={this.handleClick}>{this.props.title}
-            <h2>{this.props.category}</h2>{
-              this.props.items.map(function(item) {
-                return <MenuItem item={item} key={item.id} />;
-              })
-            }
+        <div className="row menu-category" onClick={this.handleClick}>
+          <div className="col-xs-1"/>
+          <div className="col-xs-11">
+            <h2>{this.props.title}</h2>
+                {
+                this.props.items.map(function(item) {
+                  return <MenuItem item={item} key={item.id} />;
+                })
+             }
+          </div>
       </div>
     );
   }
@@ -113,7 +120,8 @@ Menu = React.createClass({
                                  key={category}
                                  items={categorized[category]}/>;
           })
-        }</div>
+        }
+        </div>
       </div>
     );
   }

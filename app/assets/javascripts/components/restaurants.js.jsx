@@ -51,11 +51,11 @@
 
       return (
       <div className="restaurants">
-        <div className="jumbotron" id="restaurants-feature">
+        <div className="container-fluid" id="restaurants-feature">
             <RestaurantsFeature cards={cards}/>
         </div>
 
-        <div className="container">
+        <div className="container top-buffer">
 
           <div className="row">
             <div className="col-sm-8" id="restaurants-index">
@@ -73,7 +73,7 @@
               </div>
             </div>
 
-            <div className="col-sm-3" id="filters">
+            <div className="col-sm-3 filters" id="filters">
               <Filters filterParams={this.state.filterParams}/>
             </div>
 
