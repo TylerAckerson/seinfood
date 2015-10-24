@@ -20,6 +20,27 @@
       return $.extend({}, _params);
     },
 
+    updateCuisine: function(cusine){
+      _params.cuisine = cuisine;
+    },
+
+    updateSort: function(sort) {
+      _params.sort = sort;
+    },
+
+    updateOffers: function(offers){
+      _params.offers = offers.offers;
+      _params.offersDisplay = offers.offersDisplay;
+    },
+
+    updateFeatures: function(features){
+      _params.features = features;
+    },
+
+    resetFilters: function(){
+      _params = $.extend({}, defaultParams);
+    },
+
     addChangeListener: function(callback){
       this.on(CHANGE_EVENT, callback);
     },
@@ -31,24 +52,30 @@
     dispatcherID: AppDispatcher.register(function(payload){
       switch (payload.actionType) {
         case FilterConstants.UPDATE_CUISINE:
-          _params.cuisine = payload.cuisine;
+          root.FilterParamStore.updateCuisine(payload.cuisine);
+          // _params.cuisine = payload.cuisine;
           FilterParamStore.emit(CHANGE_EVENT);
           break;
         case FilterConstants.UPDATE_SORT:
-          _params.sort = payload.sort;
+          oot.FilterParamStore.updateSort(payload.sort);
+          // _params.sort = payload.sort;
           FilterParamStore.emit(CHANGE_EVENT);
           break;
         case FilterConstants.UPDATE_OFFERS:
-          _params.offers = payload.offers.offers;
-          _params.offersDisplay = payload.offers.offersDisplay;
+          root.FilterParamStore.updateOffers( { offers: payload.offers.offers,
+                                                offersDisplay: payload.offers.offersDisplay});
+          // _params.offers = payload.offers.offers;
+          // _params.offersDisplay = payload.offers.offersDisplay;
           FilterParamStore.emit(CHANGE_EVENT);
           break;
         case FilterConstants.UPDATE_FEATURES:
-          _params.features = payload.features;
+          root.FilterParamStore.updateFeatures(payload.features);
+          // _params.features = payload.features;
           FilterParamStore.emit(CHANGE_EVENT);
           break;
         case FilterConstants.RESET_FILTERS:
-          _params = $.extend({}, defaultParams);
+          root.FilterParamStore.resetFilters();
+          // _params = $.extend({}, defaultParams);
           FilterParamStore.emit(CHANGE_EVENT);
           break;
       }

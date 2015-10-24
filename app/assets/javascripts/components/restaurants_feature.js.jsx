@@ -1,6 +1,11 @@
 RestaurantsFeature = React.createClass({
   mixins: [ReactRouter.History],
 
+  componentDidMount: function(){
+    FilterParamStore.resetFilters();
+    ApiUtil.fetchRestaurants( {filterParams: FilterParamStore.params()} ) ;
+  },
+
   shouldComponentUpdate: function() {
     return this.props.cards.length === 0;
   },

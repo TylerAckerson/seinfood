@@ -113,7 +113,7 @@ Menu = React.createClass({
     return (
       <div>
         <div className="col-xs-2"></div>
-        <div className="col-xs-5 menu-main" id="restaurant-menu">
+        <div className="col-xs-5 menu-main bottom-buffer" id="restaurant-menu">
           <div className="header">
             <h3>Menu</h3>
           </div>{
