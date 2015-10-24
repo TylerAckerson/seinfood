@@ -44,6 +44,15 @@ Order = React.createClass({
     this.setState( { order : OrderStore.currentOrder()} );
   },
 
+  updateOrderOffer: function(e){
+    $('.order-offers').removeClass('active');
+    $(e.currentTarget).addClass('active');
+
+    newOrder = $.extend({}, this.state);
+    newOrder.order.orderType = e.currentTarget.value;
+    this.setState(newOrder);
+  },
+
   handleOrder: function(){
     this.history.pushState(null, this.props.location.pathname + "/checkout", {order: this.state});
   },
@@ -74,9 +83,9 @@ Order = React.createClass({
       var tipAmount = total * this.state.order.tipPercent.toFixed(2);
 
       tip = <tr>
-                  <td>Tip</td>
-                  <td>${tipAmount}</td>
-                </tr>;
+              <td>Tip</td>
+              <td>${tipAmount}</td>
+            </tr>;
     } else {
       tip = "";
     }
@@ -98,7 +107,39 @@ Order = React.createClass({
       }
     }
 
+    takeoutOption =
+        <div className="col-xs-6">
+          <button type="submit"
+                  value="takeout"
+                  className="btn order-offers pull-left"
+                  onClick={this.updateOrderOffer}>
+            <p>Takeout</p>
+            <span className="glyphicon glyphicon-upload offer-icon"/>
+          </button>
+        </div>;
+
+    var restaurant = this.state.order.restaurant, orderType;
+    if (restaurant !== null) {
+      if (!restaurant.takeout_only){
+        orderType = takeoutOption;
+      } else {
+        orderType =
+          <div className="row align-center">
+              <div className="col-xs-6">
+                <button type="submit" className="btn order-offers pull-right active"
+                        value="delivery"
+                        onClick={this.updateOrderOffer}>
+                  <p>Delivery</p>
+                  <span className="glyphicon glyphicon-download offer-icon"/>
+                </button>
+              </div>
+              {takeoutOption}
+            </div>;
+      }
+    }
+
     return (
+
       <div>
         <div className="col-xs-3 order">
          <div className="header">
@@ -115,8 +156,6 @@ Order = React.createClass({
               <tbody>
               {
               _.mapObject(this.state.order.items, function(item, itemIdx){
-                  // var item2 = React.addons.createFragment(item);
-                  // var itemIdx2 = React.addons.createFragment(itemIdx);
                   return <OrderItem orderItem={item} key={itemIdx}/>;
                 })
               }
@@ -141,9 +180,9 @@ Order = React.createClass({
               <th/>
               <th>Total</th>
               <th>${total} + tip</th>
-              <th width="80"/>
            </table>
         </div>
+        {orderType}
         {footer}
        </div>
        <div className="col-xs-2"></div>

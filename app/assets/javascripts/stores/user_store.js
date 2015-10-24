@@ -14,11 +14,11 @@
     },
 
     addChangeListener: function(callback){
-      root.RestaurantStore.on(USER_CHANGE_EVENT, callback);
+      root.UserStore.on(USER_CHANGE_EVENT, callback);
     },
 
     removeChangeListener: function(callback){
-      root.RestaurantStore.removeListener(USER_CHANGE_EVENT, callback);
+      root.UserStore.removeListener(USER_CHANGE_EVENT, callback);
     },
 
     dispatcherID: AppDispatcher.register(function(payload) {

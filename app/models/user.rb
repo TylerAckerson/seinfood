@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :restaurants, through: :orders
 
   after_initialize :ensure_session_token
+  before_validation :set_defaults
+
   attr_reader :password
 
   def self.find_by_credentials(email, password)
@@ -48,5 +50,10 @@ class User < ActiveRecord::Base
   private
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)
+  end
+
+  def set_defaults
+    self.city = "New York City" if self.city.empty?
+    self.state = "New York" if self.state.empty?
   end
 end

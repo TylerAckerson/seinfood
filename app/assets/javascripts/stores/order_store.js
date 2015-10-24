@@ -7,7 +7,8 @@
                         total: 0,
                         deliveryFee: null,
                         tipPercent: null,
-                        restaurant: null};
+                        restaurant: null,
+                        orderType: 'delivery'};
 
   var itemsCounter = 0;
 

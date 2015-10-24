@@ -26,11 +26,6 @@ OrderCheckout = React.createClass({
     ApiUtil.fetchUserInfo(window.CURRENT_USER_ID);
   },
 
-  _userChanged: function() {
-    this.currentUser = UserStore.user();
-    this.forceUpdate();
-  },
-
   componentWillUnmount: function(){
     OrderStore.removeCompletionChangeListener(this._orderCompleted);
     OrderStore.removeOrderDetailChangeListener(this._orderChanged);
@@ -47,6 +42,12 @@ OrderCheckout = React.createClass({
 
     this.setState(order);
   },
+
+  _userChanged: function() {
+    this.currentUser = UserStore.user();
+    this.forceUpdate();
+  },
+
 
   addTip: function(e) {
     e.preventDefault();
@@ -79,9 +80,40 @@ OrderCheckout = React.createClass({
                 </span>;
     }
 
+    var userEmail, userAddress, userCity, userSt;
+    if (this.currentUser){
+      userEmail = this.currentUser.email;
+      userAddress = this.currentUser.address;
+      userCity = this.currentUser.city;
+      userSt= this.currentUser.state;
+    }
+
+    if (this.state.orderType === "delivery") {
+    var deliveryInfo =
+        <div>
+          <div className="form-group">
+              <label>Address
+                <input type="text" className="form-control" id="address"
+                       value={userAddress}/>
+              </label>
+            </div>
+            <div className="form-group">
+              <label>City
+                <input type="text" className="form-control" id="city"
+                       value={userCity}/>
+              </label>
+            </div>
+            <div className="form-group">
+              <label>State
+                <input type="text" className="form-control" id="state"
+                       value={userSt}/>
+              </label>
+            </div>
+        </div>;
+    }
+
     return (
       <div className={this.classes}>
-        <div> {this.currentUser}</div>
         <div className="col-xs-2"></div>
         <div className="col-xs-5 checkout">
           <div className="header">
@@ -92,20 +124,13 @@ OrderCheckout = React.createClass({
             <form role="form" className="form">
               <h3>Contact Info</h3>
               <div className="form-group">
-                <label>First Name
-                  <input type="text" className="form-control" id="first-name"/>
+                <label>Email
+                  <input type="text" className="form-control" id="email"
+                         value={userEmail}/>
                 </label>
               </div>
-              <div className="form-group">
-                <label>Last Name
-                  <input type="text" className="form-control" id="last-name"/>
-                </label>
-              </div>
-              <div className="form-group">
-                <label>Phone
-                  <input type="text" className="form-control" id="phone"/>
-                </label>
-              </div>
+
+              {deliveryInfo}
 
               <h3>Order Notes & Requests</h3>
               <div className="form-group">

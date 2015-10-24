@@ -417,6 +417,33 @@ div .align-center{
 	content: "\2212";
 }
 
+.btn.order-offers {
+	border: 1px solid lightgray;
+	background-color: white;
+}
+
+.btn.order-offers.active {
+	background-color: steelblue;
+	color: white;
+}
+
+.order .order-offers > span::before {
+	color: gray;
+	font-size: 25px;
+}
+
+.order .order-offers.active > p {
+	color:white;
+}
+
+.order .order-offers.active > span::before {
+	color:white;
+}
+
+.order .order-offers > p {
+	margin: 0;
+}
+
 .order > .footer {
 	margin: 0;
 	height: 0;

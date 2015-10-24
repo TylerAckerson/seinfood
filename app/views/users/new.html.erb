@@ -4,6 +4,13 @@
   <form action="<%= users_url %>" method="POST" role="form">
     <div class="form-group">
       <label>
+        Name:
+        <input type="text" class="form-control" name="user[name]">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
         Email:
         <input type="text" class="form-control" name="user[email]">
       </label>

@@ -30,7 +30,7 @@ ApiActions = {
   receiveUser: function(user){
     AppDispatcher.dispatch({
       actionType: UserConstants.RECEIVE_USER,
-      order: user
+      user: user
     });
   }
 };
