@@ -97,7 +97,7 @@ Order = React.createClass({
                    </tr>;
       }
     }
-    
+
     return (
       <div>
         <div className="col-xs-3 order">

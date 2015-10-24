@@ -23,11 +23,12 @@ Search = React.createClass({
               <h3>... from restaurants featured in the 90s sitcom Seinfeld</h3>
             </div>
             <div className="row">
-                <a className="address-label">Enter your address</a>
                 <input className="address-search"
                        type="text"
                        placeholder="  e.g 129 West 81st Street, Apartment 5A"
-                       valueLink={this.linkState("search")}/>
+                       valueLink={this.linkState("search")}>
+                  <span className="address-label">Enter your address</span>
+                </input>
                 <input type="submit" className="search-button" value="Find Restaurants"/>
            </div>
           </div>

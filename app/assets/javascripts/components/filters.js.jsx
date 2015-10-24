@@ -8,20 +8,22 @@ Filters = React.createClass({
  },
 
  updateOffers: function(e){
+  $(e.currentTarget).toggleClass('active');
+
    FilterActions.updateOffers(this.getNewOffers(e));
  },
 
  updateFeatures: function(e){
-   if (e.target.value === "order-ahead") {
-     var newOrderAhead = this.props.filterParams.features.orderAhead ?
-                                                          false : true;
+   $(e.currentTarget).toggleClass('active');
+
+   if (e.currentTarget.value === "order-ahead") {
+     var newOrderAhead = this.props.filterParams.features.orderAhead ? false : true;
      newFeatures = $.extend({},
               { orderAhead: newOrderAhead,
-                openOnTop: this.props.filterParams.features.openOnTop}) ;
+                openOnTop: this.props.filterParams.features.openOnTop});
 
    } else {
-     var newOpenOnTop = this.props.filterParams.features.openOnTop ?
-                                                          false : true;
+     var newOpenOnTop = this.props.filterParams.features.openOnTop ? false : true;
 
      newFeatures = $.extend({},
               { orderAhead: this.props.filterParams.features.orderAhead,
@@ -34,6 +36,9 @@ Filters = React.createClass({
  resetFilters: function(e){
     e.preventDefault();
     FilterActions.resetFilters();
+
+    $('.checks').removeClass('active');
+    $('.open-on-top .checks').addClass('active');
  },
 
  offersInitial: function(e) {
@@ -55,7 +60,7 @@ Filters = React.createClass({
  getNewOffers: function(e){
    //handle cases where nothing is checked (but delivery AND takeout are implied)
    if (this.offersInitial(e)) {
-     if (e.target.value === "delivery") {
+     if (e.currentTarget.value === "delivery") {
       newOffers = { offers: {delivery: true, takeout: false},
                     offersDisplay: {delivery: true, takeout: false} };
      } else {
@@ -65,7 +70,7 @@ Filters = React.createClass({
      }
     // handle cases where both delivery and takeout are checked
    } else if (this.bothBoxesChecked(e)) {
-     if (e.target.value === "delivery") {
+     if (e.currentTarget.value === "delivery") {
        newOffers = { offers: {delivery: false, takeout: true},
                      offersDisplay: {delivery: false, takeout: true} };
 
@@ -75,11 +80,10 @@ Filters = React.createClass({
                      offersDisplay: {delivery: true, takeout: false} };
 
      }
-   //  Need to handle cases where only one of the boxes is checked, then
-   //  is unchecked. So both are unchecked but need to be "true"
+
    } else {
     //  delivery box was changed
-     if (e.target.value === "delivery") {
+     if (e.currentTarget.value === "delivery") {
        var newDelivery = this.props.filterParams.offers.delivery ? false : true;
 
        newOffers = { offers: {delivery: newDelivery,
@@ -115,7 +119,7 @@ Filters = React.createClass({
          <form role="form">
 
          <div className="form-group">
-           <label> What are you hungry for? </label>
+          <h4 className="filters-label">What are you hungry for?</h4>
              <input type="text" id="hungry-for" className="form-control"
                     value={this.props.filterParams.cuisine}
                     placeholder="e.g. muffin tops"
@@ -123,7 +127,7 @@ Filters = React.createClass({
           </div>
 
           <div className="form-group">
-           <label>Sort By</label>
+           <h4 className="filters-label">Sort By</h4>
              <select name="sort" id="sort-by" onChange={this.updateSort}
                                               value={this.props.filterParams.sort}
                                               className="form-control">
@@ -135,46 +139,57 @@ Filters = React.createClass({
              </select>
           </div>
 
-          <div className="form-group">
-            <div className="checkbox">
-             <div className="checkbox">
-                <input type="checkbox" className="form-control"
-                        checked={this.props.filterParams.offersDisplay.delivery}
-                        onChange={this.updateOffers}
-                        value="delivery">
-                          <label>Delivery</label>
-                </input>
-                <div className="checkbox">
-                   <input type="checkbox" className="form-control"
-                          checked={this.props.filterParams.offersDisplay.takeout}
-                          onChange={this.updateOffers}
-                          value="takeout">
-                          <label>Takeout</label>
-                   </input>
-                </div>
-              </div>
+          <h4 className="filters-label">Offers</h4>
+          <div className="row offers-form delivery">
+            <div className="col-xs-4 col-sm-4 col-md-4 align-center">
+              <button type="button" className="btn btn-default checks"
+                      value="delivery"
+                      onClick={this.updateOffers}>
+                        <span className="glyphicon"/>
+                      </button>
+            </div>
+            <div className="col-xs-8 col-sm-8 col-md-8">
+              <span className="pull-left">Delivery</span>
+            </div>
+          </div>
+          <div className="row offers-form takeout">
+            <div className="col-xs-4 col-sm-4 col-md-4 align-center">
+              <button type="button" className="btn btn-default checks"
+                      value="takeout"
+                      onClick={this.updateOffers}>
+                        <span className="glyphicon"/>
+                      </button>
+            </div>
+            <div className="col-xs-8 col-sm-8 col-md-8">
+              <span className="pull-left">Takeout</span>
             </div>
           </div>
 
-          <div className="form-group">
-           <label>Features</label>
-              <div className="checkbox">
-               <input type="checkbox" className="form-control"
-                      checked={this.props.filterParams.features.orderAhead}
-                      onChange={this.updateFeatures}
-                      value="order-ahead">
-                      <label>Order Ahead</label>
-                </input>
-              </div>
-
-              <div className="checkbox">
-               <input type="checkbox" className="form-control"
-                      checked={this.props.filterParams.features.openOnTop}
-                      onChange={this.updateFeatures}
-                      value="open-on-top">
-                      <label>Open Restaurants on Top</label>
-               </input>
-              </div>
+          <h4 className="filters-label">Features</h4>
+          <div className="row features-form order-ahead">
+            <div className="col-xs-4 col-sm-4 col-md-4 align-center">
+              <button type="button" className="btn btn-default checks"
+                      value="order-ahead"
+                      onClick={this.updateFeatures}>
+                        <span className="glyphicon"/>
+                      </button>
+            </div>
+            <div className="col-xs-8 col-sm-8 col-md-8">
+              <span className="pull-left">Order Ahead</span>
+            </div>
+          </div>
+          <div className="row features-form open-on-top">
+            <div className="col-xs-4 col-sm-4 col-md-4 align-center">
+              <button type="button" className="btn btn-default checks active"
+                      value="open-on-top"
+                      id="open-on-top"
+                      onClick={this.updateFeatures}>
+                        <span className="glyphicon"/>
+                      </button>
+            </div>
+            <div className="col-xs-8 col-sm-8 col-md-8">
+              <span className="pull-left">Open On Top</span>
+            </div>
           </div>
         </form>
       </div>
