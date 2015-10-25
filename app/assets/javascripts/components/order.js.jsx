@@ -107,21 +107,23 @@ Order = React.createClass({
       }
     }
 
-    takeoutOption =
-        <div className="col-xs-6">
-          <button type="submit"
-                  value="takeout"
-                  className="btn order-offers pull-left"
-                  onClick={this.updateOrderOffer}>
-            <p>Takeout</p>
-            <span className="glyphicon glyphicon-upload offer-icon"/>
-          </button>
-        </div>;
-
     var restaurant = this.state.order.restaurant, orderType;
     if (restaurant !== null) {
-      if (!restaurant.takeout_only){
-        orderType = takeoutOption;
+      if (restaurant.takeout_only){
+        orderType =
+          <div className="row align-center">
+            <div className="col-xs-4 col-sm-4 col-md-4"/>
+            <div className="col-xs-4 col-sm-4 col-md-4">
+                  <button type="submit"
+                          value="takeout"
+                          className="btn order-offers pull-left active"
+                          onClick={this.updateOrderOffer}>
+                    <p>Takeout</p>
+                    <span className="glyphicon glyphicon-upload offer-icon"/>
+                  </button>
+                </div>
+              <div className="col-xs-4 col-sm-4 col-md-4"/>
+            </div>;
       } else {
         orderType =
           <div className="row align-center">
@@ -133,7 +135,15 @@ Order = React.createClass({
                   <span className="glyphicon glyphicon-download offer-icon"/>
                 </button>
               </div>
-              {takeoutOption}
+              <div className="col-xs-6">
+                <button type="submit"
+                        value="takeout"
+                        className="btn order-offers pull-left"
+                        onClick={this.updateOrderOffer}>
+                  <p>Takeout</p>
+                  <span className="glyphicon glyphicon-upload offer-icon"/>
+                </button>
+              </div>
             </div>;
       }
     }

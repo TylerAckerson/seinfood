@@ -6,6 +6,7 @@ MenuItem = React.createClass({
   },
 
   render: function(){
+
     var item = this.props.item;
     var price = "$" + item.price.toFixed(2);
 
@@ -105,8 +106,10 @@ Menu = React.createClass({
 
   render: function() {
     if (this.state.restaurant === undefined){
-      return (<div></div>);
-    }
+        return (<div className="throbber-loader" id="loader">
+                  Loading…
+                </div>);
+      }
 
     var categorized = this.categorized();
 

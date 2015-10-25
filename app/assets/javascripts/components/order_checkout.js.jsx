@@ -23,7 +23,10 @@ OrderCheckout = React.createClass({
     UserStore.addChangeListener(this._userChanged);
 
     this.setState( OrderStore.currentOrder() );
-    ApiUtil.fetchUserInfo(window.CURRENT_USER_ID);
+
+    if (window.CURRENT_USER_ID){
+      ApiUtil.fetchUserInfo(window.CURRENT_USER_ID);
+    }
   },
 
   componentWillUnmount: function(){
@@ -61,6 +64,41 @@ OrderCheckout = React.createClass({
     this.setState(newOrder);
   },
 
+  getGuestLoginForm: function(){
+    guestLoginForm =
+      <div className="guest-login">
+        <h4>It looks like you are not logged in</h4>
+        <button type="submit"
+                className="btn btn-default"
+                onClick={this.getGuestUserInfo}>Pay as Guest</button>
+      </div>;
+
+    return guestLoginForm;
+  },
+
+  getGuestUserInfo: function(){
+    var guestUser = { userEmail: "elaine@pendantpublishing.com",
+                    userAddress: "16 W 75th St Apartment 2G",
+                       userCity: "New York City",
+                         userSt: "New York" };
+
+    this.user = guestUser;
+    this.setState( {guestUser: guestUser} );
+
+    setTimeout(function() {
+      $('.guest-login').addClass('hiddenform');
+    }, 500);
+  },
+
+  getUserInfo: function(){
+    var user = { userEmail: this.currentUser.email,
+               userAddress: this.currentUser.address,
+                  userCity: this.currentUser.city,
+                    userSt: this.currentUser.state };
+
+    return user;
+  },
+
   render: function(){
     if (this.state.renderCount === 0){
       this.classes="checkout-main";
@@ -80,12 +118,14 @@ OrderCheckout = React.createClass({
                 </span>;
     }
 
-    var userEmail, userAddress, userCity, userSt;
+    var guestLogin;
     if (this.currentUser){
-      userEmail = this.currentUser.email;
-      userAddress = this.currentUser.address;
-      userCity = this.currentUser.city;
-      userSt= this.currentUser.state;
+      this.user = this.getUserInfo();
+    } else if (typeof this.user === 'undefined' || _.isEmpty(this.user)) {
+          this.user = {};
+          guestLogin = this.getGuestLoginForm();
+    } else {
+      guestLogin = this.getGuestLoginForm();
     }
 
     if (this.state.orderType === "delivery") {
@@ -94,19 +134,19 @@ OrderCheckout = React.createClass({
           <div className="form-group">
               <label>Address
                 <input type="text" className="form-control" id="address"
-                       value={userAddress}/>
+                       value={this.user.userAddress}/>
               </label>
             </div>
             <div className="form-group">
               <label>City
                 <input type="text" className="form-control" id="city"
-                       value={userCity}/>
+                       value={this.user.userCity}/>
               </label>
             </div>
             <div className="form-group">
               <label>State
                 <input type="text" className="form-control" id="state"
-                       value={userSt}/>
+                       value={this.user.userSt}/>
               </label>
             </div>
         </div>;
@@ -119,14 +159,16 @@ OrderCheckout = React.createClass({
           <div className="header">
             <h3>Order Details</h3>
           </div>
-
           <div className="order-body">
-            <form role="form" className="form">
               <h3>Contact Info</h3>
+
+              {guestLogin}
+
+            <form role="form" className="form">
               <div className="form-group">
                 <label>Email
                   <input type="text" className="form-control" id="email"
-                         value={userEmail}/>
+                         value={this.user.userEmail}/>
                 </label>
               </div>
 

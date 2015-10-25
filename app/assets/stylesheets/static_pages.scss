@@ -453,7 +453,6 @@ div .align-center{
 }
 .order > .footer.show {
 	margin-top: 30px;
-	margin-bottom: 16px;
 	height: 70px;
 	opacity: 1;
 	visibility: visible;
@@ -597,6 +596,19 @@ div .align-center{
 	opacity: 1;
 	visibility: visible;
 	transition: all 1s ease;
+}
+
+.guest-login{
+	height: 80px;
+	visibility: visible;
+	opacity: 1;
+	transition: all 1.5s ease;
+}
+
+.guest-login.hiddenform {
+	height: 0;
+	visibility: hidden;
+	opacity: 0;
 }
 
 button.btn.btn-default.tip.active {
