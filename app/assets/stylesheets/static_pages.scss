@@ -100,6 +100,32 @@ html {
   margin-top: 20%
 }
 
+.login-form {
+	margin-top: 80px;
+}
+
+.login-form .form-control {
+	width: 120%;
+}
+
+.login-form .guest-button {
+	font-size: 30px;
+}
+
+.login-group-right{
+	border-left: 1px solid lightgray;
+}
+
+.login-group-bottom{
+	margin:20px;
+	padding: 0px;
+	border-top: 1px solid lightgray;
+}
+
+.align-center {
+	text-align: center;
+}
+
 .search-form{
   position:relative;
 	top: 25%;

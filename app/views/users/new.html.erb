@@ -1,52 +1,82 @@
-<div class="container">
+<div class="container login-form">
+  <div class="row">
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 
-  <h1>Create User</h1>
-  <form action="<%= users_url %>" method="POST" role="form">
-    <div class="form-group">
-      <label>
-        Name:
-        <input type="text" class="form-control" name="user[name]">
-      </label>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 align-center login-group-left">
+        <h3>Returning user: sign in!</h3>
+        <a href="/session/new" class="btn btn-default">Sign In</a>
+      </div>
+
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 login-group-right">
+        <h3>New user: sign up!</h3>
+          <form action="<%= users_url %>" method="POST" role="form">
+            <div class="form-group">
+              <label>
+                Name:
+                <input type="text" class="form-control" name="user[name]">
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label>
+                Email:
+                <input type="text" class="form-control" name="user[email]">
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label>
+                Password:
+                <input type="password" class="form-control" name="user[password]">
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label>
+                Address:
+                <input type="text" class="form-control" name="user[address]">
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label>
+                City:
+                <input type="text" class="form-control" placeholder="New York City" name="user[city]">
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label>
+                State:
+                <input type="text" class="form-control" placeholder="New York" name="user[state]">
+              </label>
+            </div>
+
+            <%= form_auth %>
+            <div class="row text-center">
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <button type="submit" class="btn btn-default">Sign Up</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label>
-        Email:
-        <input type="text" class="form-control" name="user[email]">
-      </label>
-    </div>
+  <div class="row align-center">
+    <div class="row">
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 login-group-bottom">
+      <h1> -or- </h1>
+          <form action=" <%= session_url %>" method="POST" role="form">
+            <input type="hidden" class="form-control" name="user[email]" value="test@email.com">
+            <input type="hidden" class="form-control" name="user[password]" value="password">
 
-    <div class="form-group">
-      <label>
-        Password:
-        <input type="password" class="form-control" name="user[password]">
-      </label>
-    </div>
+            <%= form_auth %>
 
-    <div class="form-group">
-      <label>
-        Address:
-        <input type="text" class="form-control" name="user[address]">
-      </label>
-    </div>
-
-    <div class="form-group">
-      <label>
-        City:
-        <input type="text" class="form-control" placeholder="New York City" name="user[city]">
-      </label>
-    </div>
-
-    <div class="form-group">
-      <label>
-        State:
-        <input type="text" class="form-control" placeholder="New York" name="user[state]">
-      </label>
-    </div>
-
-    <%= form_auth %>
-
-    <button type="submit" class="btn btn-default">Sign Up</button>
-
-  </form>
+            <button type="submit" class="btn btn-default guest-button">Sign In as Guest</button>
+          </form>
+       </div>
+     </div>
+   </div>
 </div>
