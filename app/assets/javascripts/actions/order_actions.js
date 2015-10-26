@@ -18,5 +18,12 @@ OrderActions ={
       actionType: OrderConstants.ORDER_UPDATE_TIP,
       tip: tip
     });
+  },
+
+  orderUpdateOffer: function(offer){
+    AppDispatcher.dispatch({
+      actionType: OrderConstants.ORDER_UPDATE_OFFER,
+      offer: offer
+    });
   }
 };

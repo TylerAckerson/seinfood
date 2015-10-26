@@ -13,13 +13,18 @@ RestaurantItem = React.createClass({
         </div>
 
         <div className="col-xs-8">
-            <h4 className="list-group-item-heading">{restaurant.name}</h4>
+            <h3>{restaurant.name}</h3>
             <ul className="list-group restaurant-detail">
-              <li className="list-group-item">Cuisine: {restaurant.cuisine}</li>
-              <li className="list-group-item">Address: {restaurant.address}</li>
-              <li className="list-group-item">Minimum: {restaurant.delivery_min}</li>
-              <li className="list-group-item">Delivery fee: {deliveryFee}</li>
-              <li className="list-group-item">Distance: {distance}</li>
+              <li className="list-group-item">
+                  <span className="label">Cuisine: </span><span>{restaurant.cuisine}</span></li>
+              <li className="list-group-item">
+                  <span className="label">Address: </span><span>{restaurant.address}</span></li>
+              <li className="list-group-item">
+                  <span className="label">Minimum: </span><span>${restaurant.delivery_min}</span></li>
+              <li className="list-group-item">
+                  <span className="label">Delivery fee: </span><span>{deliveryFee}</span></li>
+              <li className="list-group-item">
+                  <span className="label">Distance: </span><span>{distance}</span></li>
             </ul>
         </div>
 

@@ -17,18 +17,18 @@ RestaurantsFeature = React.createClass({
   render: function(){
     return (
       <div className="container-fluid">
-        <div className="col-xs-12 col-sm-12 col-md-12">
-          <div className="row cards-container">
-          {
-            this.props.cards.map(function(restaurant){
-              boundClick = this.handleDetailButton.bind(this, restaurant);
+        <div className="row text-center cards-container">
+          <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1"/>
+        {
+          this.props.cards.map(function(restaurant){
+            boundClick = this.handleDetailButton.bind(this, restaurant);
 
-              return <RestaurantCardItem restaurant={restaurant}
-                                         onClick={boundClick}
-                                         key={restaurant.id}/>;
-            }.bind(this))
-        }
-        </div>
+            return <RestaurantCardItem restaurant={restaurant}
+                                       onClick={boundClick}
+                                       key={restaurant.id}/>;
+          }.bind(this))
+      }
+        <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1"/>
       </div>
     </div>
     );

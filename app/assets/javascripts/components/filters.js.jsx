@@ -1,19 +1,23 @@
 Filters = React.createClass({
  updateCuisine: function(e){
+   e.preventDefault();
    FilterActions.updateCuisine(e.target.value);
  },
 
  updateSort: function(e){
+   e.preventDefault();
    FilterActions.updateSort(e.target.value);
  },
 
  updateOffers: function(e){
+   e.preventDefault();
   $(e.currentTarget).toggleClass('active');
 
    FilterActions.updateOffers(this.getNewOffers(e));
  },
 
  updateFeatures: function(e){
+   e.preventDefault();
    $(e.currentTarget).toggleClass('active');
 
    if (e.currentTarget.value === "order-ahead") {
@@ -122,7 +126,7 @@ Filters = React.createClass({
           <h4 className="filters-label">What are you hungry for?</h4>
              <input type="text" id="hungry-for" className="form-control"
                     value={this.props.filterParams.cuisine}
-                    placeholder="e.g. muffin tops"
+                    placeholder="e.g. marble rye, big salad"
                     onChange={this.updateCuisine}/>
           </div>
 

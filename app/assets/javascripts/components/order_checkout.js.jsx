@@ -124,9 +124,15 @@ OrderCheckout = React.createClass({
       guestLogin = this.getGuestLoginForm();
     }
 
-    if (this.state.orderType === "delivery") {
+    var deliveryClasses;
+    if (this.state.order_type === "delivery") {
+      deliveryClasses = "delivery-form show";
+    } else {
+      deliveryClasses = "delivery-form";
+    }
+
     var deliveryInfo =
-        <div>
+        <div className={deliveryClasses}>
           <div className="form-group">
               <label>Address
                 <input type="text" className="form-control" id="address"
@@ -146,7 +152,6 @@ OrderCheckout = React.createClass({
               </label>
             </div>
         </div>;
-    }
 
     return (
       <div className={this.classes}>

@@ -15,7 +15,9 @@
 
   var CHANGE_EVENT = "change";
 
+
   root.FilterParamStore = $.extend({}, EventEmitter.prototype, {
+
     params: function(){
       return $.extend({}, _params);
     },

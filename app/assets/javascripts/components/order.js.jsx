@@ -48,9 +48,10 @@ Order = React.createClass({
     $('.order-offers').removeClass('active');
     $(e.currentTarget).addClass('active');
 
-    newOrder = $.extend({}, this.state);
-    newOrder.order.orderType = e.currentTarget.value;
-    this.setState(newOrder);
+    OrderActions.orderUpdateOffer( {offer: e.currentTarget.value} );
+    // newOrder = $.extend({}, this.state);
+    // newOrder.order.orderType = e.currentTarget.value;
+    // this.setState(newOrder);
   },
 
   handleOrder: function(){

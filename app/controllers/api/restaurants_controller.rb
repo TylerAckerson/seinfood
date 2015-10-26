@@ -24,8 +24,15 @@ class Api::RestaurantsController < ApplicationController
   end
 
   def filter_by_cuisine(restaurants, cuisine)
+    cuisine.downcase!
+
     restaurants.select do |restaurant|
-      restaurant.cuisine.downcase.include?(cuisine.downcase)
+      restaurant.cuisine.downcase.include?(cuisine) ||
+      restaurant.name.downcase.include?(cuisine) ||
+      restaurant.menu_items.any? do |menu_item|
+        menu_item.name.include?(cuisine) ||
+        menu_item.description.include?(cuisine)
+      end
     end
   end
 

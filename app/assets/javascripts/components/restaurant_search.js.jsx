@@ -9,9 +9,9 @@ RestaurantSearch = React.createClass({
     return (
       <div className="row search-results">
         <div className="col-8">
-          <blockquote>
+          <h3 className="bottom-buffer">
             Results for {searchQuery}
-          </blockquote>
+          </h3>
         </div>
       </div>
     );

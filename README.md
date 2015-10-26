@@ -6,8 +6,8 @@
 
 ##TODO
 - [X] Order checkout
-- [ ] Fix logo and favicon
-- [ ] Clean up/ format header
+- [X] Fix logo and favicon
+- [X] Clean up/ format header
 - [X] Fix restaurant page refresh bug
 - [X] Formatting for Filters, Order, Menu, etc
 - [X] Use search location and default to "new york city, new york"

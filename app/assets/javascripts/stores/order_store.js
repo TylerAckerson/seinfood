@@ -83,6 +83,10 @@
       this.calculateTotals();
     },
 
+    updateOffer: function(offer){
+      _currentOrder.order_type = offer.offer;
+    },
+
     completeOrder: function(order){
       _currentOrder = $.extend(_currentOrder, order);
     },
@@ -127,6 +131,10 @@
           break;
         case (OrderConstants.ORDER_UPDATE_TIP):
           root.OrderStore.updateTip(payload.tip);
+          root.OrderStore.emit(ORDER_CHANGE_EVENT);
+          break;
+        case (OrderConstants.ORDER_UPDATE_OFFER):
+          root.OrderStore.updateOffer(payload.offer);
           root.OrderStore.emit(ORDER_CHANGE_EVENT);
           break;
         case (OrderConstants.COMPLETE_ORDER):
