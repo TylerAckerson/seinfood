@@ -11,7 +11,7 @@
 - [X] Fix restaurant page refresh bug
 - [X] Formatting for Filters, Order, Menu, etc
 - [X] Use search location and default to "new york city, new york"
-- [ ] Add s'more seed data
+- [X] Add s'more seed data
 
 ## Minimum Viable Product
 
