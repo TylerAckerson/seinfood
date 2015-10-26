@@ -43,7 +43,7 @@
     render: function(){
       var cards = _.sample(this.state.restaurants, 4);
 
-      if (this.state.restaurants.length < 1) {
+      if (typeof this.state.restaurants === "undefined") {
         return (<div className="throbber-loader" id="loader">
                   Loading…
                 </div>);

@@ -24,16 +24,22 @@ class Api::RestaurantsController < ApplicationController
   end
 
   def filter_by_cuisine(restaurants, cuisine)
-    cuisine.downcase!
+    search = cuisine.downcase.gsub(/\W+/, '')
 
-    restaurants.select do |restaurant|
-      restaurant.cuisine.downcase.include?(cuisine) ||
-      restaurant.name.downcase.include?(cuisine) ||
+    results = restaurants.select do |restaurant|
+      restaurant_cuisine = restaurant.cuisine.downcase.gsub(/\W+/, '')
+      restaurant_name = restaurant.name.downcase.gsub(/\W+/, '')
+
+      restaurant_cuisine.include?(search) ||
+      restaurant_name.include?(search) ||
+
       restaurant.menu_items.any? do |menu_item|
-        menu_item.name.include?(cuisine) ||
-        menu_item.description.include?(cuisine)
+        menu_item.name.include?(search) ||
+        menu_item.description.include?(search)
       end
     end
+
+    results
   end
 
   def filter_by_offers(restaurants, offers)
