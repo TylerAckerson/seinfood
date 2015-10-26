@@ -11,5 +11,12 @@ OrderActions ={
       actionType: OrderConstants.ORDER_REMOVE_ITEM,
       item: item
     });
+  },
+
+  orderUpdateTip: function(tip){
+    AppDispatcher.dispatch({
+      actionType: OrderConstants.ORDER_UPDATE_TIP,
+      tip: tip
+    });
   }
 };

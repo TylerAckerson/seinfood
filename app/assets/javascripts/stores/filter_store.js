@@ -20,7 +20,7 @@
       return $.extend({}, _params);
     },
 
-    updateCuisine: function(cusine){
+    updateCuisine: function(cuisine){
       _params.cuisine = cuisine;
     },
 
@@ -57,7 +57,7 @@
           FilterParamStore.emit(CHANGE_EVENT);
           break;
         case FilterConstants.UPDATE_SORT:
-          oot.FilterParamStore.updateSort(payload.sort);
+          root.FilterParamStore.updateSort(payload.sort);
           // _params.sort = payload.sort;
           FilterParamStore.emit(CHANGE_EVENT);
           break;

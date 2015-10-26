@@ -45,6 +45,7 @@ time, mark, audio, video {
 }
 
 #container {
+	background-color: whitesmoke;
 }
 
 body {
@@ -93,6 +94,7 @@ ul {
 
 html {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	background-color: whitesmoke;
 }
 
 #loader {
@@ -114,6 +116,10 @@ html {
 
 .login-group-right{
 	border-left: 1px solid lightgray;
+}
+.login-group-left{
+	margin: 0;
+	padding: 0;
 }
 
 .login-group-bottom{
@@ -551,9 +557,10 @@ div .align-center{
 }
 
 // menu stuff
-.menu-main, .order, .checkout {
+.menu-main, .order, .checkout, .completed-order {
 	border: 1px solid steelblue;
 	outline: 1px solid whitesmoke;
+	background-color: white;
   border-radius: 5px;
 	margin-right: 1%;
 	padding-bottom: 15px;
@@ -645,4 +652,14 @@ button.btn.btn-default.tip.active {
 .tip-label {
 	font-size: 16px;
 	color: red;
+}
+
+.completed-order h3 {
+	margin-top:20px;
+	color: steelblue;
+	padding: 20px;
+}
+
+.checkout-label {
+	font-weight: bolder;
 }

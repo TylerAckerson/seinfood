@@ -79,7 +79,7 @@ Order = React.createClass({
     var total = this.state.order.total.toFixed(2);
 
     var tip, delivery;
-    if (this.state.order.tipPercent !== null){
+    if (this.state.order.tipPercent !== null && typeof this.state.order.tipPercent !== 'undefined'){
       var tipAmount = total * this.state.order.tipPercent.toFixed(2);
 
       tip = <tr>
@@ -90,13 +90,13 @@ Order = React.createClass({
       tip = "";
     }
 
-    if (this.state.order.deliveryFee !== null) {
-      if (this.state.order.deliveryFee !== 0){
-        deliveryFee = "$" + this.state.order.deliveryFee.toFixed(2);
+    if (this.state.order.delivery_fee !== null) {
+      if (this.state.order.delivery_fee !== 0){
+        delivery_fee = "$" + this.state.order.delivery_fee.toFixed(2);
         delivery = <tr>
                     <td />
                     <td>Delivery</td>
-                    <td>{deliveryFee}</td>
+                    <td>{delivery_fee}</td>
                     <td width="80"/>
                    </tr>;
       } else {
@@ -189,7 +189,7 @@ Order = React.createClass({
               </tbody>
               <th/>
               <th>Total</th>
-              <th>${total} + tip</th>
+              <th>${total}</th>
            </table>
         </div>
         {orderType}

@@ -10,11 +10,10 @@ OrderCheckout = React.createClass({
   handleOrder: function(e){
     e.preventDefault();
     var order = $.extend({}, OrderStore.currentOrder());
-    order.userId = parseInt(window.CURRENT_USER_ID);
-    order.restaurantId = this.props.params.restaurantId;
+    order.user_id = parseInt(window.CURRENT_USER_ID);
+    order.scheduled_for = new Date();
 
-    this.setState(order);
-    ApiUtil.createOrder(order);
+    ApiUtil.createOrder({order: order});
   },
 
   componentDidMount: function(){
@@ -36,13 +35,11 @@ OrderCheckout = React.createClass({
 
   _orderCompleted: function(){
     completedOrder = OrderStore.currentOrder();
-    this.props.history.pushState(null, "/orders/" + completedOrder.id, {tip: this.state.tipPercent});
+    this.props.history.pushState(null, "/orders/" + completedOrder.id);
   },
 
   _orderChanged: function(){
     var order = $.extend({}, this.state, OrderStore.currentOrder());
-    order.tipPercent = this.state.tipPercent;
-
     this.setState(order);
   },
 
@@ -52,16 +49,14 @@ OrderCheckout = React.createClass({
   },
 
 
-  addTip: function(e) {
+  updateTip: function(e) {
     e.preventDefault();
     var percentage = parseInt(e.target.value)/100;
-    var newOrder = $.extend({}, this.state);
-    newOrder.tipPercent = percentage;
 
     $(".tip").removeClass('active');
     $(e.target).addClass('active');
 
-    this.setState(newOrder);
+    OrderActions.orderUpdateTip({tip: percentage});
   },
 
   getGuestLoginForm: function(){
@@ -111,10 +106,11 @@ OrderCheckout = React.createClass({
       this.state.renderCount++;
     }
 
-    if (this.state.tipPercent !== null && this.state.tipPercent !== undefined){
+
+    if (typeof this.state.tip_percent !== 'undefined' &&
+                                      this.state.tip_percent !== 0 ){
       var tip = <span className="pull-left tip-label">
-                {" Tip: $" + (this.state.tipPercent *
-                              this.state.total).toFixed(2)}
+                {" Tip: $" + this.state.tip.toFixed(2)}
                 </span>;
     }
 
@@ -189,7 +185,7 @@ OrderCheckout = React.createClass({
                 <div className="col-xs-3 col-sm-3 col-md-3 align-center">
                   <button type="button" className="btn btn-default tip"
                           value="30"
-                          onClick={this.addTip}>30%</button>
+                          onClick={this.updateTip}>30%</button>
                 </div>
                 <div className="col-xs-3 col-sm-3 col-md-3 align-center">
 
@@ -202,7 +198,7 @@ OrderCheckout = React.createClass({
                 <div className="col-xs-3 col-sm-3 col-md-3 align-center">
                   <button type="button" className="btn btn-default tip"
                           value="20"
-                          onClick={this.addTip}>20%</button>
+                          onClick={this.updateTip}>20%</button>
                 </div>
                 <div className="col-xs-3 col-sm-3 col-md-3 align-center">
                   {tip}
@@ -215,7 +211,7 @@ OrderCheckout = React.createClass({
                 <div className="col-xs-3 col-sm-3 col-md-3 align-center align-center">
                   <button type="button" className="btn btn-default tip"
                           value="10"
-                          onClick={this.addTip}>10%</button>
+                          onClick={this.updateTip}>10%</button>
                 </div>
                 <div className="col-xs-3 col-sm-3 col-md-3 align-center">
 

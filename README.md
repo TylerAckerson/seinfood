@@ -9,8 +9,8 @@
 - [ ] Fix logo and favicon
 - [ ] Clean up/ format header
 - [X] Fix restaurant page refresh bug
-- [ ] Formatting for Filters, Order, Menu, etc
-- [ ] Use search location and default to "new york city, new york"
+- [X] Formatting for Filters, Order, Menu, etc
+- [X] Use search location and default to "new york city, new york"
 - [ ] Add s'more seed data
 
 ## Minimum Viable Product
@@ -28,7 +28,6 @@ Seinfood allows users to:
 - [X] Sort and filter restaurants
 - [X] View restaurant details and menu items
 - [X] Create orders and check out
-- [ ] Review past orders
 
 [seinfeld]: https://en.wikipedia.org/wiki/Seinfeld
 [eatstreet]: https://eatstreet.com/

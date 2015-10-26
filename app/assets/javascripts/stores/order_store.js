@@ -5,10 +5,12 @@
                         subtotal: 0,
                         tax: 0,
                         total: 0,
-                        deliveryFee: null,
-                        tipPercent: null,
+                        delivery_fee: null,
+                        tip_percent: 0,
+                        tip: null,
                         restaurant: null,
-                        orderType: 'delivery'};
+                        restaurant_id: null,
+                        order_type: 'delivery'};
 
   var itemsCounter = 0;
 
@@ -29,6 +31,7 @@
 
       if (_currentOrder.restaurant === null) {
         _currentOrder.restaurant = itemInfo.item.restaurant;
+        _currentOrder.restaurant_id = itemInfo.item.restaurant.id;
       }
 
       this.calculateTotals();
@@ -49,23 +52,34 @@
       });
 
       _currentOrder.tax = _currentOrder.subtotal * 0.075;
-      _currentOrder.deliveryFee = _currentOrder.restaurant.delivery_fee;
+      _currentOrder.delivery_fee = _currentOrder.restaurant.delivery_fee;
+
+      _currentOrder.tip = _currentOrder.tip_percent * (_currentOrder.subtotal +
+                                                      _currentOrder.tax +
+                                                      _currentOrder.delivery_fee);
+
       _currentOrder.total = _currentOrder.subtotal +
-                            _currentOrder.deliveryFee +
-                            _currentOrder.tax;
+                            _currentOrder.tax +
+                            _currentOrder.delivery_fee +
+                            _currentOrder.tip;
+
     },
 
     resetTotals: function(){
       _currentOrder.subtotal = 0;
       _currentOrder.tax = 0;
-      _currentOrder.deliveryFee = null;
+      _currentOrder.delivery_fee = null;
       _currentOrder.total = 0;
-      _currentOrder.tipPercent = 0;
+      _currentOrder.tip_percent = 0;
     },
 
     removeItem: function(itemIdx){
       delete _currentOrder.items[itemIdx];
+      this.calculateTotals();
+    },
 
+    updateTip: function(tip){
+      _currentOrder.tip_percent = tip.tip;
       this.calculateTotals();
     },
 
@@ -109,6 +123,10 @@
           break;
         case (OrderConstants.ORDER_REMOVE_ITEM):
           root.OrderStore.removeItem(payload.item);
+          root.OrderStore.emit(ORDER_CHANGE_EVENT);
+          break;
+        case (OrderConstants.ORDER_UPDATE_TIP):
+          root.OrderStore.updateTip(payload.tip);
           root.OrderStore.emit(ORDER_CHANGE_EVENT);
           break;
         case (OrderConstants.COMPLETE_ORDER):

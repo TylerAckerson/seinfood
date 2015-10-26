@@ -34,8 +34,7 @@ Navbar = React.createClass({
             </a>
           </li>
           <li><a href="/">Home</a></li>
-          <li><a href="users/new">Sign Up</a></li>
-          <li><a href="session/new">Sign In</a></li>
+          <li><a href="users/new">Sign In</a></li>
         </ul>;
     }
 
