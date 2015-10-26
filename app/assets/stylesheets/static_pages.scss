@@ -77,15 +77,29 @@ body {
 .navbar-default {
 	border: 0;
 	margin-bottom: 0;
-	height: 64px;
+	height: 55px;
+}
+
+.sign-out {
+	position: relative;
+	display: block;
+	padding: 15px;
+	color: steelblue;
+	line-height: 20px;
+	background-color: transparent;
+	border: 0;
+}
+
+#app-navbar a {
+	color: steelblue;
 }
 
 #header-logo {
 	padding: 4px;
-	margin-top: -12px;
+	margin-top: -18px;
 	margin-bottom: 5px;
 	width: 180px;
-	height: 50px;
+	height: 55px;
 }
 
 ul {
@@ -181,14 +195,12 @@ html {
 	float:left;
 	margin: 20px 0 20px -2px;
 	width: 22%;
-	font-size: 16px;
+	font-size: 15px;
 	height: 70px;
 	background-color: whitesmoke;
 
 	border: 5px solid steelblue;
 	border-radius: 5px;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
 }
 
 .search-button:hover {
