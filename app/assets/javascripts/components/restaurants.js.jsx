@@ -32,7 +32,6 @@
       RestaurantStore.addIndexChangeListener(this._restaurantsChanged);
       FilterParamStore.addChangeListener(this._filtersChanged);
 
-      // FilterActions.updateSearch({ search: this.props.location.query.search});
       FilterActions.resetFilters({search: this.props.location.query.search});
       ApiUtil.fetchRestaurants( {filterParams: FilterParamStore.params()});
     },
