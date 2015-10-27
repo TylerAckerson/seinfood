@@ -38,7 +38,7 @@ class Restaurant < ActiveRecord::Base
     customer_address << " new york city new york"
     restaurant_address = "#{self.address} #{self.city} #{self.state}"
 
-    Geokit::Geocoders::GoogleGeocoder.api_key = 'AIzaSyD2gX_6Ud5ZYiD-7vKI3yxfKkmPpfJML4A'
+    Geokit::Geocoders::GoogleGeocoder.api_key = 'AIzaSyBY68ewUz3zHC2jnS9JCd60zAezMQvuoF4'
     restaurant = Geokit::Geocoders::GoogleGeocoder.geocode restaurant_address
     customer = Geokit::Geocoders::GoogleGeocoder.geocode customer_address
 
