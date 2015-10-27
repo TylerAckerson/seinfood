@@ -39,7 +39,7 @@ class Restaurant < ActiveRecord::Base
 
     Geokit::Geocoders::GoogleGeocoder.api_key = 'AIzaSyD2gX_6Ud5ZYiD-7vKI3yxfKkmPpfJML4A'
     restaurant = Geokit::Geocoders::GoogleGeocoder.geocode self.address
-    customer = Geokit::Geocoders::GoogleGeocoder.geocode addresss
+    customer = Geokit::Geocoders::GoogleGeocoder.geocode address
 
     return restaurant.distance_to(customer)
   end
