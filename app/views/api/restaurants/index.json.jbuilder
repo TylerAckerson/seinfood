@@ -9,5 +9,5 @@ json.array!(@restaurants) do |restaurant|
     end
   end
 
-  json.distance restaurant.distance_to
+  json.distance restaurant.distance_to(params[:filterParams][:search])
 end

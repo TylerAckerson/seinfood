@@ -23,9 +23,18 @@ FilterActions = {
       features: features
     });
   },
-  resetFilters: function(){
+
+  updateSearch: function(search){
     AppDispatcher.dispatch({
-      actionType: FilterConstants.RESET_FILTERS
+      actionType: FilterConstants.UPDATE_SEARCH,
+      search: search
+    });
+  },
+
+  resetFilters: function(search){
+    AppDispatcher.dispatch({
+      actionType: FilterConstants.RESET_FILTERS,
+      search: search
     });
   }
 };

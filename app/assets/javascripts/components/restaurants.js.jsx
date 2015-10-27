@@ -13,7 +13,9 @@
     mixins: [ReactRouter.History],
 
     getInitialState: function(){
-      return { restaurants: _getAllRestaurants(), search: "", filterParams: _getFilterParams() };
+      return { restaurants: _getAllRestaurants(),
+                    search: "",
+              filterParams: _getFilterParams() };
     },
 
     _restaurantsChanged: function(){
@@ -30,7 +32,8 @@
       RestaurantStore.addIndexChangeListener(this._restaurantsChanged);
       FilterParamStore.addChangeListener(this._filtersChanged);
 
-      FilterParamStore.resetFilters();
+      // FilterActions.updateSearch({ search: this.props.location.query.search});
+      FilterActions.resetFilters({search: this.props.location.query.search});
       ApiUtil.fetchRestaurants( {filterParams: FilterParamStore.params()});
     },
 

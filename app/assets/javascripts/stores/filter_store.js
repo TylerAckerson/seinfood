@@ -2,16 +2,18 @@
   'use strict';
 
   var _params = { cuisine: null,
-                        sort: 'alphabetical',
-                        offers: {delivery: true, takeout: true},
-                        offersDisplay: {delivery: false, takeout: false },
-                        features: {orderAhead: false, openOnTop: true}};
+                  sort: 'alphabetical',
+                  offers: {delivery: true, takeout: true},
+                  offersDisplay: {delivery: false, takeout: false },
+                  features: {orderAhead: false, openOnTop: true},
+                  search: ""};
 
   var defaultParams = { cuisine: null,
                         sort: 'alphabetical',
                         offers: {delivery: true, takeout: true},
                         offersDisplay: {delivery: false, takeout: false },
-                        features: {orderAhead: false, openOnTop: true}};
+                        features: {orderAhead: false, openOnTop: true},
+                        search: ""};
 
   var CHANGE_EVENT = "change";
 
@@ -39,9 +41,21 @@
       _params.features = features;
     },
 
-    resetFilters: function(){
-      _params = $.extend({}, defaultParams);
+    updateSearch: function(search){
+      _params.search = search.search;
     },
+
+    // resetFilters: function(search){
+    //   if (typeof search === 'undefined') {
+    //     var oldSearch = _params.search;
+    //     _params = $.extend({}, defaultParams);
+    //     _params.search = oldSearch;
+    //   } else {
+    //     debugger;
+    //     _params = $.extend({}, defaultParams);
+    //     _params.search = search.search;
+    //   }
+    // },
 
     addChangeListener: function(callback){
       this.on(CHANGE_EVENT, callback);
@@ -55,31 +69,29 @@
       switch (payload.actionType) {
         case FilterConstants.UPDATE_CUISINE:
           root.FilterParamStore.updateCuisine(payload.cuisine);
-          // _params.cuisine = payload.cuisine;
           FilterParamStore.emit(CHANGE_EVENT);
           break;
         case FilterConstants.UPDATE_SORT:
           root.FilterParamStore.updateSort(payload.sort);
-          // _params.sort = payload.sort;
           FilterParamStore.emit(CHANGE_EVENT);
           break;
         case FilterConstants.UPDATE_OFFERS:
           root.FilterParamStore.updateOffers( { offers: payload.offers.offers,
                                                 offersDisplay: payload.offers.offersDisplay});
-          // _params.offers = payload.offers.offers;
-          // _params.offersDisplay = payload.offers.offersDisplay;
           FilterParamStore.emit(CHANGE_EVENT);
           break;
         case FilterConstants.UPDATE_FEATURES:
           root.FilterParamStore.updateFeatures(payload.features);
-          // _params.features = payload.features;
           FilterParamStore.emit(CHANGE_EVENT);
           break;
-        case FilterConstants.RESET_FILTERS:
-          root.FilterParamStore.resetFilters();
-          // _params = $.extend({}, defaultParams);
+        case FilterConstants.UPDATE_SEARCH:
+          root.FilterParamStore.updateFeatures(payload.search);
           FilterParamStore.emit(CHANGE_EVENT);
           break;
+        // case FilterConstants.RESET_FILTERS:
+        //   root.FilterParamStore.resetFilters(payload.search);
+        //   FilterParamStore.emit(CHANGE_EVENT);
+        //   break;
       }
     })
   });

@@ -27,7 +27,7 @@ Search = React.createClass({
                        type="text"
                        placeholder="  e.g 129 West 81st Street, Apartment 5A"
                        valueLink={this.linkState("search")}>
-                  <span className="address-label">Enter your address</span>
+                  <span className="address-label">Enter an NYC address</span>
                 </input>
                 <input type="submit" className="search-button" value="Find Restaurants"/>
            </div>

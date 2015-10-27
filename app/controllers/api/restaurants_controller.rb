@@ -84,11 +84,13 @@ class Api::RestaurantsController < ApplicationController
   def sort_restaurants_by_method(restaurants, method)
     return restaurants if restaurants.nil?
 
+    address = params[:filterParams][:search]
+    
     case method
     when "alphabetical"
       restaurants.sort_by { |restaurant| restaurant.name }
     when "distance"
-      restaurants.sort_by { |restaurant | restaurant.distance_to }
+      restaurants.sort_by { |restaurant | restaurant.distance_to(address) }
     when "delivery_min"
       restaurants.sort_by { |restaurant| restaurant.delivery_min }
     when "delivery_fee"
