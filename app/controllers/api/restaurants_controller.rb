@@ -1,6 +1,7 @@
 class Api::RestaurantsController < ApplicationController
 
   def index
+    # @restaurants = sort_and_filter
     @restaurants = sort_restaurants(filter_restaurants)
 
     render :index
@@ -92,7 +93,7 @@ class Api::RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.includes(:menu_items).find(params[:id])
     render :show
   end
 

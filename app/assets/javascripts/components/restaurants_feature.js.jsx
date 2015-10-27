@@ -1,13 +1,24 @@
 RestaurantsFeature = React.createClass({
   mixins: [ReactRouter.History],
 
-  componentDidMount: function(){
-    FilterParamStore.resetFilters();
-    ApiUtil.fetchRestaurants( {filterParams: FilterParamStore.params()} ) ;
+  getInitialState: function(){
+    return {restaurants: []};
   },
 
-  shouldComponentUpdate: function() {
-    return this.props.cards.length === 0;
+  componentDidMount: function(){
+    RestaurantStore.addIndexChangeListener(this._onChange);
+  },
+
+  componentWillUnmount: function(){
+    RestaurantStore.removeIndexChangeListener(this._onChange);
+  },
+
+  _onChange: function(){
+    console.log(_.isEmpty(this.state.restaurants));
+    if (_.isEmpty(this.state.restaurants)) {
+      cards = _.sample(RestaurantStore.all(), 4);
+      this.setState({restaurants: cards});
+    }
   },
 
   handleDetailButton: function(restaurant){
@@ -19,7 +30,7 @@ RestaurantsFeature = React.createClass({
       <div className="container-fluid">
         <div className="row text-center cards-container">
             {
-              this.props.cards.map(function(restaurant){
+              this.state.restaurants.map(function(restaurant){
                 boundClick = this.handleDetailButton.bind(this, restaurant);
 
                 return <RestaurantCardItem restaurant={restaurant}

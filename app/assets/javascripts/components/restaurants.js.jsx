@@ -29,7 +29,9 @@
     componentDidMount: function(){
       RestaurantStore.addIndexChangeListener(this._restaurantsChanged);
       FilterParamStore.addChangeListener(this._filtersChanged);
-      ApiUtil.fetchRestaurants( {filterParams: this.state.filterParams} );
+
+      FilterParamStore.resetFilters();
+      ApiUtil.fetchRestaurants( {filterParams: FilterParamStore.params()});
     },
 
     componentWillUnmount: function(){
@@ -41,8 +43,6 @@
     },
 
     render: function(){
-      var cards = _.sample(this.state.restaurants, 4);
-
       if (typeof this.state.restaurants === "undefined") {
         return (<div className="throbber-loader" id="loader">
                   Loading…
@@ -52,7 +52,7 @@
       return (
       <div className="restaurants">
         <div className="container-fluid" id="restaurants-feature">
-            <RestaurantsFeature cards={cards}/>
+            <RestaurantsFeature/>
         </div>
 
         <div className="container top-buffer">
