@@ -34,13 +34,14 @@ class Restaurant < ActiveRecord::Base
     @restaurant = Restaurant.find(params[:id])
   end
 
-  def distance_to(address)
-    address << " new york city new york"
+  def distance_to(customer_address)
+    customer_address << " new york city new york"
+    restaurant_address = "#{self.address} #{self.city} #{self.state}"
 
     Geokit::Geocoders::GoogleGeocoder.api_key = 'AIzaSyD2gX_6Ud5ZYiD-7vKI3yxfKkmPpfJML4A'
-    restaurant = Geokit::Geocoders::GoogleGeocoder.geocode self.address
-    customer = Geokit::Geocoders::GoogleGeocoder.geocode address
+    restaurant = Geokit::Geocoders::GoogleGeocoder.geocode restaurant_address
+    customer = Geokit::Geocoders::GoogleGeocoder.geocode customer_address
 
-    return restaurant.distance_to(customer)
+    restaurant.distance_to(customer)
   end
 end
