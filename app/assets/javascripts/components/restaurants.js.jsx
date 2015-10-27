@@ -46,7 +46,7 @@
     },
 
     render: function(){
-      if (typeof this.state.restaurants === "undefined") {
+      if (this.state.restaurants.length < 1) {
         return (<div className="throbber-loader" id="loader">
                   Loading…
                 </div>);

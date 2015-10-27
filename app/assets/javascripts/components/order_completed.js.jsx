@@ -10,11 +10,11 @@ CompletedOrder = React.createClass({
   render: function(){
     var order = this.state;
 
-    var subtotal = "$" + parseInt(order.subtotal).toFixed(2);
-    var tax = "$" + order.tax.toFixed(2);
-    var delivery = "$" + parseInt(order.delivery_fee).toFixed(2);
-    var tip = "$" + order.tip.toFixed(2);
-    var total = "$" + (order.total).toFixed(2);
+    var subtotal = parseInt(order.subtotal).toFixed(2);
+    var tax = order.tax.toFixed(2);
+    var delivery = parseInt(order.delivery_fee).toFixed(2);
+    var tip = order.tip.toFixed(2);
+    var total = order.total.toFixed(2);
 
     return(
       <div className="container completed-order">
@@ -27,15 +27,15 @@ CompletedOrder = React.createClass({
             <h4>Details</h4>
               <ul className="list-group">
                 <li className="list-group-item">
-                  <span className="checkout-label">Subtotal: </span><span>{subtotal}</span></li>
+                  <span className="checkout-label">Subtotal: </span><span>${subtotal}</span></li>
                 <li className="list-group-item">
-                  <span className="checkout-label">Tax: </span><span>{tax}</span></li>
+                  <span className="checkout-label">Tax: </span><span>${tax}</span></li>
                 <li className="list-group-item">
-                  <span className="checkout-label">Delivery: </span><span>{delivery}</span></li>
+                  <span className="checkout-label">Delivery: </span><span>${delivery}</span></li>
                 <li className="list-group-item">
-                  <span className="checkout-label">Tip: </span><span>{tip}</span></li>
+                  <span className="checkout-label">Tip: </span><span>${tip}</span></li>
                 <li className="list-group-item">
-                  <span className="checkout-label">Total: </span><span>{total}</span></li>
+                  <span className="checkout-label">Total: </span><span>${total}</span></li>
               </ul>
           </div>
           <div className="col-xs-6 col-sm-6 col-md-5 col-lg-4">

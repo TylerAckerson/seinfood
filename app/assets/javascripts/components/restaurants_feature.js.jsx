@@ -6,6 +6,7 @@ RestaurantsFeature = React.createClass({
   },
 
   componentDidMount: function(){
+    this.setState( {restaurants: _.sample(RestaurantStore.all(), 4)});
     RestaurantStore.addIndexChangeListener(this._onChange);
   },
 

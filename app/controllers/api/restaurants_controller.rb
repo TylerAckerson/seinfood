@@ -2,7 +2,6 @@ class Api::RestaurantsController < ApplicationController
 
   def index
     @restaurants = sort_restaurants(filter_restaurants)
-    # @restaurants = filter_restaurants
 
     render :index
   end
@@ -12,12 +11,7 @@ class Api::RestaurantsController < ApplicationController
     offers = params[:filterParams][:offers]
 
     if search.empty?
-      filtered = Restaurant.find_by_sql(<<-SQL)
-        SELECT
-          restaurants.*
-        FROM
-          restaurants
-      SQL
+      filtered = Restaurant.all
     else
       filtered = filter_by_cuisine(Restaurant.all, search)
     end
@@ -85,7 +79,7 @@ class Api::RestaurantsController < ApplicationController
     return restaurants if restaurants.nil?
 
     address = params[:filterParams][:search]
-    
+
     case method
     when "alphabetical"
       restaurants.sort_by { |restaurant| restaurant.name }
