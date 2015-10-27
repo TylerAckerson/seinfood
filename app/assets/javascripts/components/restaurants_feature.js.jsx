@@ -14,7 +14,6 @@ RestaurantsFeature = React.createClass({
   },
 
   _onChange: function(){
-    console.log(_.isEmpty(this.state.restaurants));
     if (_.isEmpty(this.state.restaurants)) {
       cards = _.sample(RestaurantStore.all(), 4);
       this.setState({restaurants: cards});

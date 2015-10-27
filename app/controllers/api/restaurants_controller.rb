@@ -1,22 +1,28 @@
 class Api::RestaurantsController < ApplicationController
 
   def index
-    # @restaurants = sort_and_filter
     @restaurants = sort_restaurants(filter_restaurants)
+    # @restaurants = filter_restaurants
 
     render :index
   end
 
   def filter_restaurants
-    cuisine = params[:filterParams][:cuisine]
+    search = params[:filterParams][:cuisine]
     offers = params[:filterParams][:offers]
 
-    filtered = Restaurant.includes(:menu_items)
+    if search.empty?
+      filtered = Restaurant.find_by_sql(<<-SQL)
+        SELECT
+          restaurants.*
+        FROM
+          restaurants
+      SQL
+    else
+      filtered = filter_by_cuisine(Restaurant.all, search)
+    end
 
-    ## filter by cuisine/text
-    filtered = filter_by_cuisine(filtered, cuisine) unless cuisine.empty?
-
-    ## filter by offers
+    # filter by offers
     if offers[:takeout] === 'false'
       filtered = filter_by_offers(filtered, offers)
     end
@@ -24,8 +30,8 @@ class Api::RestaurantsController < ApplicationController
     filtered
   end
 
-  def filter_by_cuisine(restaurants, cuisine)
-    search = cuisine.downcase.gsub(/\W+/, '')
+  def filter_by_cuisine(restaurants, search)
+    search = search.downcase.gsub(/\W+/, '')
 
     results = restaurants.select do |restaurant|
       restaurant_cuisine = restaurant.cuisine.downcase.gsub(/\W+/, '')
@@ -83,8 +89,6 @@ class Api::RestaurantsController < ApplicationController
       restaurants.sort_by { |restaurant| restaurant.name }
     when "distance"
       restaurants.sort_by { |restaurant | restaurant.distance_to }
-    when "rating"
-      restaurants.sort_by { |restaurant| restaurant.name }.reverse
     when "delivery_min"
       restaurants.sort_by { |restaurant| restaurant.delivery_min }
     when "delivery_fee"

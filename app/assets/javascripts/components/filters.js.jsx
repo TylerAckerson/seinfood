@@ -137,7 +137,6 @@ Filters = React.createClass({
                                               className="form-control">
               <option value="distance">Distance</option>
               <option value="alphabetical" >Alphabetical</option>
-              <option value="rating">Rating</option>
               <option value="delivery_min">Delivery Min</option>
               <option value="delivery_fee">Delivery Fee</option>
              </select>

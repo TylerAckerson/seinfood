@@ -30,8 +30,13 @@
       itemsCounter++;
 
       if (_currentOrder.restaurant === null) {
-        _currentOrder.restaurant = itemInfo.item.restaurant;
-        _currentOrder.restaurant_id = itemInfo.item.restaurant.id;
+        restaurant = itemInfo.item.restaurant;
+        _currentOrder.restaurant = restaurant;
+        _currentOrder.restaurant_id = restaurant.id;
+
+        if (restaurant.takeout_only) {
+          _currentOrder.order_type = "takeout";
+        }
       }
 
       this.calculateTotals();

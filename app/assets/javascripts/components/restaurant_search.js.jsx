@@ -1,5 +1,7 @@
 RestaurantSearch = React.createClass({
   render: function() {
+    var count = " (" + this.props.count + ")";
+
     if (this.props.search !== "") {
       searchQuery = this.props.search;
     } else {
@@ -10,7 +12,7 @@ RestaurantSearch = React.createClass({
       <div className="row search-results">
         <div className="col-8">
           <h3 className="bottom-buffer">
-            Results for {searchQuery}
+            Results for {searchQuery} {count}
           </h3>
         </div>
       </div>

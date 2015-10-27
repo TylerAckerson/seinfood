@@ -59,7 +59,8 @@
 
           <div className="row">
             <div className="col-sm-8" id="restaurants-index">
-              <RestaurantSearch search={this.props.location.query.search}/>
+              <RestaurantSearch search={this.props.location.query.search}
+                                count={this.state.restaurants.length}/>
               <div className="row restaurant-index">{
                 this.state.restaurants.map(function(restaurant){
                   var boundClick = this.handleDetailButton.bind(this, restaurant);
