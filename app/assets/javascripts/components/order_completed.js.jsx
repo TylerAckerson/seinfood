@@ -14,10 +14,10 @@ CompletedOrder = React.createClass({
     var tax = order.tax.toFixed(2);
     var delivery = parseInt(order.delivery_fee).toFixed(2);
     var tip = order.tip.toFixed(2);
-    var total = order.total.toFixed(2);
+    var total = (order.total).toFixed(2);
 
     return(
-      <div className="container completed-order">
+      <div className="container completed-order" id="completed-order">
         <div className="row">
           <h2>Your {order.order_type} order from {order.restaurant.name} is in the works!</h2>
           <h3>Order Summary</h3>
