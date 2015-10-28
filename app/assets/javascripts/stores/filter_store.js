@@ -45,17 +45,13 @@
       _params.search = search.search;
     },
 
-    // resetFilters: function(search){
-    //   if (typeof search === 'undefined') {
-    //     var oldSearch = _params.search;
-    //     _params = $.extend({}, defaultParams);
-    //     _params.search = oldSearch;
-    //   } else {
-    //     debugger;
-    //     _params = $.extend({}, defaultParams);
-    //     _params.search = search.search;
-    //   }
-    // },
+    resetFilters: function(search){
+      if (typeof search === 'undefined') {
+        search = _params.search;
+      }
+
+      _params = $.extend({}, defaultParams, search);
+    },
 
     addChangeListener: function(callback){
       this.on(CHANGE_EVENT, callback);
@@ -88,10 +84,10 @@
           root.FilterParamStore.updateFeatures(payload.search);
           FilterParamStore.emit(CHANGE_EVENT);
           break;
-        // case FilterConstants.RESET_FILTERS:
-        //   root.FilterParamStore.resetFilters(payload.search);
-        //   FilterParamStore.emit(CHANGE_EVENT);
-        //   break;
+        case FilterConstants.RESET_FILTERS:
+          root.FilterParamStore.resetFilters(payload.search);
+          FilterParamStore.emit(CHANGE_EVENT);
+          break;
       }
     })
   });

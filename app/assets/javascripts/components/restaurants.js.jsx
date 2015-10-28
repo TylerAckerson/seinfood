@@ -33,7 +33,6 @@
       FilterParamStore.addChangeListener(this._filtersChanged);
 
       FilterActions.resetFilters({search: this.props.location.query.search});
-      ApiUtil.fetchRestaurants( {filterParams: FilterParamStore.params()});
     },
 
     componentWillUnmount: function(){
