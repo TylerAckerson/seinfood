@@ -8,11 +8,11 @@ RestaurantItem = React.createClass({
     var distance = String(Math.round(restaurant.distance * 10)/10) + " mi";
     return (
       <div className="row restaurant-item" onClick={this.props.onClick}>
-        <div className="col-xs-2 align-center">
+        <div className="col-xs-6 col-sm-6 col-md-3 col-lg-3 align-center">
           <img src={restaurant.image_link}className="img-circle" width="75" height="75"/>
         </div>
 
-        <div className="col-xs-8">
+        <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <h3>{restaurant.name}</h3>
             <ul className="list-group restaurant-detail">
               <li className="list-group-item">
@@ -28,7 +28,7 @@ RestaurantItem = React.createClass({
             </ul>
         </div>
 
-        <div className="col-xs-2">
+        <div className="view-button col-xs-12 col-sm-12 col-md-2 col-lg-2 align-center">
           <input
              type="button"
              onClick={this.props.onClick}
