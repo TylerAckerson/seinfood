@@ -1,8 +1,8 @@
 # Seinfood
 
-[Heroku link][heroku]
+[Live link][live]
 
-[heroku]: https://seinfood.herokuapp.com/
+[live]: https://seinfood.tylerackerson.com/
 
 ##TODO
 - [X] Order checkout
