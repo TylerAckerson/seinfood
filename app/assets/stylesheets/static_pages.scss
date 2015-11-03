@@ -163,14 +163,14 @@ html {
 }
 
 .address-search {
-  width: 68%;
-	margin: 20px -2px 20px 5%;
+  // width: 68%;
+	// margin: 20px -2px 20px 5%;
   font-size: 20px;
   height: 70px;
 	padding-top: 20px;
-	padding-left: 10px;
-	float:left;
-	position: relative;
+	// padding-left: 10px;
+	// float:left;
+	// position: relative;
 
 	border: 5px solid steelblue;
 	border-radius: 5px;
@@ -180,16 +180,17 @@ html {
 
 .address-label{
 	position: absolute;
-	left: 58px;
-	bottom: 72px;
+	left: 18px;
+	bottom: 57px;
 	z-index: 1;
 	color: red;
 	font-weight: bolder;
 }
 
 .search-button {
-	float:left;
-	margin: 20px 0 20px -2px;
+	// float:left;
+	left: -5px;
+	// margin: 20px 0 20px -2px;
 	width: 22%;
 	font-size: 15px;
 	height: 70px;
@@ -296,7 +297,7 @@ div .align-center{
   border-radius: 0;
 	border: 2px solid gray;
 	text-align: center;
-	padding-left: 60px;
+	// padding-left: 60px;
 	background:
     linear-gradient(
       rgba(0, 0, 0, 0.7),

@@ -29,7 +29,7 @@ RestaurantCardItem = React.createClass({
 
     return (
       <div id="restaurant-card-item" onClick={this.props.onClick}
-                                  className="card text-center">
+                                  className="card text-center col-xs-12 col-sm-6 col-md-4 col-lg-4">
 
         <div className="card-item-header">
         </div>
