@@ -30,13 +30,14 @@ RestaurantCardItem = React.createClass({
     return (
       <div className="text-center col-xs-8 col-sm-6 col-md-3 col-lg-3">
        <div className="row">
-        <div id="restaurant-card-item" onClick={this.props.onClick}
-            className="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+        <div className="card-outline">
+          <div id="restaurant-card-item" onClick={this.props.onClick}
+              className="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
 
-          <div className="card-item-header">
+            <div className="card-item-header"/>
+            <img src={restaurant.image_link}className="img-circle"/>
+            {listItems}
           </div>
-          <img src={restaurant.image_link}className="img-circle"/>
-          {listItems}
         </div>
       </div>
     </div>

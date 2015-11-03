@@ -337,17 +337,8 @@ div .align-center{
 }
 
 #restaurant-card-item:hover {
-  width: 260px;
-  height: 260px;
-	transition: 1s;
-	margin-bottom: 0;
-	margin-top: -10px;
-	font-size: 105%;
-}
-
-#restaurant-card-item:hover img{
-	transition: 1s;
-	margin-top: 15px;
+	outline: 8px solid white;
+	transition: .5s;
 }
 
 .card-item-header {
@@ -362,7 +353,6 @@ div .align-center{
 }
 
 .restaurant-detail {
-  padding: 5px;
   font-weight: 500;
   color: black;
 }
@@ -372,7 +362,6 @@ div .align-center{
   padding: 2px;
   color: gray;
 }
-
 
 .restaurant-detail .menu-button {
   padding: 5px;
