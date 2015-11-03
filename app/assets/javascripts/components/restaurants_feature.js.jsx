@@ -27,8 +27,8 @@ RestaurantsFeature = React.createClass({
 
   render: function(){
     return (
-      <div className="container-fluid">
-        <div className="row text-center cards-container">
+      <div className="container">
+        <div className="row">
             {
               this.state.restaurants.map(function(restaurant){
                 boundClick = this.handleDetailButton.bind(this, restaurant);
