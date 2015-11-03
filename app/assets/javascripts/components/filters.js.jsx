@@ -114,7 +114,7 @@ Filters = React.createClass({
 
  render: function(){
    return (
-     <div className="row">
+     <div className="row filters">
       <div className="header">
         <h3>Filters</h3>
       </div>
