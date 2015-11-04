@@ -2,21 +2,17 @@
 
 ## Rails
 ### Models
-* Favorite (polymorphic association to Restaurant and Menu Item classes)
-
+  - n/a
 ### Controllers
-* Api::Favorites (create, destroy)
+  - n/a
 
 ### Views
-* Update users/show.html.erb from phase 1
- - To include past orders
+ - json index view for orders
 
 ## Flux
 ### Views (React Components)
-* Edit Menu Item component from phase 3
-  - To allow users to 'favorite' menu items
-* Edit Restaurant Item component from phase 2
-  - To allow users to 'favorite' restaurants
+* User
+* UserOrders
 
 ### Stores
 * n/a
