@@ -32,5 +32,12 @@ ApiActions = {
       actionType: UserConstants.RECEIVE_USER,
       user: user
     });
+  },
+
+  receiveUpdatedUser: function(user){
+    AppDispatcher.dispatch({
+      actionType: UserConstants.RECEIVE_UPDATED_USER,
+      user: user
+    });
   }
 };

@@ -12,15 +12,26 @@ Navbar = React.createClass({
 
   render: function(){
     var sign;
-    var signOut =
+
+    var account =
       <input
        type="button"
        onClick={this.handleAccount}
        value="Account"
        className="sign-out"/>;
 
+    var signOut =
+      <input
+       type="button"
+       onClick={this.handleLogOut}
+       value="Sign Out"
+       className="sign-out"/>;
+
     if (window.CURRENT_USER_ID) {
-      sign =  <li>{signOut}</li>;
+      sign =  <li>
+                <li>{signOut}</li>
+                <li>{account}</li>
+              </li>;
     } else {
       sign =  <li><a href="users/new">Sign In</a></li>;
     }
@@ -46,7 +57,7 @@ Navbar = React.createClass({
         <div className="collapse navbar-collapse" id="collapse-menu">
           <ul className="nav navbar-nav pull-right">
             <li><a href="/">Home</a></li>
-            <li>{sign}</li>
+            {sign}
           </ul>
         </div>
 

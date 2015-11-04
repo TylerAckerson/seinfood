@@ -49,7 +49,21 @@ window.ApiUtil = {
         console.log(resp);
       }
     });
+  },
 
+  updateUser: function(user){
+    $.ajax({
+      url: '/users/' + user.id,
+      dataType: 'json',
+      type: 'patch',
+      data: {user: user},
+      success: function(user){
+        ApiActions.receiveUpdatedUser(user);
+      },
+      error: function(resp){
+        console.log(resp);
+      }
+    });
   },
 
   fetchOrder: function(orderId) {

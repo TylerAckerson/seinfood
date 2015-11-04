@@ -13,6 +13,10 @@
       _currentUser = [user];
     },
 
+    updateUser: function(user){
+      _currentUser = user;
+    },
+
     addChangeListener: function(callback){
       root.UserStore.on(USER_CHANGE_EVENT, callback);
     },
@@ -25,6 +29,10 @@
       switch (payload.actionType) {
         case (UserConstants.RECEIVE_USER):
           root.UserStore.resetUser(payload.user);
+          root.UserStore.emit(USER_CHANGE_EVENT);
+          break;
+        case (UserConstants.RECEIVE_UPDATED_USER):
+          root.UserStore.updateUser(payload.user);
           root.UserStore.emit(USER_CHANGE_EVENT);
           break;
       }

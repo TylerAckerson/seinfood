@@ -1,9 +1,11 @@
 UserAccount = React.createClass({
+  mixins: [React.addons.LinkedStateMixin],
+
   getInitialState: function(){
-    return { user: {  email: "",
-                    address: "",
-                       city: "",
-                      state: "" } };
+    return { email: "",
+             address: "",
+             city: "",
+             state: "" };
   },
 
   componentDidMount: function() {
@@ -12,40 +14,46 @@ UserAccount = React.createClass({
   },
 
   _userChanged: function() {
-    this.setState( { user: UserStore.user() } );
+    this.setState( UserStore.user() );
+  },
+
+  handleUserUpdate: function(e){
+    e.preventDefault();
+    ApiUtil.updateUser( this.state );
   },
 
   render: function(){
-    var user = this.state.user;
-
     return (
       <div className="container">
         <h3>Account Info</h3>
         <div className="form-group">
           <label>Email
             <input type="text" className="form-control" id="email"
-                   value={user.email}/>
+                               valueLink={this.linkState("email")}/>
           </label>
         </div>
 
         <div className="form-group">
           <label>Address
             <input type="text" className="form-control" id="address"
-                   value={user.address}/>
+                               valueLink={this.linkState("address")}/>
           </label>
         </div>
         <div className="form-group">
           <label>City
             <input type="text" className="form-control" id="city"
-                   value={user.city}/>
+                               valueLink={this.linkState("city")}/>
           </label>
         </div>
         <div className="form-group">
           <label>State
             <input type="text" className="form-control" id="state"
-                   value={user.state}/>
+                               valueLink={this.linkState("state")}/>
           </label>
         </div>
+        <button type="submit"
+                className="btn btn-default"
+                onClick={this.handleUserUpdate}>Update</button>
       </div>
     );
   }
