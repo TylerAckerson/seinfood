@@ -1,6 +1,13 @@
 Navbar = React.createClass({
+  mixins: [ReactRouter.History],
+
   handleLogOut: function(){
     ApiUtil.deleteSession();
+  },
+
+  handleAccount: function(){
+    var userId = window.CURRENT_USER_ID;
+    this.history.pushState(null, "/users/" + userId);
   },
 
   render: function(){
@@ -8,8 +15,8 @@ Navbar = React.createClass({
     var signOut =
       <input
        type="button"
-       onClick={this.handleLogOut}
-       value="Sign Out"
+       onClick={this.handleAccount}
+       value="Account"
        className="sign-out"/>;
 
     if (window.CURRENT_USER_ID) {
