@@ -5,7 +5,8 @@ UserAccount = React.createClass({
     return { email: "",
              address: "",
              city: "",
-             state: "" };
+             state: "",
+             orders: []};
   },
 
   componentDidMount: function() {
@@ -54,6 +55,14 @@ UserAccount = React.createClass({
         <button type="submit"
                 className="btn btn-default"
                 onClick={this.handleUserUpdate}>Update</button>
+
+        <h3>Past Orders</h3>
+          <div> {
+            this.state.orders.map(function(order) {
+              return <PastOrder order={order} />;
+            })
+         }
+         </div>
       </div>
     );
   }
