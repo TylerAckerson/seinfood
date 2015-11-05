@@ -19,6 +19,7 @@ class Api::OrdersController < ApplicationController
   private
   def order_params
     params.require(:order).permit(:user_id, :restaurant_id,
-                  :scheduled_for, :order_type, :subtotal, :delivery_fee)
+                  :scheduled_for, :order_type, :subtotal,
+                  :delivery_fee, :tip)
   end
 end

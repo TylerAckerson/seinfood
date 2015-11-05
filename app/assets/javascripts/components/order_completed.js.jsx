@@ -13,7 +13,7 @@ CompletedOrder = React.createClass({
     var subtotal = parseInt(order.subtotal).toFixed(2);
     var tax = order.tax.toFixed(2);
     var delivery = parseInt(order.delivery_fee).toFixed(2);
-    var tip = order.tip.toFixed(2);
+    var tip = parseInt(order.tip).toFixed(2);
     var total = (order.total).toFixed(2);
 
     return(
