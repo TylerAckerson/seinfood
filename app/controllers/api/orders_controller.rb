@@ -11,7 +11,6 @@ class Api::OrdersController < ApplicationController
 
     if @order.save
       render :show
-    else
     end
 
   end

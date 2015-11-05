@@ -11,6 +11,7 @@
 #  state           :text             default("New York")
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  name            :text             default("Default User"), not null
 #
 
 class User < ActiveRecord::Base

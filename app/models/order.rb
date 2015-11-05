@@ -12,6 +12,7 @@
 #  delivery_fee  :decimal(, )      not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  tip           :decimal(, )
 #
 
 class Order < ActiveRecord::Base
