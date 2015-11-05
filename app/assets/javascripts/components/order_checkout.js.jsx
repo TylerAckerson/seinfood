@@ -155,8 +155,7 @@ OrderCheckout = React.createClass({
 
     return (
       <div className={this.classes}>
-        <div className="col-xs-2"></div>
-        <div className="col-xs-5 checkout">
+        <div className="col-xs-5 col-xs-offset-2 checkout">
           <div className="header">
             <h3>Order Details</h3>
           </div>
