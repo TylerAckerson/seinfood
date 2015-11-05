@@ -40,7 +40,7 @@ window.ApiUtil = {
 
   fetchUserInfo: function(userId){
     $.ajax({
-      url: '/users/' + userId,
+      url: 'api/users/' + userId,
       dataType: 'json',
       success: function(user){
         ApiActions.receiveUser(user);
@@ -53,7 +53,7 @@ window.ApiUtil = {
 
   updateUser: function(user){
     $.ajax({
-      url: '/users/' + user.id,
+      url: 'api/users/' + user.id,
       dataType: 'json',
       type: 'patch',
       data: {user: user},
