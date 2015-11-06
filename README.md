@@ -4,15 +4,6 @@
 
 [live]: https://seinfood.tylerackerson.com/
 
-##TODO
-- [X] Order checkout
-- [X] Fix logo and favicon
-- [X] Clean up/ format header
-- [X] Fix restaurant page refresh bug
-- [X] Formatting for Filters, Order, Menu, etc
-- [X] Use search location and default to "new york city, new york"
-- [X] Add s'more seed data
-
 ## Minimum Viable Product
 
 Seinfood is a [Seinfeld][seinfeld]-themed web application inspired by
@@ -41,7 +32,7 @@ Seinfood allows users to:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Restaurant Model and API, Home Page (2 days)
+### Phase 1: Authentication, Restaurant Model + API, Home Page
 
 In phase 1, I will start by creating both user 'sign in' and 'sign up'
 pages. I will create an authentication system using BCrypt and then move
@@ -54,7 +45,7 @@ for matching restaurants near them.
 
 [Details][phase-one]
 
-### Phase 2: Flux Architecture, Google Maps API, and Restaurant List (2 days)
+### Phase 2: Flux, distance API, and Restaurant List
 
 Phase 2 will be focused on setting up Flux, the main React Router
 component, and the React components allowing users to view restaurants
@@ -76,7 +67,7 @@ distance of each restaurant from the user's location.
 
 [Details][phase-two]
 
-### Phase 3: Menus, Menu Items (1.5 days)
+### Phase 3: Menus and Menu Items
 
 The features implemented in Phase 3 will allow users to select specific
 restaurants and view menus and menu items. There will
@@ -88,7 +79,7 @@ to start testing the order-creation process.
 
 [Details][phase-three]
 
-### Phase 4: Order Creation and Completion (1.5 day)
+### Phase 4: Order Creation and Completion
 
 In Phase 4, I will ensure that orders can be created and committed to
 the database by users. Users will be able to select menu items to view
@@ -100,20 +91,27 @@ by the restaurant.
 
 [Details][phase-four]
 
-### Phase 5: Account Component and Past Orders (1 day)
+### Phase 5: Account Component and Past Orders
 
 Phase 5 will create an account view/component and allow users to view their past orders.
 
 [Details][phase-five]
 
-### Phase 6: # Phase 6: Styling, Animation, and Cleanup (1 day)
+### Phase 6: Styling, Animation, and Cleanup
 
 Phase 6 will be focused on adding styling and some effects to enhance
 the user experience.
 
 [Details][phase-six]
 
-### Potential Bonus Features
+## Upcoming
+
+###TODO
+- [ ] Improve 'distance' sorting
+- [ ] Improve initial restaurant render (when there are 0 restaurants)
+- [ ] Improve offers (delivery/ takeout) sorting
+
+### Enhancement List
 - [ ] Allow users to create and favorite menu items and restaurants
 - [ ] Allow users to view restaurant reviews pulled from Yelp
 - [ ] Allow users to view a map of available restaurants
