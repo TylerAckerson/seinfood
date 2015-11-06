@@ -11,13 +11,14 @@ class Api::RestaurantsController < ApplicationController
     #determine how to sort
     sort_method = case params[:filterParams][:sort]
       when "alphabetical"
-        'name'
+        'name ASC'
       when "distance"
-        "distance"
+        # "distance"
+          'name DESC'
       when "delivery_min"
-        "delivery_min"
+        'delivery_min ASC'
       when "delivery_fee"
-        "delivery_fee"
+        'delivery_fee ASC'
       end
 
     search = params[:filterParams][:cuisine].downcase.gsub(/\W+/, '')
@@ -31,7 +32,6 @@ class Api::RestaurantsController < ApplicationController
     else
       takeout_options = "r.takeout_only = 'true' OR r.takeout_only = 'false'"
     end
-
 
     # create SELECT and ORDER BY statements if open on top is selected (default)
     if params[:filterParams][:features][:openOnTop] === "true"
@@ -67,7 +67,7 @@ class Api::RestaurantsController < ApplicationController
                 )
       ORDER BY
         #{open_on_top_order}
-        r.#{sort_method} ASC")
+        r.#{sort_method}")
 
     restaurants
   end
