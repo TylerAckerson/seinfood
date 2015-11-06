@@ -44,7 +44,8 @@
     },
 
     render: function(){
-      if (this.state.restaurants.length < 1) {
+      if (this.props.location.query.search && (this.state.restaurants.length < 1 &&
+          this.props.location.query.search.length < 1)) {
         return (<div className="throbber-loader" id="loader">
                   Loading…
                 </div>);
