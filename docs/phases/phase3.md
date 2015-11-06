@@ -1,4 +1,4 @@
-# Phase 3: Menus, Menu Items (1.5 days)
+# Phase 3: Menus and Menu Items
 
 ## Rails
 ### Models

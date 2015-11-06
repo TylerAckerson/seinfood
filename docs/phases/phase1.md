@@ -1,4 +1,4 @@
-# Phase 1: User Authentication, Restaurant Model and API, Home Page (2 days)
+# Phase 1: Authentication, Restaurant Model + API, Home Page
 
 ## Rails
 ### Models

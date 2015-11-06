@@ -1,4 +1,4 @@
-# Phase 4: Order Creation and Completion (1.5 days)
+# Phase 4: Order Creation and Completion
 
 ## Rails
 ### Models

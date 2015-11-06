@@ -1,4 +1,4 @@
-# Phase 6: Styling, Animation, and Cleanup (1 day)
+# Phase 6: Styling, Animation, and Cleanup
 
 ## Rails
 ### Models

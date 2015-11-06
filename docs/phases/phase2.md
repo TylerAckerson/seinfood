@@ -1,4 +1,4 @@
-# Phase 2: Flux Architecture, Google Maps API, and Restaurant List (2 days)
+# Phase 2: Flux, distance API, and Restaurant List
 
 ## Rails
 ### Models

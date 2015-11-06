@@ -105,6 +105,7 @@ the user experience.
 [Details][phase-six]
 
 ## Upcoming
+These are items that could potentially be added to Seinfood in the future. Most should be categorized as enhancements, but some in the TODO list could be considered fixes.
 
 ###TODO
 - [ ] Improve 'distance' sorting

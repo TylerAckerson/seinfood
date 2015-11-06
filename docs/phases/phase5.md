@@ -1,4 +1,4 @@
-# Phase 5: Account Component and Past Orders (1 day)
+# Phase 5: Account Component and Past Orders
 
 ## Rails
 ### Models
