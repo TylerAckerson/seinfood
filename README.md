@@ -113,6 +113,7 @@ These are items that could potentially be added to Seinfood in the future. Most 
 - [ ] Improve offers (delivery/ takeout) sorting
 
 ### Enhancement List
+- [ ] Add form validation upon ordering
 - [ ] Allow users to create and favorite menu items and restaurants
 - [ ] Allow users to view restaurant reviews pulled from Yelp
 - [ ] Allow users to view a map of available restaurants
