@@ -44,8 +44,13 @@ time, mark, audio, video {
 		url("http://static.deathandtaxesmag.com/uploads/2014/01/seinfeld-toms-restaurant-2880_1920x1080_43-hd.jpg");
 }
 
-#container, #application, body {
+#container, #application{
 	background-color: whitesmoke;
+}
+
+body {
+	background-color: whitesmoke;
+	margin-bottom: 60px;
 }
 
 .img-circle {
@@ -89,6 +94,24 @@ time, mark, audio, video {
 	color: steelblue;
 }
 
+#footer {
+	height: 50px;
+	position: absolute;
+	bottom: -50px;
+	width: 100%;
+	background-color: white;
+}
+
+#footer .container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
+
+#footer .container .text-muted {
+  margin: 6px 0;
+}
+
 #header-logo {
 	padding: 4px;
 	margin-top: -18px;
@@ -104,6 +127,8 @@ ul {
 html {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	background-color: whitesmoke;
+	position: relative;
+	min-height: 100%;
 }
 
 #loader {

@@ -10,11 +10,6 @@ Navbar = React.createClass({
     this.history.pushState(null, "/users/" + userId);
   },
 
-  handleAbout: function(e) {
-    e.preventDefault();
-    this.history.pushState(null, "/about");
-  },
-
   render: function(){
     var sign;
 
@@ -62,13 +57,6 @@ Navbar = React.createClass({
         <div className="collapse navbar-collapse" id="collapse-menu">
           <ul className="nav navbar-nav pull-right">
             <li><a href="/">Home</a></li>
-            <li>
-              <input
-                 type="button"
-                 onClick={this.handleAbout}
-                 value="About"
-                 className="sign-out"/>;
-            </li>
             {sign}
           </ul>
         </div>
