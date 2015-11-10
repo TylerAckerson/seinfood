@@ -13,6 +13,7 @@ Footer = React.createClass({
 						<a href="https://github.com/tylerackerson"> Github</a> |
 						<a href="https://www.linkedin.com/in/tylerackerson"> Linkedin</a>
 						</article>
+					<span>&copy; Seinfood 2015</span>
 					</div>
 				</div>
 			</div>

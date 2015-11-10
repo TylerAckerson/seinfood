@@ -95,11 +95,12 @@ body {
 }
 
 #footer {
-	height: 50px;
+	height: 70px;
 	position: absolute;
-	bottom: -50px;
+	bottom: -70px;
 	width: 100%;
 	background-color: white;
+	border-top: 1px solid lightgrey;
 }
 
 #footer .container {
