@@ -29,6 +29,8 @@ gem 'geokit'
 gem 'seed_dump'
 gem 'newrelic_rpm'
 
+gem 'twilio-ruby', '~> 4.2.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
