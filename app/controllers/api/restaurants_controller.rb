@@ -7,7 +7,6 @@ class Api::RestaurantsController < ApplicationController
   end
 
   def find_and_sort
-
     #determine how to sort
     sort_method = case params[:filterParams][:sort]
       when "alphabetical"
@@ -70,6 +69,10 @@ class Api::RestaurantsController < ApplicationController
         r.#{sort_method}")
 
     restaurants
+  end
+
+  def get_distance
+
   end
 
   def show

@@ -2,7 +2,7 @@ Search = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
 
   getInitialState:function(){
-    return { search: "" };
+    return { search: "129 West 81st St, New York, NY" };
   },
 
   handleFormSubmit: function(e){
@@ -25,11 +25,10 @@ Search = React.createClass({
             <div className="row ">
                   <input className="address-search col-xs-12 col-sm-12 col-md-9 col-lg-9"
                          type="text"
-                         placeholder="  e.g 129 West 81st Street, Apartment 5A"
                          valueLink={this.linkState("search")}>
                     <span className="address-label">Enter an NYC address</span>
                   </input>
-                  <input type="submit" className="search-button col-xs-6 col-sm-6 col-md-3 col-lg-3" value="Find Restaurants"/>
+                  <input type="submit" className="search-button col-xs-6 col-sm-6 col-md-3 col-lg-3" value="Show Restaurants"/>
            </div>
           </div>
         </form>
