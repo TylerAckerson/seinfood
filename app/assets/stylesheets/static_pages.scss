@@ -205,13 +205,33 @@ html {
 	transition: all 1s ease;
 }
 
-.address-label{
+.row.search-detail {
+	margin: 15px -35px 30px -35px;
+	padding: 15px;
+	color: whitesmoke;
+	background-color: steelblue;
+	opacity: 0.9;
+	border-top: 3px solid red;
+	border-bottom: 3px solid red;
+}
+
+.address-label.show {
+	opacity: 1;
+	visibility: visible;
+	transition: all 1s ease;
+}
+
+.address-label {
 	position: absolute;
 	left: 18px;
 	bottom: 57px;
 	z-index: 1;
 	color: red;
 	font-weight: bolder;
+
+	opacity: 0;
+	visibility: hidden;
+	transition: all 1s ease;
 }
 
 .search-button {
@@ -278,6 +298,7 @@ div .align-center{
 	border-radius: 5px;
 	padding: 15px 30px;
 	margin-bottom: 50px;;
+	min-height: 200px;
 }
 
 #filters {

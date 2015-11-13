@@ -9,6 +9,7 @@ Search = React.createClass({
     e.preventDefault();
     $('.address-search').removeClass("hide col-md-1 col-lg-1");
     $('.address-search').addClass("show col-md-9 col-lg-9");
+    $('.address-label').addClass("show");
     $('.search-button').removeClass("col-md-offset-4 col-lg-offset-4");
 
     $(".address-search").typed({
@@ -30,10 +31,12 @@ Search = React.createClass({
             <div className="row">
               <h1>Order Food Delivery & Takeout</h1>
             </div>
-            <div className="row">
-              <h3>... from restaurants featured in the 90s sitcom Seinfeld</h3>
+            <div className="row search-detail">
+              <h4>Seinfood features restaurants made famous by the 90s sitcom Seinfeld.</h4>
+              <h4>Click 'Find Restaurants' to start browsing restaurants near Jerrys apartment!</h4>
             </div>
             <div className="row ">
+                  <span className="address-label">Address:</span>
                   <input className="address-search col-xs-12 col-sm-12 col-md-1 col-lg-1"
                          type="text"
                          valueLink={this.linkState("search")}>
