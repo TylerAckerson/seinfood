@@ -184,7 +184,7 @@ html {
 	font-style: italic;
 }
 
-.address-search {
+.address-search.show {
   font-size: 20px;
   height: 70px;
 	padding-top: 20px;
@@ -197,9 +197,10 @@ html {
 	transition: all 1s ease;
 }
 
-.address-search.hide {
+.address-search {
 	width: 0;
 	visibility: hidden;
+	color: black;
 
 	transition: all 1s ease;
 }
@@ -215,7 +216,6 @@ html {
 
 .search-button {
 	left: -5px;
-	width: 22%;
 	font-size: 15px;
 	height: 70px;
 	background-color: whitesmoke;
