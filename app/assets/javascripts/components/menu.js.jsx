@@ -53,8 +53,7 @@ MenuCategory = React.createClass({
   render: function() {
     return (
         <div className="row menu-category" onClick={this.handleClick}>
-          <div className="col-xs-1"/>
-          <div className="col-xs-10">
+          <div className="col-xs-10 col-xs-offset-1">
             <h3>{this.props.title}</h3>
                 {
                 this.props.items.map(function(item) {
@@ -115,8 +114,7 @@ Menu = React.createClass({
 
     return (
       <div>
-        <div className="col-xs-2"></div>
-        <div className="col-xs-5 menu-main bottom-buffer" id="restaurant-menu">
+        <div className="col-xs-5 col-xs-offset-2 menu-main bottom-buffer" id="restaurant-menu">
           <div className="header">
             <h3>Menu</h3>
           </div>{

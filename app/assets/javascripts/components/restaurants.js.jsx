@@ -44,25 +44,11 @@
     },
 
     render: function(){
-      var restaurantsIndex;
-      if (this.state.restaurants.length === 0){
-        restaurantsIndex = <div className="row restaurant-index">
-                              <span className= "throbber-loader" id="loader">
-                                Loading…
-                              </span>
-                          </div>;
-      } else {
-        restaurantsIndex =
-          <div className="row restaurant-index">{
-            this.state.restaurants.map(function(restaurant){
-            var boundClick = this.handleDetailButton.bind(this, restaurant);
-
-            return <RestaurantItem
-                       restaurant={restaurant} key={restaurant.id}
-                       search={this.props.location.query.search}
-                       onClick={boundClick}/>;
-          }.bind(this)) }
-        </div>;
+      if (this.props.location.query.search && (this.state.restaurants.length < 1 &&
+          this.props.location.query.search.length < 1)) {
+        return (<div className="throbber-loader" id="loader">
+                  Loading…
+                </div>);
       }
 
       return (
@@ -77,7 +63,17 @@
             <div className="col-sm-8" id="restaurants-index">
               <RestaurantSearch search={this.props.location.query.search}
                                 count={this.state.restaurants.length}/>
-                {restaurantsIndex}
+              <div className="row restaurant-index">{
+                this.state.restaurants.map(function(restaurant){
+                  var boundClick = this.handleDetailButton.bind(this, restaurant);
+
+                  return <RestaurantItem
+                             restaurant={restaurant} key={restaurant.id}
+                             search={this.props.location.query.search}
+                             onClick={boundClick}/>;
+                }.bind(this))
+              }
+              </div>
             </div>
 
             <div className="col-sm-3 filters" id="filters">
