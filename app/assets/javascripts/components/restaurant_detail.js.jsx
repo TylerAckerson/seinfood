@@ -28,7 +28,9 @@ RestaurantDetail = React.createClass({
   render: function() {
     var restaurant = this.state.restaurant;
     if (restaurant === undefined){
-      return (<div></div>);
+      return (<div className="restaurant-detail-page throbber-loader" id="loader">
+                Loading…
+              </div>);
     }
 
     return (
