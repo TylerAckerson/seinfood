@@ -37,9 +37,8 @@ RestaurantDetail = React.createClass({
       <div>
         <div className="row restaurant-detail-page bottom-buffer">
           <div className="row">
-            <div className="col-xs-1"></div>
 
-            <div className="col-xs-7">
+            <div className="col-xs-8 col-xs-offset-1">
               <button type="button" className="btn btn-default"
                       onClick={this.goBackToRestaurants}>{"< Back to NYC Restaurants"}
               </button>
@@ -50,10 +49,6 @@ RestaurantDetail = React.createClass({
 
             </div>
           </div>
-        </div>
-
-        <div className="container">
-            {this.props.children}
         </div>
       </div>
     );

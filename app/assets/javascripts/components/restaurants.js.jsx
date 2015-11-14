@@ -46,8 +46,10 @@
     render: function(){
       var restaurantsIndex;
       if (this.state.restaurants.length === 0){
-        restaurantsIndex = <div className="restaurant-index throbber-loader" id="loader">
-                            Loading…
+        restaurantsIndex = <div className="row restaurant-index">
+                              <span className= "throbber-loader" id="loader">
+                                Loading…
+                              </span>
                           </div>;
       } else {
         restaurantsIndex =
