@@ -297,8 +297,12 @@ div .align-center{
 	border-radius: 5px;
 	padding: 15px 30px;
 	margin-bottom: 50px;
-	min-height: 350px;
 	background-color: whitesmoke;
+}
+
+.restaurant-index > h4 {
+	padding: 25px 0;
+	margin: -15px 0 0 0;
 }
 
 #filters {

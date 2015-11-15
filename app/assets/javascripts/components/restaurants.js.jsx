@@ -44,11 +44,34 @@
     },
 
     render: function(){
+      var restaurantList;
       if (this.props.location.query.search && (this.state.restaurants.length < 1 &&
           this.props.location.query.search.length < 1)) {
-        return (<div className="throbber-loader" id="loader">
-                  Loading…
-                </div>);
+        restaurantList =
+          <div className="throbber-loader" id="loader">
+            Loading…
+          </div>;
+      } else if (this.state.restaurants.length < 1){
+        restaurantList =
+          <div className="row restaurant-index">
+            <h4 className="align-center no-results">Sorry, but no restaurants match your search.</h4>
+            <div className="align-center col-xs-8 col-xs-offset-2">
+              <img src="https://dl.dropboxusercontent.com/u/4448887/seinfood/3.jpg"/>
+            </div>
+          </div>;
+      } else {
+        restaurantList =
+          <div className="row restaurant-index">{
+            this.state.restaurants.map(function(restaurant){
+              var boundClick = this.handleDetailButton.bind(this, restaurant);
+
+              return <RestaurantItem
+                         restaurant={restaurant} key={restaurant.id}
+                         search={this.props.location.query.search}
+                         onClick={boundClick}/>;
+            }.bind(this))
+          }
+          </div>;
       }
 
       return (
@@ -63,17 +86,9 @@
             <div className="col-sm-8" id="restaurants-index">
               <RestaurantSearch search={this.props.location.query.search}
                                 count={this.state.restaurants.length}/>
-              <div className="row restaurant-index">{
-                this.state.restaurants.map(function(restaurant){
-                  var boundClick = this.handleDetailButton.bind(this, restaurant);
 
-                  return <RestaurantItem
-                             restaurant={restaurant} key={restaurant.id}
-                             search={this.props.location.query.search}
-                             onClick={boundClick}/>;
-                }.bind(this))
-              }
-              </div>
+              {restaurantList}
+
             </div>
 
             <div className="col-sm-3 filters" id="filters">
