@@ -45,6 +45,7 @@
 
     render: function(){
       var restaurantList;
+
       if (this.props.location.query.search && (this.state.restaurants.length < 1 &&
           this.props.location.query.search.length < 1)) {
         restaurantList =
