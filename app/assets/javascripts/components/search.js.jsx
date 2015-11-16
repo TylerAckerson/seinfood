@@ -7,16 +7,16 @@ Search = React.createClass({
 
   handleFormSubmit: function(e){
     e.preventDefault();
-    $('.address-search').removeClass("hide col-md-1 col-lg-1");
-    $('.address-search').addClass("show col-md-9 col-lg-9");
+    $('.address-search').removeClass("hide col-xs-1 col-sm-1 col-md-1 col-lg-1");
     $('.address-label').addClass("show");
-    $('.search-button').removeClass("col-md-offset-4 col-lg-offset-4");
+    $('.address-search').addClass("show col-xs-6 col-sm-8 col-md-8 col-lg-8");
+    $('.search-button').removeClass("col-xs-offset-2 col-sm-offset-3 col-md-offset-3 col-lg-offset-3");
 
     $(".address-search").typed({
         strings: ["129 West 81st St, New York, NY"],
         typeSpeed: 0
     });
-
+    
     setTimeout(function() {
       var searchString = this.state.search;
       this.props.history.pushState(null, "/restaurants", { search: searchString});
@@ -25,7 +25,9 @@ Search = React.createClass({
 
   render: function(){
       return (
-        <div className="splash-page">
+        <div className="row splash-page">
+          <div className="col-xs-10 col-sm-8 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+
         <form role="form" className="form-inline search-form" onSubmit={this.handleFormSubmit}>
           <div className="container-fluid">
             <div className="row">
@@ -37,14 +39,18 @@ Search = React.createClass({
             </div>
             <div className="row ">
                   <span className="address-label">Address:</span>
-                  <input className="address-search col-xs-12 col-sm-12 col-md-1 col-lg-1"
+                  <input className="address-search col-xs-1 col-sm-1 col-md-1 col-lg-1"
                          type="text"
                          valueLink={this.linkState("search")}>
                   </input>
-                  <input type="submit" className="search-button col-xs-6 col-sm-6 col-md-3 col-lg-3 col-md-offset-4 col-lg-offset-4" value="Find Restaurants"/>
+                  <input className="search-button col-xs-6 col-sm-4 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-3 col-md-offset-3 col-lg-offset-3"
+                         type="submit"
+                         value="Find Restaurants"/>
            </div>
           </div>
         </form>
+
+          </div>
         </div>
       );
   }

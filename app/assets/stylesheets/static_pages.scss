@@ -164,21 +164,19 @@ html {
 }
 
 .search-form{
-  position:relative;
-	top: 25%;
-  width: 50%;
-  text-align: center;
 	background-color: whitesmoke;
+  text-align: center;
 	opacity: 0.87;
-	left: 25%;
-	border-radius: 5px;
-	padding: 10px;
 	border: 10px solid white;
-	padding-top: 20px;
+	border-radius: 5px;
+  position:relative;
+	margin-top: 20%;
 }
+
 .search-form h1, h3 {
 	color: steelblue;
 }
+
 .search-form h3 {
 	color: gray;
 	font-style: italic;
@@ -206,7 +204,7 @@ html {
 }
 
 .row.search-detail {
-	margin: 15px -35px 30px -35px;
+	margin: 15px -25px 30px -25px;
 	padding: 15px;
 	color: steelblue;
 	background-color: white;
@@ -222,8 +220,8 @@ html {
 
 .address-label {
 	position: absolute;
-	left: 18px;
-	bottom: 57px;
+	left: 15px;
+	bottom: 60px;
 	z-index: 1;
 	color: red;
 	font-weight: bolder;
@@ -234,9 +232,9 @@ html {
 }
 
 .search-button {
-	left: -5px;
 	font-size: 15px;
 	height: 70px;
+	margin-bottom: 20px;
 	background-color: whitesmoke;
 
 	border: 5px solid steelblue;
