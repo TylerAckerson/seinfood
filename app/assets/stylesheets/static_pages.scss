@@ -286,8 +286,14 @@ div .align-center{
 	outline: 1px solid whitesmoke;
 	background-color: white;
 	border-radius: 5px;
-	margin-left: 2%;
+	// margin-left: 2%;
+
+	margin: 0 1%;
 	padding: 0 15px;
+}
+
+.row.restaurant-index {
+	margin: 0 1%;
 }
 
 .restaurant-index {
@@ -301,10 +307,6 @@ div .align-center{
 .restaurant-index > h4 {
 	padding: 25px 0;
 	margin: -15px 0 0 0;
-}
-
-#filters {
-	margin-top: 65px;
 }
 
 #filters .btn.btn-default.checks {
