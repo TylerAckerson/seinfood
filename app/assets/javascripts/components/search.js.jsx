@@ -16,7 +16,7 @@ Search = React.createClass({
         strings: ["129 West 81st St, New York, NY"],
         typeSpeed: 0
     });
-    
+
     setTimeout(function() {
       var searchString = this.state.search;
       this.props.history.pushState(null, "/restaurants", { search: searchString});
@@ -34,8 +34,10 @@ Search = React.createClass({
               <h1>Order Food Delivery & Takeout</h1>
             </div>
             <div className="row search-detail">
-              <h4>Seinfood features restaurants made famous by the 90s sitcom Seinfeld.</h4>
-              <h4>Click 'Find Restaurants' to start browsing restaurants near Jerrys apartment!</h4>
+              <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+                <h4>Seinfood features restaurants made famous by the 90s sitcom Seinfeld.</h4>
+                <h4>Click 'Find Restaurants' to start browsing restaurants near Jerry&#39;s apartment!</h4>
+              </div>
             </div>
             <div className="row ">
                   <span className="address-label">Address:</span>
