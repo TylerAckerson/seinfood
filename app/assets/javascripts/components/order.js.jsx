@@ -149,7 +149,7 @@ Order = React.createClass({
     return (
 
       <div>
-        <div className="col-xs-3 order">
+        <div className="col-xs-3 col-xs-offset-1 col-sm-3 col-sm-offset-1 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 order">
          <div className="header">
            <h3>Your Order</h3>
          </div>

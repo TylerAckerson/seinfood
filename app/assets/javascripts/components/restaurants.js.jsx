@@ -84,17 +84,17 @@
         <div className="container top-buffer">
 
           <div className="row">
-            <div className="col-sm-9 col-sm-offset-2">
+            <div className="col-sm-10 col-sm-offset-1">
               <RestaurantSearch search={this.props.location.query.search}
                                 count={this.state.restaurants.length}/>
             </div>
-            <div className="col-xs-5 col-xs-offset-2" id="restaurants-index">
+            <div className="col-xs-6 col-xs-offset-1" id="restaurants-index">
 
               {restaurantList}
 
             </div>
 
-            <div className="col-xs-3 filters" id="filters">
+            <div className="col-xs-3 col-xs-offset-1 filters" id="filters">
               <Filters filterParams={this.state.filterParams}/>
             </div>
 

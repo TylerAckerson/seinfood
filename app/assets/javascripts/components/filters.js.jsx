@@ -144,45 +144,45 @@ Filters = React.createClass({
 
           <h4 className="filters-label">Offers</h4>
           <div className="row offers-form delivery">
-            <div className="col-xs-4 col-sm-4 col-md-4 align-center">
+            <div className="col-md-2 col-md-offset-1 align-center">
               <button type="button" className="btn btn-default checks"
                       value="delivery"
                       onClick={this.updateOffers}>
                         <span className="glyphicon"/>
                       </button>
             </div>
-            <div className="col-xs-8 col-sm-8 col-md-8">
+            <div className="col-md-9">
               <span className="pull-left">Delivery</span>
             </div>
           </div>
           <div className="row offers-form takeout">
-            <div className="col-xs-4 col-sm-4 col-md-4 align-center">
+            <div className="col-md-2 col-md-offset-1 align-center">
               <button type="button" className="btn btn-default checks"
                       value="takeout"
                       onClick={this.updateOffers}>
                         <span className="glyphicon"/>
                       </button>
             </div>
-            <div className="col-xs-8 col-sm-8 col-md-8">
+            <div className="col-md-9">
               <span className="pull-left">Takeout</span>
             </div>
           </div>
 
           <h4 className="filters-label">Features</h4>
           <div className="row features-form order-ahead">
-            <div className="col-xs-4 col-sm-4 col-md-4 align-center">
+            <div className="col-md-2 col-md-offset-1 align-center">
               <button type="button" className="btn btn-default checks"
                       value="order-ahead"
                       onClick={this.updateFeatures}>
                         <span className="glyphicon"/>
                       </button>
             </div>
-            <div className="col-xs-8 col-sm-8 col-md-8">
+            <div className="col-md-9">
               <span className="pull-left">Order Ahead</span>
             </div>
           </div>
           <div className="row features-form open-on-top">
-            <div className="col-xs-4 col-sm-4 col-md-4 align-center">
+            <div className="col-md-2 col-md-offset-1 align-center">
               <button type="button" className="btn btn-default checks active"
                       value="open-on-top"
                       id="open-on-top"
@@ -190,7 +190,7 @@ Filters = React.createClass({
                         <span className="glyphicon"/>
                       </button>
             </div>
-            <div className="col-xs-8 col-sm-8 col-md-8">
+            <div className="col-md-9">
               <span className="pull-left">Open On Top</span>
             </div>
           </div>

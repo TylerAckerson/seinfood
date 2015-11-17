@@ -286,14 +286,7 @@ div .align-center{
 	outline: 1px solid whitesmoke;
 	background-color: white;
 	border-radius: 5px;
-	// margin-left: 2%;
-
-	margin: 0 1%;
 	padding: 0 15px;
-}
-
-.row.restaurant-index {
-	margin: 0 1%;
 }
 
 .restaurant-index {
@@ -570,12 +563,19 @@ div .align-center{
 }
 
 // menu stuff
-.menu-main, .order, .checkout, .completed-order, .account {
+.checkout, .completed-order, .account {
 	border: 1px solid steelblue;
 	outline: 1px solid whitesmoke;
 	background-color: white;
   border-radius: 5px;
 	margin-right: 1%;
+	padding-bottom: 15px;
+}
+.menu-main, .order, {
+	border: 1px solid steelblue;
+	outline: 1px solid whitesmoke;
+	background-color: white;
+  border-radius: 5px;
 	padding-bottom: 15px;
 }
 

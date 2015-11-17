@@ -12,8 +12,7 @@ MenuItem = React.createClass({
 
     return (
       <div className="row">
-        <div className="col-xs-1 col-sm-1 col-md-1" />
-        <div className="col-xs-10 col-sm-10 col-md-10 menu-item">
+        <div className="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1  col-lg-10 col-lg-offset-1 menu-item">
           <h4 className="row menu-item-name">{item.name}</h4>
           <div className="row menu-item-detail">
             {item.description}
@@ -114,7 +113,7 @@ Menu = React.createClass({
 
     return (
       <div>
-        <div className="col-xs-5 col-xs-offset-2 menu-main bottom-buffer" id="restaurant-menu">
+        <div className="col-xs-6 col-xs-offset-1 menu-main bottom-buffer" id="restaurant-menu">
           <div className="header">
             <h3>Menu</h3>
           </div>{
