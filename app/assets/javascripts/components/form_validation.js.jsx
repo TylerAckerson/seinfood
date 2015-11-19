@@ -1,6 +1,9 @@
 FormValidation = React.createClass({
 	getInitialState: function (){
-		return { checks: {"email": null, "address": null, "city": null, "state": null} };
+		return { checks: {   "email": null,
+											 "address": null,
+											    "city": null,
+										  	 "state": null  } };
 	},
 
 	componentWillReceiveProps: function(){
@@ -14,6 +17,7 @@ FormValidation = React.createClass({
 	},
 
 	validateEmail: function(){
+		console.log("validating email");
 		var email = this.props.user.email;
 		if (typeof email === "undefined" || email === "" || email === " ") {
 			newChecks = $.extend(this.state.checks, { "email": "Email cannot be blank" });
@@ -22,7 +26,7 @@ FormValidation = React.createClass({
 	},
 
 	validateDeliveryFields: function(){
-		// console.log("validating delivery");
+		console.log("validating delivery");
 		// for (var check in this.state.checks) {
 		// 	newChecks = $.extend({}, this.state.checks);
 		// 	if (check != "email") {
