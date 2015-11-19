@@ -44,8 +44,7 @@ OrderCheckout = React.createClass({
   },
 
   _userChanged: function() {
-    this.currentUser = UserStore.user();
-    this.forceUpdate();
+    this.setState( { user: UserStore.user() } );
   },
 
 
@@ -72,26 +71,33 @@ OrderCheckout = React.createClass({
   },
 
   getGuestUserInfo: function(){
-    var guestUser = { userEmail: "elaine@pendantpublishing.com",
-                    userAddress: "16 W 75th St Apartment 2G",
-                       userCity: "New York City",
-                         userSt: "New York" };
+    var guestUser = {   email: "elaine@pendantpublishing.com",
+                      address: "16 W 75th St Apartment 2G",
+                         city: "New York City",
+                        state: "New York" };
 
-    this.user = guestUser;
-    this.setState( {guestUser: guestUser} );
+       this.setState( { user: guestUser } );
 
     setTimeout(function() {
       $('.guest-login').addClass('hiddenform');
     }, 500);
   },
 
-  getUserInfo: function(){
-    var user = { userEmail: this.currentUser.email,
-               userAddress: this.currentUser.address,
-                  userCity: this.currentUser.city,
-                    userSt: this.currentUser.state };
+  updateEmail: function(e){
+    e.preventDefault();
+    // newState = $.extend(this.state, { user: this.state.user || "" }, { email: e.currentTarget.value }});
+    // this.setState( newState );
+  },
+  updateAddress: function(e){
+    e.preventDefault();
 
-    return user;
+  },
+  updateState: function(e){
+    e.preventDefault();
+
+  },
+  updateCity: function(e){
+    e.preventDefault();
   },
 
   render: function(){
@@ -116,9 +122,7 @@ OrderCheckout = React.createClass({
 
     var guestLogin;
     if (this.currentUser){
-      this.user = this.getUserInfo();
     } else if (typeof this.user === 'undefined' || _.isEmpty(this.user)) {
-          this.user = {};
           guestLogin = this.getGuestLoginForm();
     } else {
       guestLogin = this.getGuestLoginForm();
@@ -131,28 +135,59 @@ OrderCheckout = React.createClass({
       deliveryClasses = "delivery-form";
     }
 
-    var deliveryInfo =
+    var deliveryInfo, userEmail;
+    if (this.state.user){
+      userEmail = this.state.user.email;
+      deliveryInfo =
         <div className={deliveryClasses}>
           <div className="form-group">
               <label>Address
                 <input type="text" className="form-control" id="address"
-                       value={this.user.userAddress}/>
+                       onChange={this.updateAddressl}
+                       value={this.state.user.address}/>
               </label>
             </div>
             <div className="form-group">
               <label>City
                 <input type="text" className="form-control" id="city"
-                       value={this.user.userCity}/>
+                       onChange={this.updateCity}
+                       value={this.state.user.city}/>
               </label>
             </div>
             <div className="form-group">
               <label>State
                 <input type="text" className="form-control" id="state"
-                       value={this.user.userSt}/>
+                       onChange={this.updateState}
+                       value={this.state.user.state}/>
               </label>
             </div>
         </div>;
-    console.log(this.state.order_type);
+
+
+    } else {
+      userEmail = "";
+      deliveryInfo =
+          <div className={deliveryClasses}>
+            <div className="form-group">
+                <label>Address
+                  <input type="text" className="form-control" id="address"/>
+                </label>
+              </div>
+              <div className="form-group">
+                <label>City
+                  <input type="text" className="form-control" id="city"/>
+                </label>
+              </div>
+              <div className="form-group">
+                <label>State
+                  <input type="text" className="form-control" id="state"/>
+                </label>
+              </div>
+          </div>;
+    }
+
+    console.log(this.state);
+
     return (
       <div className={this.classes}>
         <div className="col-xs-5 col-xs-offset-2 checkout">
@@ -163,12 +198,13 @@ OrderCheckout = React.createClass({
               <h3>Contact Info</h3>
               {guestLogin}
 
-              <FormValidation user={this.user} type={this.state.order_type}/>
+
             <form role="form" className="form">
               <div className="form-group">
                 <label>Email
                   <input type="text" className="form-control" id="email"
-                         value={this.user.userEmail}/>
+                         onChange={this.updateEmail}
+                         value={userEmail}/>
                 </label>
               </div>
 
