@@ -186,8 +186,6 @@ OrderCheckout = React.createClass({
           </div>;
     }
 
-    console.log(this.state);
-
     return (
       <div className={this.classes}>
         <div className="col-xs-5 col-xs-offset-2 checkout">
@@ -196,6 +194,7 @@ OrderCheckout = React.createClass({
           </div>
           <div className="order-body">
               <h3>Contact Info</h3>
+              <FormValidation type={this.state.order_type} user={this.state.user}/>
               {guestLogin}
 
 
