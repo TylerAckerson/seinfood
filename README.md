@@ -30,7 +30,7 @@ Seinfood allows users to:
 
 [view]: ./docs/views.md
 [schema]: ./docs/schema.md
-[timeline]: ./docs/phases.overview.md
+[timeline]: ./docs/phases/overview.md
 
 ## Upcoming
 Items that could potentially be added to Seinfood in the future.
