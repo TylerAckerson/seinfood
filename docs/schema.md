@@ -1,4 +1,4 @@
-# Database Schema
+# Database Schema (archive)
 
 ## users
     column name | data type | details
