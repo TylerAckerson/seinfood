@@ -9,7 +9,7 @@
 Seinfood is a [Seinfeld][seinfeld]-themed web application inspired by
 [EatStreet][eatstreet], which allows users to order delivery and takeout
 from fictional restaurants featured in the classic 90s sitcom. It was
-created using Ruby on Rails and React.js at Kramerica Industries.
+created using Ruby on Rails and React.js.
 
 Seinfood allows users to:
 
