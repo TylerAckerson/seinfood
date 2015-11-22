@@ -76,7 +76,7 @@ OrderCheckout = React.createClass({
                          city: "New York City",
                         state: "New York" };
 
-       this.setState( { user: guestUser } );
+   this.setState( guestUser );
 
     setTimeout(function() {
       $('.guest-login').addClass('hiddenform');
@@ -85,22 +85,40 @@ OrderCheckout = React.createClass({
 
   updateEmail: function(e){
     e.preventDefault();
-    // newState = $.extend(this.state, { user: this.state.user || "" }, { email: e.currentTarget.value }});
-    // this.setState( newState );
+    newState = $.extend({}, this.state);
+    newState.email = e.currentTarget.value;
+    this.setState( newState );
   },
+
   updateAddress: function(e){
     e.preventDefault();
+    newState = $.extend({}, this.state);
+    newState.address = e.currentTarget.value;
+    this.setState( newState );
 
   },
   updateState: function(e){
     e.preventDefault();
+    newState = $.extend({}, this.state);
+    newState.state = e.currentTarget.value;
 
+    this.setState( newState );
   },
+
   updateCity: function(e){
     e.preventDefault();
+    newState = $.extend({}, this.state);
+    newState.city = e.currentTarget.value;
+
+    this.setState( newState );
   },
 
   render: function(){
+    console.log(this.state.email);
+    console.log(this.state.address);
+    console.log(this.state.city);
+    console.log(this.state.state);
+
     if (this.state.renderCount === 0){
       this.classes="checkout-main";
 
@@ -136,29 +154,29 @@ OrderCheckout = React.createClass({
     }
 
     var deliveryInfo, userEmail;
-    if (this.state.user){
-      userEmail = this.state.user.email;
+    if ( this.state.email){
+      userEmail = this.state.email;
       deliveryInfo =
         <div className={deliveryClasses}>
           <div className="form-group">
               <label>Address
                 <input type="text" className="form-control" id="address"
-                       onChange={this.updateAddressl}
-                       value={this.state.user.address}/>
+                       onChange={this.updateAddress}
+                       value={ this.state.address }/>
               </label>
             </div>
             <div className="form-group">
               <label>City
                 <input type="text" className="form-control" id="city"
                        onChange={this.updateCity}
-                       value={this.state.user.city}/>
+                       value={this.state.city}/>
               </label>
             </div>
             <div className="form-group">
               <label>State
                 <input type="text" className="form-control" id="state"
                        onChange={this.updateState}
-                       value={this.state.user.state}/>
+                       value={this.state.state}/>
               </label>
             </div>
         </div>;
@@ -194,7 +212,8 @@ OrderCheckout = React.createClass({
           </div>
           <div className="order-body">
               <h3>Contact Info</h3>
-              <FormValidation type={this.state.order_type} user={this.state.user}/>
+
+              <FormValidation order={ this.state }/>
               {guestLogin}
 
 

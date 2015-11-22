@@ -7,10 +7,12 @@ FormValidation = React.createClass({
 	},
 
 	componentWillReceiveProps: function(){
-			if (this.props.type == "delivery" && typeof this.props.user != "undefined" ) {
+			// if (this.props.type == "delivery" && typeof this.props.user != "undefined" ) {
+			if (this.props.order.order_type == "delivery" && typeof this.props.order.email != "undefined" ) {
 				this.validateDeliveryFields();
 				this.validateEmail();
-			} else if (typeof this.props.user != "undefined"){
+			// } else if (typeof this.props.user != "undefined"){
+			} else if (typeof this.props.email != "undefined"){
 				this.validateEmail();
 			}
 
@@ -18,7 +20,8 @@ FormValidation = React.createClass({
 
 	validateEmail: function(){
 		console.log("validating email");
-		var email = this.props.user.email;
+		// var email = this.props.user.email;
+		var email = this.props.email;
 		if (typeof email === "undefined" || email === "" || email === " ") {
 			newChecks = $.extend(this.state.checks, { "email": "Email cannot be blank" });
 			this.setState( { checks: newChecks } );
@@ -26,7 +29,7 @@ FormValidation = React.createClass({
 	},
 
 	validateDeliveryFields: function(){
-		console.log("validating delivery");
+		// console.log("validating delivery");
 		// for (var check in this.state.checks) {
 		// 	newChecks = $.extend({}, this.state.checks);
 		// 	if (check != "email") {
@@ -41,8 +44,8 @@ FormValidation = React.createClass({
 	},
 
 	render: function(){
-		// console.log(this.props);
-		console.log(this.state);
+		// console.log("state: " + this.state);
+		// console.log("props: " + this.props);
   	return(
 			<div>
 				<h4>Form being validated</h4>
