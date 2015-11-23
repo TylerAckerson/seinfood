@@ -7,11 +7,9 @@ FormValidation = React.createClass({
 	},
 
 	componentWillReceiveProps: function(){
-			// if (this.props.type == "delivery" && typeof this.props.user != "undefined" ) {
-			if (this.props.order.order_type == "delivery" && typeof this.props.order.email != "undefined" ) {
-				this.validateDeliveryFields();
+			if (this.props.order.order_type == "delivery" && typeof this.props.email != "undefined" ) {
+				// this.validateDeliveryFields();
 				this.validateEmail();
-			// } else if (typeof this.props.user != "undefined"){
 			} else if (typeof this.props.email != "undefined"){
 				this.validateEmail();
 			}
@@ -20,23 +18,21 @@ FormValidation = React.createClass({
 
 	validateEmail: function(){
 		console.log("validating email");
-		// var email = this.props.user.email;
 		var email = this.props.email;
 		if (typeof email === "undefined" || email === "" || email === " ") {
-			newChecks = $.extend(this.state.checks, { "email": "Email cannot be blank" });
+			newState = $.extend({}, this.state.checks, { "email": "Email cannot be blank" });
 			this.setState( { checks: newChecks } );
 		}
 	},
 
 	validateDeliveryFields: function(){
-		// console.log("validating delivery");
+		console.log("validating delivery fields");
 		// for (var check in this.state.checks) {
 		// 	newChecks = $.extend({}, this.state.checks);
 		// 	if (check != "email") {
-		// 		// console.log(this.props.user[check]);
-		// 		// if (!this.props.user[check]){
-		// 		// 	newChecks[check] = check + " cannot be blank";
-		// 		// }
+		// 		if (!this.props.user[check]){
+		// 			newChecks[check] = check + " cannot be blank";
+		// 		}
 		// 	}
 		// }
 

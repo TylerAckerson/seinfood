@@ -13,7 +13,68 @@ OrderCheckout = React.createClass({
     order.user_id = parseInt(window.CURRENT_USER_ID);
     order.scheduled_for = new Date();
 
-    ApiUtil.createOrder({order: order});
+    this.handleChecks(order);
+  },
+
+  handleChecks: function(order){
+    if (this.state.order_type == "delivery"){
+      emailChecks = this.validateEmail(order);
+      deliveryChecks = this.validateDeliveryFields(order);
+
+      if (emailChecks && deliveryChecks){
+        ApiUtil.createOrder({order: order});
+      }
+
+    } else if (this.state.order_type == "takeout"){
+
+      if (this.validateEmail(order)) {
+        ApiUtil.createOrder({order: order});
+
+      }
+    }
+  },
+
+  validateEmail: function(){
+    email = this.state.email;
+
+    if (typeof email === "undefined" || email === "" || email === " ") {
+      $("#email").addClass("invalid");
+      return false;
+    } else {
+      $("#email").addClass("valid");
+      return true;
+    }
+
+  },
+
+  validateDeliveryFields: function(){
+    checksPassed = true;
+    address = this.state.address;
+
+    if (typeof address === "undefined" || address === "" || address === " ") {
+      $("#address").addClass("invalid");
+      checksPassed = false;
+    } else {
+      $("#address").addClass("valid");
+    }
+
+    city = this.state.city;
+    if (typeof city === "undefined" || city === "" || city === " ") {
+      $("#city").addClass("invalid");
+      checksPassed = false;
+    } else {
+      $("#city").addClass("valid");
+    }
+
+    state = this.state.state;
+    if (typeof state === "undefined" || state === "" || state === " ") {
+      $("#state").addClass("invalid");
+      checksPassed = false;
+    } else {
+      $("#state").addClass("valid");
+    }
+
+    return checksPassed;
   },
 
   componentDidMount: function(){
@@ -114,11 +175,6 @@ OrderCheckout = React.createClass({
   },
 
   render: function(){
-    console.log(this.state.email);
-    console.log(this.state.address);
-    console.log(this.state.city);
-    console.log(this.state.state);
-
     if (this.state.renderCount === 0){
       this.classes="checkout-main";
 
@@ -213,13 +269,12 @@ OrderCheckout = React.createClass({
           <div className="order-body">
               <h3>Contact Info</h3>
 
-              <FormValidation order={ this.state }/>
               {guestLogin}
 
 
             <form role="form" className="form">
-              <div className="form-group">
-                <label>Email
+              <div className="row form-group">
+                <label className="col-xs-5">Email
                   <input type="text" className="form-control" id="email"
                          onChange={this.updateEmail}
                          value={userEmail}/>
