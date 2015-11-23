@@ -37,14 +37,26 @@ OrderCheckout = React.createClass({
   validateEmail: function(){
     email = this.state.email;
 
-    if (typeof email === "undefined" || email === "" || email === " ") {
+    if ( typeof email === "undefined" || !(this.isEmail(email)) ) {
       $("#email").addClass("invalid");
+      $("#email").removeClass("valid");
       return false;
     } else {
       $("#email").addClass("valid");
+      $("#email").removeClass("invalid");
       return true;
     }
 
+  },
+
+  isEmail: function(str){
+    var pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+    if (str.match(pattern)){
+      return str.match(pattern)[0] === str;
+    } else {
+      return false;
+    }
   },
 
   validateDeliveryFields: function(){
@@ -53,25 +65,31 @@ OrderCheckout = React.createClass({
 
     if (typeof address === "undefined" || address === "" || address === " ") {
       $("#address").addClass("invalid");
+      $("#address").removeClass("valid");
       checksPassed = false;
     } else {
       $("#address").addClass("valid");
+      $("#address").removeClass("invalid");
     }
 
     city = this.state.city;
     if (typeof city === "undefined" || city === "" || city === " ") {
       $("#city").addClass("invalid");
+      $("#city").removeClass("valid");
       checksPassed = false;
     } else {
       $("#city").addClass("valid");
+      $("#city").removeClass("invalid");
     }
 
     state = this.state.state;
     if (typeof state === "undefined" || state === "" || state === " ") {
       $("#state").addClass("invalid");
+      $("#state").removeClass("valid");
       checksPassed = false;
     } else {
       $("#state").addClass("valid");
+      $("#state").removeClass("invalid");
     }
 
     return checksPassed;
@@ -273,8 +291,8 @@ OrderCheckout = React.createClass({
 
 
             <form role="form" className="form">
-              <div className="row form-group">
-                <label className="col-xs-5">Email
+              <div className="form-group">
+                <label>Email
                   <input type="text" className="form-control" id="email"
                          onChange={this.updateEmail}
                          value={userEmail}/>

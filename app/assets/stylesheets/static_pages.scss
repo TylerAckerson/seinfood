@@ -132,6 +132,16 @@ html {
 	min-height: 100%;
 }
 
+.form-control.invalid {
+	border: 2px solid red;
+	background-color: lightpink;
+}
+
+.form-control.valid {
+	border: 2px solid green;
+	background-color: mintcream;
+}
+
 #loader {
 	margin-left: 50%;
   margin-top: 20%
