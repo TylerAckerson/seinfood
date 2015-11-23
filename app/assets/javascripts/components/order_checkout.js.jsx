@@ -18,8 +18,8 @@ OrderCheckout = React.createClass({
 
   handleChecks: function(order){
     if (this.state.order_type == "delivery"){
-      emailChecks = this.validateEmail(order);
-      deliveryChecks = this.validateDeliveryFields(order);
+      emailChecks = this.validateEmail();
+      deliveryChecks = this.validateDeliveryFields();
 
       if (emailChecks && deliveryChecks){
         ApiUtil.createOrder({order: order});
@@ -27,7 +27,7 @@ OrderCheckout = React.createClass({
 
     } else if (this.state.order_type == "takeout"){
 
-      if (this.validateEmail(order)) {
+      if (this.validateEmail()) {
         ApiUtil.createOrder({order: order});
 
       }
@@ -61,39 +61,55 @@ OrderCheckout = React.createClass({
 
   validateDeliveryFields: function(){
     checksPassed = true;
+
+
+
+
+    return checksPassed;
+  },
+
+  validateAddress: function(){
     address = this.state.address;
 
     if (typeof address === "undefined" || address === "" || address === " ") {
       $("#address").addClass("invalid");
       $("#address").removeClass("valid");
-      checksPassed = false;
+      return false;
     } else {
       $("#address").addClass("valid");
       $("#address").removeClass("invalid");
+      return true;
     }
+  },
 
-    city = this.state.city;
-    if (typeof city === "undefined" || city === "" || city === " ") {
-      $("#city").addClass("invalid");
-      $("#city").removeClass("valid");
-      checksPassed = false;
-    } else {
-      $("#city").addClass("valid");
-      $("#city").removeClass("invalid");
-    }
-
+  validateState: function(){
     state = this.state.state;
+
     if (typeof state === "undefined" || state === "" || state === " ") {
       $("#state").addClass("invalid");
       $("#state").removeClass("valid");
-      checksPassed = false;
+      return false;
     } else {
       $("#state").addClass("valid");
       $("#state").removeClass("invalid");
+      return true;
     }
-
-    return checksPassed;
   },
+
+  validateCity: function(){
+    city = this.state.city;
+    
+    if (typeof city === "undefined" || city === "" || city === " ") {
+      $("#city").addClass("invalid");
+      $("#city").removeClass("valid");
+      return false;
+    } else {
+      $("#city").addClass("valid");
+      $("#city").removeClass("invalid");
+      return true;
+    }
+  },
+
 
   componentDidMount: function(){
     OrderStore.addCompletionChangeListener(this._orderCompleted);
@@ -166,22 +182,27 @@ OrderCheckout = React.createClass({
     e.preventDefault();
     newState = $.extend({}, this.state);
     newState.email = e.currentTarget.value;
+
     this.setState( newState );
+    this.validateEmail();
   },
 
   updateAddress: function(e){
     e.preventDefault();
     newState = $.extend({}, this.state);
     newState.address = e.currentTarget.value;
-    this.setState( newState );
 
+    this.setState( newState );
+    this.validateAddress();
   },
+
   updateState: function(e){
     e.preventDefault();
     newState = $.extend({}, this.state);
     newState.state = e.currentTarget.value;
 
     this.setState( newState );
+    this.validateState();
   },
 
   updateCity: function(e){
@@ -190,6 +211,7 @@ OrderCheckout = React.createClass({
     newState.city = e.currentTarget.value;
 
     this.setState( newState );
+    this.validateCity();
   },
 
   render: function(){
