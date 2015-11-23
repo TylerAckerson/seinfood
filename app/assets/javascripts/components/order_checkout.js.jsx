@@ -13,8 +13,103 @@ OrderCheckout = React.createClass({
     order.user_id = parseInt(window.CURRENT_USER_ID);
     order.scheduled_for = new Date();
 
-    ApiUtil.createOrder({order: order});
+    this.handleChecks(order);
   },
+
+  handleChecks: function(order){
+    if (this.state.order_type == "delivery"){
+      emailChecks = this.validateEmail();
+      deliveryChecks = this.validateDeliveryFields();
+
+      if (emailChecks && deliveryChecks){
+        ApiUtil.createOrder({order: order});
+      }
+
+    } else if (this.state.order_type == "takeout"){
+
+      if (this.validateEmail()) {
+        ApiUtil.createOrder({order: order});
+
+      }
+    }
+  },
+
+  validateEmail: function(){
+    email = this.state.email;
+
+    if ( typeof email === "undefined" || !(this.isEmail(email)) ) {
+      $("#email").addClass("invalid");
+      $("#email").removeClass("valid");
+      return false;
+    } else {
+      $("#email").addClass("valid");
+      $("#email").removeClass("invalid");
+      return true;
+    }
+
+  },
+
+  isEmail: function(str){
+    var pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+    if (str.match(pattern)){
+      return str.match(pattern)[0] === str;
+    } else {
+      return false;
+    }
+  },
+
+  validateDeliveryFields: function(){
+    checksPassed = true;
+
+
+
+
+    return checksPassed;
+  },
+
+  validateAddress: function(){
+    address = this.state.address;
+
+    if (typeof address === "undefined" || address === "" || address === " ") {
+      $("#address").addClass("invalid");
+      $("#address").removeClass("valid");
+      return false;
+    } else {
+      $("#address").addClass("valid");
+      $("#address").removeClass("invalid");
+      return true;
+    }
+  },
+
+  validateState: function(){
+    state = this.state.state;
+
+    if (typeof state === "undefined" || state === "" || state === " ") {
+      $("#state").addClass("invalid");
+      $("#state").removeClass("valid");
+      return false;
+    } else {
+      $("#state").addClass("valid");
+      $("#state").removeClass("invalid");
+      return true;
+    }
+  },
+
+  validateCity: function(){
+    city = this.state.city;
+    
+    if (typeof city === "undefined" || city === "" || city === " ") {
+      $("#city").addClass("invalid");
+      $("#city").removeClass("valid");
+      return false;
+    } else {
+      $("#city").addClass("valid");
+      $("#city").removeClass("invalid");
+      return true;
+    }
+  },
+
 
   componentDidMount: function(){
     OrderStore.addCompletionChangeListener(this._orderCompleted);
@@ -44,8 +139,7 @@ OrderCheckout = React.createClass({
   },
 
   _userChanged: function() {
-    this.currentUser = UserStore.user();
-    this.forceUpdate();
+    this.setState( { user: UserStore.user() } );
   },
 
 
@@ -72,26 +166,52 @@ OrderCheckout = React.createClass({
   },
 
   getGuestUserInfo: function(){
-    var guestUser = { userEmail: "elaine@pendantpublishing.com",
-                    userAddress: "16 W 75th St Apartment 2G",
-                       userCity: "New York City",
-                         userSt: "New York" };
+    var guestUser = {   email: "elaine@pendantpublishing.com",
+                      address: "16 W 75th St Apartment 2G",
+                         city: "New York City",
+                        state: "New York" };
 
-    this.user = guestUser;
-    this.setState( {guestUser: guestUser} );
+   this.setState( guestUser );
 
     setTimeout(function() {
       $('.guest-login').addClass('hiddenform');
     }, 500);
   },
 
-  getUserInfo: function(){
-    var user = { userEmail: this.currentUser.email,
-               userAddress: this.currentUser.address,
-                  userCity: this.currentUser.city,
-                    userSt: this.currentUser.state };
+  updateEmail: function(e){
+    e.preventDefault();
+    newState = $.extend({}, this.state);
+    newState.email = e.currentTarget.value;
 
-    return user;
+    this.setState( newState );
+    this.validateEmail();
+  },
+
+  updateAddress: function(e){
+    e.preventDefault();
+    newState = $.extend({}, this.state);
+    newState.address = e.currentTarget.value;
+
+    this.setState( newState );
+    this.validateAddress();
+  },
+
+  updateState: function(e){
+    e.preventDefault();
+    newState = $.extend({}, this.state);
+    newState.state = e.currentTarget.value;
+
+    this.setState( newState );
+    this.validateState();
+  },
+
+  updateCity: function(e){
+    e.preventDefault();
+    newState = $.extend({}, this.state);
+    newState.city = e.currentTarget.value;
+
+    this.setState( newState );
+    this.validateCity();
   },
 
   render: function(){
@@ -116,9 +236,7 @@ OrderCheckout = React.createClass({
 
     var guestLogin;
     if (this.currentUser){
-      this.user = this.getUserInfo();
     } else if (typeof this.user === 'undefined' || _.isEmpty(this.user)) {
-          this.user = {};
           guestLogin = this.getGuestLoginForm();
     } else {
       guestLogin = this.getGuestLoginForm();
@@ -131,27 +249,56 @@ OrderCheckout = React.createClass({
       deliveryClasses = "delivery-form";
     }
 
-    var deliveryInfo =
+    var deliveryInfo, userEmail;
+    if ( this.state.email){
+      userEmail = this.state.email;
+      deliveryInfo =
         <div className={deliveryClasses}>
           <div className="form-group">
               <label>Address
                 <input type="text" className="form-control" id="address"
-                       value={this.user.userAddress}/>
+                       onChange={this.updateAddress}
+                       value={ this.state.address }/>
               </label>
             </div>
             <div className="form-group">
               <label>City
                 <input type="text" className="form-control" id="city"
-                       value={this.user.userCity}/>
+                       onChange={this.updateCity}
+                       value={this.state.city}/>
               </label>
             </div>
             <div className="form-group">
               <label>State
                 <input type="text" className="form-control" id="state"
-                       value={this.user.userSt}/>
+                       onChange={this.updateState}
+                       value={this.state.state}/>
               </label>
             </div>
         </div>;
+
+
+    } else {
+      userEmail = "";
+      deliveryInfo =
+          <div className={deliveryClasses}>
+            <div className="form-group">
+                <label>Address
+                  <input type="text" className="form-control" id="address"/>
+                </label>
+              </div>
+              <div className="form-group">
+                <label>City
+                  <input type="text" className="form-control" id="city"/>
+                </label>
+              </div>
+              <div className="form-group">
+                <label>State
+                  <input type="text" className="form-control" id="state"/>
+                </label>
+              </div>
+          </div>;
+    }
 
     return (
       <div className={this.classes}>
@@ -164,11 +311,13 @@ OrderCheckout = React.createClass({
 
               {guestLogin}
 
+
             <form role="form" className="form">
               <div className="form-group">
                 <label>Email
                   <input type="text" className="form-control" id="email"
-                         value={this.user.userEmail}/>
+                         onChange={this.updateEmail}
+                         value={userEmail}/>
                 </label>
               </div>
 
